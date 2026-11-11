@@ -1,0 +1,7 @@
+jacks.mp4 is a four-second excerpt of “Jumping jacks and burpees” by Taco Fleur.
+Source: https://commons.wikimedia.org/wiki/File:Jumping_jacks_and_burpees.webm
+License: Creative Commons Attribution-ShareAlike 4.0 International
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Changes: excerpt from 9.7 to 13.7 seconds, audio removed, re-encoded at 20 fps.
+The excerpt is provided under CC BY-SA 4.0 in the Android test package.

@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.FitBlock" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#38D996</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#10172A</item>
+        <item name="android:navigationBarColor">#10172A</item>
+        <item name="android:windowBackground">#10172A</item>
+        <item name="android:windowActionModeOverlay">true</item>
+    </style>
+</resources>

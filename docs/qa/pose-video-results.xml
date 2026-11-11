@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="3" failures="0" errors="0" skipped="0" time="76.701" timestamp="2026-11-11T01:42:29" hostname="localhost">
+  <testsuite name="com.fitblock.app.RecordedPoseQa" tests="3" failures="0" errors="0" skipped="0" time="74.308" timestamp="2026-11-11T01:42:29" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="squats" classname="com.fitblock.app.RecordedPoseQa" time="36.716" />
+    <testcase name="pushups" classname="com.fitblock.app.RecordedPoseQa" time="27.822" />
+    <testcase name="jumpingJacks" classname="com.fitblock.app.RecordedPoseQa" time="9.77" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,1 @@
+PASS: runtime permission, goal min/max UI, 14 steps recorded with screen off, pause and resume, completion and 10-minute award while screen off.

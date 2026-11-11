@@ -1,0 +1,1501 @@
+
+Centro de Ciencias Básicas
+Departamento Académico: Sistemas Electrónicos
+Desarrollo de Emprendedores
+
+
+Plan de Negocios de la empresa “FitBlock”
+
+Docente: Martha Rocío Guerra Gutiérrez
+Alumnos:
+JoséLuis Espinoza Sánchez
+Luis Alberto Hernández Velasco
+Luis Humberto RamírezGutiérrez
+Brandon Ruiz Morales
+
+Ingeniería en Sistemas Computacionales
+Noveno SemestreGrupo C
+Fecha de entrega: 12 de Octubre de 2026
+Índice
+Espíritu Emprendedor4
+Cualidades de los emprendedores (miembros del equipo)4
+Tendencias del Negocio5
+10 problemas de resolver del día a día6
+Puntuación de problemáticas7
+Filtro 1. ¿Vale la pena resolverlo?7
+Filtro 2. Las 20 problemáticas de mayor puntaje11
+Selección del problema12
+Creatividad y propuesta de valor13
+Design Thinking13
+Enunciado del reto13
+Scan Card13
+Entrevista16
+Modelo Canvas17
+Mapa de Empatía18
+Plan de Mercadotecnia19
+Análisis de la Industria y Mercado19
+Mapeo de Aplicaciones Similares y Competencia20
+Oportunidades y Puntos de Diferenciación para el proyecto21
+Producto21
+Segmentación del Mercado22
+Investigación de Mercado25
+Técnica de Recolección de Datos25
+Instrumento de Validación (Cuestionario)25
+Resultados de la investigación27
+Plan de Administración34
+Misión34
+Visión35
+Filosofía y valores35
+Nombre35
+Logotipo36
+Miniguía de marca37
+Usos no permitidos39
+Eslogan40
+Descripción de la Empresa40
+Justificación de la Empresa40
+Objetivos generales41
+Estructura organizacional41
+Funciones y perfiles42
+Marco Legal43
+Plan de Producción46
+Selección de maquinaria, equipo y herramienta46
+Programa de producción50
+Demanda estimada50
+Calendario de producción50
+Proceso de producción50
+Ubicación y distribución de la planta51
+Plan de Recursos Humanos53
+Proceso de Reclutamiento53
+Proceso de selección55
+Capacitación del Personal56
+Políticas del área de Recursos Humanos58
+
+
+Espíritu Emprendedor
+Cualidades de los emprendedores (miembros del equipo)
+José Luis Espinoza Sánchez
+Proactividad y Aprendizaje Autónomo
+Liderazgo y Transmisión de Conocimiento
+Resolución de Problemas bajo Presión
+Organización y Gestión de Proyectos
+Visión Ejecutora (Mente de Maker)
+Versatilidad Práctica
+Orientación a Resultados y Constancia
+Pensamiento Analítico y Optimización
+Iniciativa y Empuje Profesional
+Adaptabilidad Tecnológica
+Luis Alberto Hernández Velasco
+Resolución de problemas
+Capacidad de adaptación
+Responsabilidad
+Reconocer los errores
+Comprensión con las personas
+Abierto a las críticas constructivas
+Paciencia
+Empatía y sensibilidad
+Liderazgo y proactividad
+Generosidad y bondad
+Luis Humberto Ramírez Gutiérrez
+Trabajo en equipo
+Facilidad de habla
+Capacidad de adaptación
+Trabajo optimo bajo presión
+Acepta y escucha opiniones
+Reconoce errores y procura solucionarlos
+Improvisa sobre la marcha
+Resolución activa de errores
+Buscar la forma más fácil de realizar las cosas
+Siempre reducir costos y maximizar ganancias
+Brandon Ruiz Morales
+Persistente
+⁠Buen Orador
+⁠Confiable
+⁠Creativo
+⁠Buen Investigador
+⁠Resolutivo
+⁠Ordenado
+⁠Gentil
+⁠Confianza en sí mismo
+⁠Respetuoso
+
+Tendencias del Negocio
+José Luis Espinoza Sánchez
+Electrificaciónsostenible
+Procesamiento fuera del sistema local
+Todo es un servicio (nada te pertenece)
+Luis Alberto Hernández Velasco
+Transición Digital
+Integración de Inteligencia Artificial
+Tecnologías para todo público
+Luis Humbero Ramírez Gutiérrez
+Automatización activa de procesos
+Aprendizaje activo para análisis de datos
+Seguridad de la información
+Brandon Ruiz Morales
+Creación deterceros espacios para la convivencia social
+Buscar que las personas puedan elegir entre tener algo propio y tener algo prestado(Abarcando desde lo análogo hasta lo digital)
+Poder separar lo creado con IA de lo creado de las personas
+
+10 problemasde resolver del día a día
+José Luis Espinoza Sánchez
+Desperdicio de electricidad y altos cobros 
+Falta de control de calidad en industria especializada
+Dificultad de mantener negocios pequeños debido a los altos costos de operación
+Inseguridad y fraudes en la compraventa de herramientas de segunda mano
+Invasión de privacidad por parte de empresas
+Falta de mantenimiento seguro de informaciónpor parte de empresas de IT
+Difícilsituación de mercado laboral, para los entrantes a él
+Desperdicio de alimentos por macroempresas
+Seguridad en espacios de trabajo usando regulaciones correctasde auditado
+Mala Calidad del aire
+Luis Alberto Hernández Velasco
+Digitalizaciónexcesiva y fuga de datos personales
+Falta de criterio propio y raciocinio (IA y algoritmos)
+Sobresaturación de contenido (tendencias y series basura)
+Falta de controlen la red doméstica (controles parentales eficientes)
+Desinformación y contenido de odio
+Infraestructura insegura y deficiente para el peatón
+Sobreestimulación y FOMO
+Crisis de vivienda y precios excesivos
+Estrés crónico laboral y social
+Desensibilización y minimización de los problemas graves
+Luis Humberto Ramírez Gutiérrez
+Vulnerabilidades en la seguridad de los datos de los usuarios
+Poco conocimiento de los empleados de ciberseguridad
+Mala organización o confusión de roles
+Procrastinación de procesos
+Falta de presupuesto
+Deficiencia en infraestructura
+Falta de profesionalismo y de propósito
+Falta de clientela o interés
+Falta de difusión
+Competencia
+BrandonRuiz Morales
+La 0 Propiedad actual que tenemos sobre las cosas que compramos 
+La sobre estimulación que da el contenido corto y como afecta la poca retención de las personas sobre el contenido actual.
+Lasobre desinformación que hay actualmente con todo el contenido basura de las redes sociales.
+La deforestación ydestrucción de espacios verdes para la convivencia personal.
+Lautilización excesiva del concepto cringe paraminimizar a todas las personas que quieren hacer o intentar algo en su vida.
+Lainsuficiencia que les causa a las personas los videos de gente perfecta
+Las dietas sobre exageradas y ayunos excesivos para bajar de peso
+La imposibilidad de las nuevas generaciones para adquirir una vivienda propia o independizarse debido a la inflación desmedida y los precios actuales.
+La epidemia de soledad y aislamiento social que están experimentando las personas a pesar de vivir en una época donde estamos más conectados que nunca.
+La producción excesiva de ropa desechable o "fast fashion" y la inmensa contaminación global que genera el simple hecho de seguir modas de corta duración.
+La exigencia constante de la sociedad por ser productivo en todo momento y la culpa que esto le genera a la gente cuando simplemente quieren descansar.
+
+Puntuación de problemáticas
+Filtro 1. ¿Vale la pena resolverlo?
+Al comparar cada problemática en busca de similitudes, se lograron obtener 37 problemáticas:
+Desperdicio de electricidad y altos cobros 
+Falta de control de calidad en industria especializada
+Dificultad de mantener negocios pequeños debido a los altos costos de operación
+Inseguridad y fraudes en la compraventa de herramientas de segunda mano
+Invasión de privacidad por parte de empresas
+Falta de mantenimiento seguro de información por parte de empresas de IT
+Difícil situación de mercado laboral, para los entrantes a él
+Desperdicio de alimentos por macroempresas
+Seguridad en espacios de trabajo usando regulaciones correctas de auditado
+Mala Calidad del aire
+Digitalización excesiva y fuga de datos personales
+Falta de criterio propio y raciocinio (IA y algoritmos)
+Sobresaturación de contenido (tendencias y series basura)
+Falta de control en la red doméstica (controles parentales eficientes)
+Desinformación y contenido de odio
+Infraestructura insegura y deficiente para el peatón
+Sobreestimulación y FOMO
+Crisis de vivienda y precios excesivos
+Estrés crónico laboral y social
+Desensibilización y minimización de los problemas graves
+Poco conocimiento de los empleados de ciberseguridad
+Mala organización o confusión de roles
+Procrastinación de procesos
+Falta de presupuesto
+Deficiencia en infraestructura
+Falta de profesionalismo y de propósito
+Falta de clientela o interés
+Falta de difusión
+Competencia
+La 0 Propiedad actual que tenemos sobre las cosas que compramos 
+La deforestación y destrucción de espacios verdes para la convivencia personal.
+La utilización excesiva del concepto cringe para minimizar a todas las personas que quieren hacer o intentar algo en su vida.
+La insuficiencia que les causa a las personas los videos de gente perfecta
+Las dietas sobre exageradas y ayunos excesivos para bajar de peso
+La epidemia de soledad y aislamiento social que están experimentando las personas a pesar de vivir en una época donde estamos más conectados que nunca.
+La producción excesiva de ropa desechable o "fast fashion" y la inmensa contaminación global que genera el simple hecho de seguir modas de corta duración.
+La exigencia constante de la sociedad por ser productivo en todo momento y la culpa que esto le genera a la gente cuando simplemente quieren descansar.
+Para verificar cuáles son las problemáticas que se plantean resolver se tomaron en cuenta 4 variables:
+Magnitud: ¿A cuántas personas afecta?
+Dolor: ¿Qué tan importante/frustrante es el problema?
+Frecuencia: ¿Qué tan seguido ocurre?
+Disposición: ¿Alguien pagaría por solucionarlo?
+Estas variables se miden en una escala del 1 al 5, donde el 1 es bajo y 5 alto, al clasificarlas se logró el siguiente resultado:
+
+No
+Problema
+Magnitud
+Dolor
+Frecuencia
+Disposición
+Total
+15
+Desinformación y contenido de odio
+5
+5
+4
+5
+19
+17
+Sobreestimulación y FOMO
+4
+5
+5
+5
+19
+1
+Desperdicio de electricidad y altos cobros 
+5
+4
+4
+5
+18
+20
+Desensibilización y minimización de los problemas graves
+4
+5
+4
+5
+18
+28
+Falta de difusión
+5
+5
+5
+2
+17
+30
+La 0 Propiedad actual que tenemos sobre las cosas que compramos 
+5
+4
+4
+4
+17
+31
+La deforestación y destrucción de espacios verdes para la convivencia personal.
+4
+5
+3
+5
+17
+32
+La utilización excesiva del concepto cringe para minimizar a todas las personas que quieren hacer o intentar algo en su vida.
+5
+3
+5
+4
+17
+3
+Dificultad de mantener negocios pequeños debido a los altos costos de operación
+5
+2
+4
+5
+16
+24
+Falta de presupuesto
+2
+5
+4
+5
+16
+29
+Competencia
+3
+5
+3
+5
+16
+6
+Falta de mantenimiento seguro de información por parte de empresas de IT
+3
+5
+5
+2
+15
+7
+Difícil situación de mercado laboral, para los entrantes a él
+3
+3
+5
+4
+15
+9
+Seguridad en espacios de trabajo usando regulaciones correctas de auditado
+3
+4
+5
+3
+15
+11
+Digitalización excesiva y fuga de datos personales
+3
+5
+2
+5
+15
+37
+La exigencia constante de la sociedad por ser productivo en todo momento y la culpa que esto le genera a la gente cuando simplemente quieren descansar.
+4
+5
+2
+4
+15
+8
+Desperdicio de alimentos por macroempresas
+3
+5
+3
+3
+14
+10
+Mala Calidad del aire
+4
+2
+3
+5
+14
+14
+Falta de control en la red doméstica (controles parentales eficientes)
+4
+3
+3
+4
+14
+22
+Mala organización o confusión de roles
+2
+4
+3
+5
+14
+33
+La insuficiencia que les causa a las personas los videos de gente perfecta
+4
+3
+3
+4
+14
+35
+La epidemia de soledad y aislamiento social que están experimentando las personas a pesar de vivir en una época donde estamos más conectados que nunca.
+5
+4
+3
+2
+14
+2
+Falta de control de calidad en industria especializada
+2
+3
+3
+5
+13
+12
+Falta de criterio propio y raciocinio (IA y algoritmos)
+4
+3
+3
+3
+13
+13
+Sobresaturación de contenido (tendencias y series basura)
+5
+4
+2
+2
+13
+16
+Infraestructura insegura y deficiente para el peatón
+3
+3
+3
+4
+13
+23
+Procrastinación de procesos
+3
+4
+2
+4
+13
+26
+Falta de profesionalismo y de propósito
+3
+5
+2
+3
+13
+27
+Falta de clientela o interés
+5
+3
+3
+2
+13
+19
+Estrés crónico laboral y social
+3
+4
+3
+2
+12
+34
+Las dietas sobre exageradas y ayunos excesivos para bajar de peso
+2
+3
+3
+4
+12
+5
+Invasión de privacidad por parte de empresas
+2
+3
+3
+3
+11
+25
+Deficiencia en infraestructura
+2
+2
+3
+4
+11
+4
+Inseguridad y fraudes en la compraventa de herramientas de segunda mano
+2
+2
+3
+3
+10
+18
+Crisis de vivienda y precios excesivos
+2
+3
+3
+2
+10
+21
+Poco conocimiento de los empleados de ciberseguridad
+2
+2
+3
+3
+10
+36
+La producción excesiva de ropa desechable o "fast fashion" y la inmensa contaminación global que genera el simple hecho de seguir modas de corta duración.
+2
+2
+2
+4
+10
+
+Filtro 2. Las 20 problemáticas de mayor puntaje
+Para este filtro se utilizaron cinco nuevas variables para identificar y seleccionar los problemas con mayor puntaje:
+Problema: ¿Realmente existe o importa?
+Mercado: ¿Existe un número suficiente de afectados?
+Negocio: Posibilidad real de ganar $
+Innovación: ¿Ofrecemos algo diferente?
+Viabilidad: ¿Es posible desarrollarlo?
+Estas variables se miden en una escala del 1 al 5, donde el 1 es bajo y 5 alto, al clasificarlas se logró el siguiente resultado:
+No
+Problema
+PROBLEMA
+MERCADO
+NEGOCIO
+INNOVACIÓN
+VIABILIDAD
+TOTAL
+6
+Falta de mantenimiento seguro de información por parte de empresas de IT
+5
+5
+4
+3
+4
+21
+22
+Mala organización o confusión de roles
+4
+5
+4
+3
+4
+20
+15
+Desinformación y contenido de odio
+4
+4
+5
+2
+4
+19
+17
+Sobreestimulación y FOMO
+4
+4
+4
+3
+4
+19
+14
+Falta de control en la red doméstica (controles parentales eficientes)
+4
+3
+5
+3
+4
+19
+1
+Desperdicio de electricidad y altos cobros 
+5
+5
+3
+2
+3
+18
+31
+La deforestación y destrucción de espacios verdes para la convivencia personal.
+5
+5
+2
+3
+3
+18
+11
+Digitalización excesiva y fuga de datos personales
+5
+5
+3
+2
+3
+18
+3
+Dificultad de mantener negocios pequeños debido a los altos costos de operación
+4
+5
+3
+2
+3
+17
+8
+Desperdicio de alimentos por macroempresas
+4
+4
+3
+3
+3
+17
+10
+Mala Calidad del aire
+5
+5
+3
+2
+2
+17
+28
+Falta de difusión
+4
+3
+4
+2
+3
+16
+30
+La 0 Propiedad actual que tenemos sobre las cosas que compramos 
+5
+4
+3
+2
+2
+16
+7
+Difícil situación de mercado laboral, para los entrantes a él
+4
+5
+2
+2
+3
+16
+9
+Seguridad en espacios de trabajo usando regulaciones correctas de auditado
+4
+4
+3
+2
+3
+16
+37
+La exigencia constante de la sociedad por ser productivo en todo momento y la culpa que esto le genera a la gente cuando simplemente quieren descansar.
+4
+5
+3
+2
+2
+16
+29
+Competencia
+3
+4
+3
+2
+2
+14
+32
+La utilización excesiva del concepto cringe para minimizar a todas las personas que quieren hacer o intentar algo en su vida.
+4
+3
+2
+2
+2
+13
+24
+Falta de presupuesto
+3
+4
+2
+2
+2
+13
+20
+Desensibilización y minimización de los problemas graves
+4
+3
+2
+2
+1
+12
+
+Selección del problema
+En base a los resultados con mayor puntaje del filtro 2, se tomaron tres ideas que cumplieran con alguna de las tres oportunidades: segura, innovadora y atrevida. Las ideas seleccionadas fueron las siguientes:
+Oportunidad segura: Sobreestimulación y FOMO
+Actualmente nos encontramos en una realidad donde todos nos encontramos conectados, esto provoca que toda nuestra atención se encuentre en la tendencia del momento o en lo que sucede en la vida de ciertas personas importantes o creadores de contenido. Esto provoca que el usuario se concentre tanto en la actividad digital que deja de lado las actividades cotidianas. El objetivo es crear una aplicación que permita al usuario distanciarse del mundo digital fijando objetivos para desbloquear las redes sociales más utilizadas mediante ejercicios de activación física y socialización.
+Oportunidad innovadora: Mala organización o confusión de roles
+El estándar de trabajo en el día de hoyes trabajar en equipo, pese a ser una actividad común en el día a día, la mayoría de las personas se les dificulta organizarse para cumplircon los objetivosdel trabajo. El objetivo es crear una aplicación o espacio colaborativo que ayude a mantener registro de los objetivos, tarea y roles de los integrantes del equipo creado, con el fin de tener mejor estructurado el sistema de trabajo y todo esté documentado.
+Oportunidad atrevida: Desinformación y contenido de odio
+Con tanta información sobre ideologías y politización es normal encontrar todo tipo de noticias que provoquen escándalo o alarmismo en la población, además de que no siempre muestran un nivel neutral en la información o no son fuentes confiables. El objetivo es crear una plataforma o algoritmo que permita separar los sesgos y mostrar la información objetiva para que los usuarios estén enterados de la situación del momento. Se consideróatrevida porque al involucrar temas periodísticos y sumamente delicados, pueden perjudicar o ser motivo de censura para ciertos sectores de la sociedad.
+Creatividad y propuesta de valor
+Design Thinking
+Enunciado del reto
+Problema: Uso desmedido de redes sociales y falta de actividad física
+¿Cómo podríamos reducir el uso excesivo del teléfono y el sedentarismo en personas que no tienen autocontrol para motivarlas a moverse y hacer ejercicio antes de ver en redes sociales?
+
+Scan Card
+José Luis Espinoza Sánchez
+
+
+Luis Alberto Hernández Velasco
+
+Luis Humberto Ramírez Gutiérrez
+
+Brandon Ruiz Morales
+
+Entrevista
+
+
+Modelo Canvas
+
+Mapa de Empatía
+
+
+Plan de Mercadotecnia
+Análisis de la Industria y Mercado
+1. Sector y Subsectores Pertinentes
+El proyecto FitBlock no pertenece a un solo sector aislado, sino que se ubica en la intersección de tres grandes industrias tecnológicamente alineadas:
+Salud Digital y Bienestar (Digital Health & Wellness): Es el sector primario. Dentro de este, se sitúa en la categoría de Bienestar Digital (Digital Wellbeing) y Desintoxicación Digital (Digital Detox).
+Fitness Gamificado (Gamified Fitness / HealthTech): Utiliza mecánicas de juego (Earn-to-Scroll o Move-to-Unlock) para transformar una obligación (hacer ejercicio) en un pase de acceso a una recompensa (tiempo de pantalla).
+Productividad y Gestión de Tiempo en Pantalla (Screen Time & Focus Apps): Aplicaciones orientadas a la modificación de conducta mediante barreras de fricción voluntarias.
+2. Macrotendencias del Mercado
+Efecto "Doomscrolling" y Adicción a Feeds Infinitos: Redes como TikTok, Instagram (Reels) y YouTube (Shorts) generan picos inmediatos de dopamina sin esfuerzo físico. El usuario reconoce el problema pero carece de la voluntad/autocontrol para detenerse (intención vs. acción).
+Fricción Conductual como Solución: Las aplicaciones modernas de bienestar ya no solo "piden" amablemente que cierres la app; aplican restricciones técnicas reales que fuerzan al cerebro a hacer una pausa activa antes de consumir contenido.
+Uso de la API Nactiva del Dispositivo: La madurez de la Screen Time API en iOS y los servicios de accesibilidad/uso de datos (UsageStatsManager) en Android permiten bloquear de forma segura otras aplicaciones, mientras que el acelerómetro, podómetro y la visión por cámara (Pose Detection) permiten validar el movimiento.
+3. Perfil del Usuario Objetivo (Buyer Persona)
+Estudiantes y Jóvenes Profesionales (18–35 años): Pasan más de 4-6 horas diarias en redes sociales, sufren de sedentarismo debido al trabajo/estudio en escritorio, y sienten culpa por perder el tiempo pero no logran auto disciplinarse.
+Mapeo de Aplicaciones Similares y Competencia
+En las tiendas de aplicaciones (App Store y Google Play) existen desarrollos que han validado este modelo bajo el concepto de "Earn your screen time" (Gana tu tiempo de pantalla). La competencia se divide principalmente en dos metodologías tecnológicas:
+Categoría A: Basadas en Cámara y Visión por Computadora (Pose Detection)
+Utilizan la cámara frontal para contar repeticiones mediante detección de articulaciones y postura.
+PushScroll (iOS / Android):
+Mecánica: Intercambio directo de repeticiones por minutos (ej. 1 flexión = 1 minuto de redes sociales). Usa IA con la cámara para validar que las flexiones, sentadillas o saltos sean reales.
+RepScroll (iOS):
+Mecánica: Bloqueo estricto (Hard Lock). Cuenta ejercicios como lagartijas, sentadillas y planchas mediante la cámara para desbloquear tiempo.
+MyRepsCount / Workout Locker (iOS / Android):
+Mecánica: Exigen completar una rutina o meta diaria de ejercicios frente a la cámara antes de desbloquear las aplicaciones seleccionadas.
+Categoría B: Basadas en Podómetro y Acelerómetro (Hardware Sensors)
+Utilizan el sensor de movimiento en segundo plano o integración con Apple Health / Google Health Connect.
+StepBloc (iOS / Android):
+Mecánica: Permite establecer metas de pasos o ejercicios (como sentadillas) para liberar bloques de tiempo de aplicaciones distractoras.
+StepStore / Steppin (Android / iOS):
+Mecánica: Convierte el conteo de pasos caminados en "créditos o minutos de pantalla". Si no has caminado lo suficiente en el día, no puedes desbloquear tus redes.
+Fitlock (iOS):
+Mecánica: Se vincula con la API de tiempo en pantalla de iOS y libera acceso a las apps únicamente cuando se alcanzan metas físicas configuradas en la app de Salud.
+Categoría C: Líderes en Gestión de Tiempo por Fricción (Sin enfoque fitness directo)
+Opal / One Sec: Son los referentes del mercado en bloqueo de redes sociales. Utilizan pausado obligado, respiraciones profundas o barreras cognitivas para romper el hábito involuntario de abrir aplicaciones.
+Oportunidades y Puntos de Diferenciación para el proyecto
+Dado que ya existen competidores en el mercado internacional, para que la propuesta de valor sea innovadora y competitiva debe resolver los puntos débiles del mercado actual:
+Múltiples Modos de Validación: Combinar el acelerómetro/podómetro (para pasos o saltos en su lugar) con el giroscopio o la cámara, permitiendo al usuario elegir el tipo de ejercicio según su entorno (ej. si está en la oficina o escuela, hacer estiramientos o caminar en vez de hacer flexiones en el suelo).
+Sistema Anti-Trampas (Anti-Cheat): Muchos usuarios logran engañar al acelerómetro agitando el teléfono con la mano. Implementar algoritmos que analicen la frecuencia de movimiento con el acelerómetro/giroscopio o visión por computadora agregaría valor real.
+Rutinas Progresivas / Ajuste de Dificultad Dinámico: Para evitar la fatiga o el abandono, la app puede aumentar progresivamente el "costo en movimiento" a medida que el usuario pasa más tiempo intentando acceder a las redes sociales durante el día.
+Gamification Social y Ligas: Permitir que grupos de amigos o comunidades compitan para ver quién logra "comprar" más tiempo de pantalla a través del ejercicio.
+Producto
+1. Beneficio central
+Recuperación del autocontrol y combate al sedentarismo: Resolver la incapacidad de despegarse de la pantalla por falta de fuerza de voluntad, canjeando la dopamina inmediata del celular por dopamina generada a través de actividad física real.
+2. Producto básico
+App móvil de bloqueo y registro físico: Software instalable con temporizador de uso para aplicaciones específicas (TikTok, Instagram, etc.).
+Módulo de validación física: Lectura de sensores nativos (acelerómetro, podómetro o cámara frontal) para registrar la actividad requerida.
+Mecanismo de desbloqueo condicional: Liberación de un bloque de tiempo de navegación únicamente cuando se cumple la meta de movimiento configurada.
+3. Producto esperado
+Configuración sencilla e intuitiva: Selección rápida de las redes sociales a restringir y límites de tiempo diarios.
+Bloqueo persistente y confiable: Una barrera que no falle si la aplicación se minimiza o se reinicia en segundo plano.
+Conteo preciso y bajo consumo de energía: Detección de repeticiones o pasos sin agotar rápidamente la batería del dispositivo.
+Panel de estadísticas diarias: Métricas claras de minutos de pantalla consumidos frente a repeticiones o minutos de ejercicio completados.
+4. Producto aumentado
+Sistema anti-trampas (Anti-Cheat): Algoritmos que diferencian si el teléfono solo se está sacudiendo con la mano o si el usuario realmente está realizando sentadillas, saltos o caminata.
+Modos adaptables al entorno: Alternativas de ejercicios discretos si el usuario se encuentra en el salón de clases o en la oficina (por ejemplo, conteo de pasos o estiramientos en vez de lagartijas en el suelo).
+Gamificación y rachas (Streaks): Recompensas visuales, niveles y seguimiento de hábitos continuos para fomentar la adherencia a largo plazo.
+Modo de emergencia regulado: Opción de desbloqueo inmediato para imprevistos urgentes con un "costo" o penalización diferida.
+5. Producto potencial
+Ligas sociales y desafíos grupales: Mecánicas multijugador para competir con amigos o familiares en retos de "quién genera más tiempo de pantalla entrenando".
+Sincronización con wearables y biometría: Integración con smartwatches (Apple Watch, Wear OS) para validar el esfuerzo mediante frecuencia cardíaca real.
+Inteligencia artificial predictiva: Detección de patrones de recaída o picos de doomscrolling para activar pausas activas antes de que comience el uso desmedido.
+Alianzas de bienestar (B2B): Integración con aseguradoras, gimnasios o universidades para canjear los puntos de movimiento no solo por tiempo de pantalla, sino por descuentos y beneficios tangibles.
+
+Segmentación del Mercado
+Geográfica:
+Inicialmente zonas urbanas de México (con acceso constante a conectividad y smartphones de gama media a alta).
+Estado: Aguascalientes (mercado de validación inicial y pruebas piloto).
+Municipio: Municipio de Aguascalientes.
+Colonia: Zonas y corredores universitarios y residenciales medios (ej. Campestre, Bosques, Colinas del Río, Pocitos, San Cayetano).
+Zona urbana o rural: 100% Zona urbana (garantiza cobertura 4G/5G constante y dispositivos aptos).
+Distancia: Radio de movilidad diaria entre zonas habitacionales y campus universitarios / centros de trabajo de la capital (trayectos típicos de 5 a 15 km).
+Densidad: Alta densidad poblacional (mayor concentración de estudiantes, centros educativos y oficinas).
+Clima: Templado semiseco (las condiciones climáticas no representan un obstáculo constante para realizar actividad física en interiores o exteriores).
+Demográfica:
+Edad: 18 a 28 años.
+Escolaridad: Estudiantes universitarios y recién egresados o profesionistas jóvenes.
+Género: Indistinto (hombres y mujeres).
+Ocupación: Estudiantes universitarios de carreras con alta carga en pantalla (ingenierías, diseño, administración, etc.) y trabajadores remotos o de oficina (home office / híbrido).
+Ingreso: (Nivel Socioeconómico AMAI): C+, C y C- (ingreso familiar mensual o individual desde $15,000 MXN en adelante; cuentan con smartphones de gama media-alta con sensores funcionales).
+Tamaño del hogar: Hogares de 3 a 5 integrantes (viviendo con familia nuclear) o unipersonales / departamentos compartidos (roommates de 1 a 3 personas).
+Estado civil: Solteros (predominantemente y sin hijos a su cargo, lo que les deja tiempo libre no estructurado propenso a procrastinación).
+Psicográfica:
+Estilo de vida sedentario involuntario: pasan sentados más de 6 a 8 horas diarias frente a monitores o escritorios.
+Valoran la productividad y la superación personal, pero sienten frustración y culpa por procrastinar en redes sociales.
+Interés latente por el fitness o la salud, aunque les cuesta construir el hábito o encontrar tiempo para entrenar formalmente.
+Conductual:
+Frecuencia de compra: Modelo de suscripción mensual/anual o pago único por funciones premium tras un periodo de prueba gratis (freemium).
+Ocasión de consumo: Uso diario continuo; especialmente activo durante horas de estudio, jornadas laborales y momentos previos a dormir (picos de doomscrolling).
+Beneficio buscado: Fricción externa efectiva que los obligue a levantarse y moverse, reduciendo el tiempo perdido en el teléfono sin depender exclusivamente del autocontrol mental.
+Lealtad: Media a alta mientras la app mantenga efectividad para romper el hábito y no sea fácil de burlar (anti-cheat).
+Sensibilidad al precio: Media-alta; prefieren esquemas gratuitos con anuncios o micropagos accesibles para estudiantes (suscripciones de $49 a $99 MXN al mes).
+Nivel de uso: Usuarios intensivos (Heavy Users del smartphone: +4 horas diarias de uso no productivo; y usuarios potenciales frecuentes de la app de bloqueo).
+Disposición a probar marcas nuevas: Muy alta (los jóvenes de este segmento descargan y prueban constantemente aplicaciones nuevas de bienestar, tendencias virales y productividad).
+Definición Concreta del Mercado Objetivo
+Estudiantes universitarios y profesionistas jóvenes de 18 a 28 años en áreas urbanas que registran más de 4 horas diarias de tiempo de pantalla en redes sociales, llevan un estilo de vida sedentario y buscan activamente herramientas de fricción digital para mejorar su autocontrol y condición física.
+Justificación de Criterios (Concreto, medible y accesible)
+Concreto: No abarca a "cualquiera que use el celular", sino a un perfil específico con un dolor claro: la fricción entre querer dejar de procrastinar y no tener la disciplina física para hacerlo.
+Medible: Se puede cuantificar mediante estadísticas de tiempo en pantalla (reportes de iOS Screen Time / Android Digital Wellbeing) y métricas de mercado de descargas de apps de productividad y salud en México.
+Accesible: Se puede llegar a ellos directamente a través de publicidad segmentada en las mismas plataformas que usan (TikTok, Instagram), comunidades universitarias, foros de productividad/estudio y creadores de contenido de bienestar digital.
+Investigación de Mercado
+Dado que el producto está en fase de prelanzamiento, la investigación se estructurará mediante un cuestionario de validación de concepto. Este instrumento está diseñado para aplicarse a la audiencia inicial (early adopters) con el fin de medir la fricción, el interés y los hábitos sin requerir proyecciones financieras.
+Técnica de Recolección de Datos
+Enfoque: Mixto (Cuantitativo para medir tendencias de uso y Cualitativo para entender la fricción del usuario).
+Técnica: Encuesta digital estructurada (vía Google Forms o similar) y entrevistas de validación en campus.
+Público Objetivo: Jóvenes adultos y estudiantes universitarios que reconocen tener un problema de sedentarismo, procrastinación y experimentan sobreestimulación o FOMO.
+Instrumento de Validación (Cuestionario)
+Sección 1: Filtro y Hábitos de Consumo Digital
+Objetivo: Identificar si el encuestado pertenece al segmento afectado por el problema definido en el enunciado del reto.
+¿Aproximadamente cuántas horas al día pasas consumiendo contenido corto en redes sociales (TikTok, Instagram Reels, X)?
+Menos de 1 hora / 1 a 3 horas / 3 a 5 horas / Más de 5 horas.
+¿Con qué frecuencia revisas tu teléfono inmediatamente después de despertar o justo antes de dormir?
+Siempre / Casi siempre / Ocasionalmente / Nunca.
+¿Sientes que el tiempo que pasas en redes sociales afecta negativamente tus responsabilidades diarias (tareas, proyectos, trabajo, descanso)?
+Sí, frecuentemente / A veces / Rara vez / No, nunca.
+Sección 2: Conciencia del Problema (Dolor y Sedentarismo)
+Objetivo: Medir la frustración del usuario frente a su propia falta de actividad física.
+4. ¿Cuántos días a la semana realizas al menos 30 minutos de actividad física intencional?
+0 días / 1 a 2 días / 3 a 4 días / 5 o más días.
+Cuando no logras hacer ejercicio o mantenerte activo, ¿cuál es tu barrera principal?
+Falta de tiempo / Falta de motivación / Procrastinación en el celular / Cansancio físico o estrés.
+En una escala del 1 al 5, ¿qué nivel de frustración o culpa sientes cuando pasas horas en el celular en lugar de hacer una actividad productiva o descansar adecuadamente?(1 = Ninguna culpa, 5 = Mucha culpa).
+Sección 3: Validación de la Propuesta de Valor
+Objetivo: Presentar el concepto de FitBlock y evaluar la disposición de adopción frente a la restricción digital.
+(Contexto a leer por el encuestado: "Imagina una aplicación que bloquea temporalmente el acceso a tus redes sociales favoritas. Estas aplicaciones solo se desbloquean si cumples una meta de actividad física, como caminar un número de pasos o completar una rutina corta").
+7. Sabiendo que tienes problemas de autocontrol, ¿estarías dispuesto a instalar esta aplicación en tu teléfono personal para forzar tu disciplina?
+Definitivamente sí / Probablemente sí / Probablemente no / Definitivamente no.
+¿Qué tipo de actividad preferirías realizar para "desbloquear" tu acceso digital con la menor fricción posible?
+Caminar (conteo de pasos) / Ejercicios rápidos (sentadillas, flexiones) / Tiempo al aire libre (GPS) / Actividades de socialización presencial.
+¿Cuál sería tu mayor temor, molestia o motivo de desinstalación al usar una aplicación de este tipo?
+[Pregunta abierta para recopilar insights cualitativos sobre ansiedad o fricción].
+Sección 4: Modelo de Retención (Sin proyecciones de ingresos)
+Objetivo: Entender qué incentivos mantendrían activo al usuario.
+10. ¿Qué incentivo extra te mantendría usando la aplicación a largo plazo una vez superada la motivación inicial?*
+Logros y medallas virtuales / Competir en tablas de clasificación con amigos / Estadísticas claras de mejora de salud / Descuentos en comercios locales o cafeterías universitarias por metas cumplidas.
+Siguientes pasos operativos
+Despliegue: Distribuir este cuestionario inicialmente entre la comunidad universitaria para obtener una muestra de al menos 50 a 100 respuestas.
+Métrica de éxito (Go / No-Go): Si más del 40% de los encuestados que declaran pasar más de 3 horas en redes sociales responden "Definitivamente sí" o "Probablemente sí" a la pregunta 7, se valida la hipótesis del problema y se justifica avanzar con la arquitectura del dashboard y el desarrollo de los bloqueos de la aplicación.
+
+Resultados de la investigación
+La encuesta de validación del concepto de FitBlock contó con 33 respuestas. La muestra se encuentra principalmente concentrada en personas jóvenes: el 57.6 % de los participantes tiene entre 19 y 26 años, mientras que los grupos más representados por ocupación son empleados, con un 45.5 %, y estudiantes, con un 39.4 %, tal y como se observa en el Gráfico 1 y 2. Por esta razón, los resultados representan especialmente la percepción de jóvenes y adultos que estudian o trabajan, lo cual coincide con uno de los posibles públicos objetivo de una aplicación orientada a controlar el uso excesivo del teléfono y fomentar la actividad física.
+Grafico 1. Edad
+
+Fuente Elaborado propio
+Gráfico 2. Ocupación
+
+Fuente Elaborado propio
+Uno de los resultados más relevantes es la presencia constante del teléfono dentro de las rutinas diarias representada por el Gráfico 3. El 78.8 % de los encuestados indicó que siempre o casi siempre revisa su teléfono inmediatamente después de despertar o antes de dormir. Al mismo tiempo, el Gráfico 4 muestra que el 69.7 % consume entre una y tres horas diarias de contenido corto en redes sociales y, considerando también a quienes superan ese tiempo, el 93.9 % pasa por lo menos una hora diaria consumiendo este tipo de contenido. Estos resultados muestran que el uso frecuente del teléfono no representa una conducta aislada, sino un hábito integrado en la vida cotidiana de la mayoría de los participantes.
+Gráfico 3. Uso del teléfono en horas cercanas al sueño
+
+Fuente Elaborado propio
+Gráfico 4. Tiempo en redes sociales
+
+Fuente Elaborado propio
+Esta situación también parece tener consecuencias percibidas por los propios usuarios (Gráfico 5). El 54.5 % considera que las redes sociales afectan "a veces" sus responsabilidades, mientras que otro 18.2 % considera que esto ocurre frecuentemente. En conjunto, aproximadamente el 72.7 % reconoce algún grado de afectación recurrente sobre actividades como tareas, proyectos, trabajo o descanso. Además, tomando los resultados del Gráfico 3,entre las 26 personas que utilizan el teléfono siempre o casi siempre al despertar o dormir, aproximadamente el 80 % señalaron que las redes sociales afectan sus responsabilidades al menos algunas veces. Aunque esta relación no demuestra causalidad, sí sugiere que una mayor integración del teléfono en las rutinas cotidianas puede estar asociada con una mayor percepción de interferencia en otras actividades.
+Gráfico 5. Impacto de las redes en las actividades del día
+
+Fuente Elaborado propio
+Una de las relaciones más claras de la encuesta aparece entre esta percepción de afectación y el sentimiento de frustración o culpa (Gráfico 6). Las personas que respondieron que las redes sociales afectan frecuentemente sus responsabilidades presentaron una puntuación promedio de 4 sobre 5 en culpa o frustración, mientras que quienes respondieron "rara vez" presentaron un promedio cercano a 2.3. Al analizar ambas variables de manera ordinal se obtiene una correlación de Spearman aproximada de 0.55, lo que representa una relación positiva moderada. Esto significa que, dentro de esta muestra, cuanto mayor es la percepción de que las redes sociales interfieren con las responsabilidades, mayor tiende a ser también la frustración por el tiempo dedicado al celular. Esta es una de las relaciones más importantes para justificar el problema que busca atender FitBlock.
+
+Gráfico 6. Nivel de culpa o frustración
+
+Fuente Elaborado propio
+También resulta interesante comparar el tiempo libre disponible con las dificultades para realizar actividad física (Gráficos 7 y 8). El 69.7 % de los participantes declaró contar con dos o más horas libres al día. Sin embargo, la principal barrera para hacer ejercicio fue la falta de tiempo, mencionada por el 33.3 %, seguida muy de cerca por el cansancio físico o estrés, con 30.3 %, y la falta de motivación, con 24.2 %. Incluso entre las personas que dijeron disponer de dos o más horas libres, aproximadamente un 30 % señaló la falta de tiempo como su principal impedimento. Esto sugiere que el problema puede no depender exclusivamente de la cantidad objetiva de tiempo disponible, sino también de cómo se administra, de las prioridades personales, del cansancio y de la facilidad con la que otras actividades ocupan ese tiempo.
+Gráfico 7. Tiempo libre
+
+Fuente Elaborado propio
+Gráfico 8. Impedimento de realizar ejercicio
+
+Fuente Elaborado propio
+Es particularmente llamativo que solamente dos participantes identificaron directamente la procrastinación en el celular como su principal barrera para realizar ejercicio, a pesar de que una proporción mucho mayor considera que las redes sociales sí afectan sus responsabilidades. Esta diferencia podría indicar que los usuarios reconocen las consecuencias negativas del uso del teléfono, pero no necesariamente lo identifican como la causa principal de su falta de actividad física. Para FitBlock esto es importante, ya que la aplicación probablemente tendría mayor aceptación si se presenta como una herramienta para mejorar la administración del tiempo y crear hábitos, en lugar de plantearse únicamente como una herramienta para "castigar" el uso de redes sociales.
+En cuanto a la actividad física actual (Gráfico 9), el 48.5 % de los encuestados realiza al menos 30 minutos de ejercicio únicamente entre cero y dos días por semana. Dentro de este grupo, las 15 personas indicaron que probable o definitivamente instalarían FitBlock en caso de tener problemas de autocontrol. En el total de la encuesta (Gráfico 10), la aceptación potencial también es elevada: 19 personas respondieron "probablemente sí" y 11 "definitivamente sí", lo que representa un 90.9 % de disposición favorable a instalar la aplicación. Este resultado constituye una señal positiva para la validación inicial del concepto, aunque debe considerarse que la intención declarada de instalar una aplicación no garantiza que posteriormente sea utilizada de manera constante.
+
+Gráfico 9. Actividad física en la semana
+
+Fuente Elaborado propio
+Gráfico 10. Instalación de la aplicación
+
+Fuente Elaborado propio
+Otro dato que apoya el diseño propuesto es el tipo de actividad que los usuarios prefieren realizar para recuperar el acceso digital. Como se observa en el Gráfico 11, el 42.4 % eligió ejercicios rápidos, como sentadillas o flexiones, y el 24.2 % prefirió caminar mediante un conteo de pasos. En conjunto, aproximadamente dos de cada tres participantes prefieren actividades físicas simples y rápidas. Esto señala que el mecanismo de desbloqueo debería tener una fricción moderada: debe ser suficiente para interrumpir el uso automático del teléfono, pero no tan complejo o exigente que provoque frustración y termine ocasionando la desinstalación.
+
+Gráfico 11. Tipo de actividad para desbloquear aplicaciones
+
+Fuente Elaborado propio
+Esta conclusión coincide directamente con las respuestas abiertas relacionadas con los motivos para abandonar la aplicación. Entre los temores más recurrentes aparecen la imposibilidad de utilizar rápidamente el teléfono durante una emergencia, tener que realizar una actividad en un momento en el que se necesita acceder urgentemente a una aplicación, que los ejercicios sean demasiado difíciles o tediosos, y que FitBlock se convierta en "una tarea más". También se mencionaron preocupaciones relacionadas con privacidad, almacenamiento, sobrecalentamiento, errores, lentitud y funcionamiento incorrecto. Por lo tanto, la encuesta indica que la principal amenaza para la aceptación del producto no parece ser el rechazo al concepto, sino una implementación demasiado restrictiva, molesta o poco confiable. Sería recomendable contemplar mecanismos de acceso de emergencia, ejercicios configurables y medidas claras de privacidad.
+Los incentivos elegidos también aportan información importante respecto a la retención de usuarios, referente al Gráfico 12. La opción más seleccionada fue visualizar estadísticas claras sobre mejoras en la salud, con el 42.4 %, seguida por descuentos en comercios o cafeterías por cumplir metas, con un 33.3 %. En cambio, elementos tradicionalmente asociados con la gamificación, como competir con amigos, tablas de clasificación, logros o medallas, generaron un interés considerablemente menor. Esto sugiere que los usuarios valoran principalmente recompensas que sean tangibles o que demuestren un progreso personal real, por encima de recompensas únicamente virtuales.
+
+Gráfico 12. Incentivos
+
+Fuente Elaborado propio
+En términos generales, los resultados respaldan el problema que FitBlock pretende resolver. Existe un alto nivel de uso cotidiano del teléfono, una percepción importante de que las redes sociales interfieren con otras responsabilidades y una relación clara entre dicha interferencia y la frustración personal. Al mismo tiempo, existe una disposición considerable a utilizar una herramienta que ayude a establecer límites, especialmente entre quienes realizan menos actividad física. Sin embargo, los datos también indican que el éxito de la aplicación dependerá de encontrar un equilibrio entre disciplina y flexibilidad. El usuario parece estar dispuesto a aceptar una barrera que interrumpa el consumo automático de contenido, pero no una restricción que impida utilizar el dispositivo cuando realmente lo necesita.
+Por último, estos resultados deben interpretarse como una validación exploratoria y no como conclusiones definitivas sobre toda la población, debido al tamaño reducido de la muestra, de 33 participantes, y a la concentración de respuestas en estudiantes, empleados y personas de 19 a 26 años. Aun así, la encuesta permite identificar una tendencia suficientemente clara para continuar desarrollando el concepto: FitBlock parece tener mayor potencial si se enfoca en reducir la procrastinación de forma consciente, promover actividades físicas rápidas, mostrar beneficios medibles y mantener siempre mecanismos de flexibilidad y acceso de emergencia.
+Plan de Administración
+Misión
+Empoderar a las personas para que recuperen el control de su tiempo y de su salud física, transformando el consumo involuntario de redes sociales en hábitos de movimiento activo mediante tecnología accesible y mecanismos de fricción conductual inteligente.
+La misión de FitBlock consiste en ofrecer una herramienta tecnológica que ayude al usuario a convertir momentos de consumo digital pasivo en oportunidades de actividad física. Más que prohibir el uso de las redes sociales, FitBlock busca establecer una relación más consciente entre entretenimiento digital, autocontrol y bienestar.
+Visión
+Ser la plataforma referente de bienestar digital y fitness interactivo en Latinoamérica, liderando la transición hacia un estilo de vida consciente donde el entretenimiento digital y la salud física coexistan en equilibrio.
+A largo plazo, FitBlock pretende evolucionar desde una aplicación de bloqueo y actividad física hacia un ecosistema de bienestar digital capaz de integrarse con dispositivos inteligentes, comunidades, universidades, gimnasios y otras organizaciones relacionadas con la salud y el bienestar.
+Filosofía y valores
+Valor
+Aplicación dentro de FitBlock
+Autodisciplina facilitada
+Crear herramientas que fortalezcan la constancia del usuario mediante mecanismos de apoyo y fricción, evitando culpabilizarlo o juzgarlo por sus hábitos.
+Transparencia y honestidad
+Presentar métricas claras sobre tiempo de pantalla, actividad realizada y recompensas obtenidas, evitando mecanismos engañosos o patrones de diseño manipulativos.
+Bienestar integral
+Considerar tanto la reducción del agotamiento y la sobreestimulación digital como el combate al sedentarismo mediante movimiento y actividad física.
+Innovación centrada en el usuario
+Desarrollar soluciones intuitivas, accesibles y sencillas de utilizar, bajo el principio de evitar complejidad técnica innecesaria.
+Privacidad y responsabilidad digital
+Recopilar únicamente la información necesaria para el funcionamiento de la plataforma y proteger los datos personales y métricas de actividad de los usuarios.
+Progreso sostenible
+Favorecer cambios graduales y hábitos que puedan mantenerse en el tiempo, en lugar de imponer rutinas excesivas que provoquen abandono.
+
+Propósito transformador
+Convertir cada scroll pasivo en un paso hacia una vida más activa.
+Nombre
+Propuestas de nombre
+Nombre propuesto
+Relación con el producto
+Memorabilidad
+Observaciones
+FitBlock
+Muy alta
+Alta
+Combina fitness y blocking. Explica directamente el concepto del producto.
+MoveGate
+Alta
+Alta
+Comunica que el movimiento funciona como “puerta” para acceder al contenido digital.
+ActivaPass
+Alta
+Media-alta
+Relaciona actividad física con un pase de acceso. Tiene mayor orientación al público hispanohablante.
+ScreenSprint
+Media-alta
+Alta
+Relaciona pantalla y actividad física, aunque puede interpretarse exclusivamente como ejercicio intenso.
+MoveFirst
+Alta
+Alta
+Resume la lógica “muévete primero”, aunque describe menos claramente la función de bloqueo.
+
+Nombre seleccionado: FitBlock
+Se conserva FitBlock porque es corto, fácil de recordar y representa de manera directa los dos componentes principales de la propuesta: Fit, relacionado con actividad física y bienestar, y Block, relacionado con el bloqueo temporal de aplicaciones.
+Logotipo
+Logotipo propuesto:
+
+Miniguía de marca
+Elemento
+Especificación
+Uso correcto
+Color principal – Azul oscuro
+#10172A
+
+Color institucional principal. Debe utilizarse en fondos, encabezados, barras de navegación, tarjetas oscuras y en la palabra “Fit” del logotipo. Representa tecnología, control y confianza.
+Color secundario – Verde activo
+#38D996
+
+Utilizado para representar actividad física, progreso, desbloqueo y estados positivos. Se emplea en el isotipo, indicadores de cumplimiento, botones y elementos de progreso.
+Color de apoyo – Turquesa
+#22B8CF
+
+Complementa al verde en interfaces, estadísticas, botones, gráficas y elementos interactivos. Puede utilizarse en combinación con el verde para generar transiciones visuales.
+Color blanco
+#FFFFFF
+
+Utilizado principalmente para textos sobre fondos oscuros, iconografía, espacios de contraste y versiones monocromáticas del logotipo.
+Gris claro
+#F4F6F8
+
+Color recomendado para fondos claros, documentos, presentaciones y áreas secundarias donde se requiera una apariencia limpia.
+Fondos de interfaz
+Tonos oscuros cercanos al azul oscuro y negro
+Las vistas de la aplicación mantienen una interfaz predominantemente oscura para resaltar botones, gráficas, indicadores de actividad y elementos relacionados con el bloqueo.
+Gradientes de interfaz
+Verde → Turquesa; Turquesa → tonos azulados o violetas
+Se permiten en indicadores de progreso, gráficas circulares, estadísticas y elementos destacados. Deben funcionar como apoyo visual y no sustituir los colores principales de identidad.
+Tipografía de logotipo y títulos
+Montserrat SemiBold / Bold o una tipografía geométrica equivalente
+Debe emplearse en títulos, encabezados, botones principales y comunicaciones donde se requiera mayor jerarquía visual. El nombre FitBlock debe conservar una apariencia gruesa, limpia y moderna.
+Tipografía de interfaz y textos
+Inter Regular / Medium
+Recomendada para textos de navegación, estadísticas, configuraciones, instrucciones y contenido general de la aplicación debido a su legibilidad en pantallas pequeñas.
+Logotipo principal horizontal
+Isotipo a la izquierda + palabra FitBlock a la derecha
+Es la versión principal de la identidad y debe utilizarse en documentos, página web, material promocional, presentaciones y comunicaciones corporativas.
+Logotipo secundario vertical
+Isotipo superior + palabra FitBlock debajo
+Debe utilizarse cuando el espacio disponible sea más vertical, por ejemplo en publicaciones de redes sociales, portadas, carteles o material institucional.
+Isotipo
+Cuadrado de esquinas redondeadas con una F estilizada, elementos relacionados con ejercicio y un símbolo de bloqueo/tiempo
+Puede utilizarse de manera independiente cuando la marca ya sea reconocible, especialmente como ícono de aplicación, avatar de redes sociales o identificador en dispositivos pequeños.
+Uso sobre fondos oscuros
+Logotipo en blanco, verde y turquesa
+Se debe mantener suficiente contraste. Los elementos oscuros del logotipo deberán sustituirse por blanco cuando el fondo impida su correcta visualización.
+Uso sobre fondos claros
+Versión institucional en azul oscuro, verde y turquesa
+Es la variante recomendada para documentos académicos, presentaciones, sitio web y materiales impresos.
+Área de seguridad
+Mantener espacio libre alrededor del logotipo equivalente, como mínimo, a la altura aproximada de la letra F
+Evita que textos, imágenes, bordes u otros elementos interfieran con la identificación de la marca.
+Tamaño mínimo
+El isotipo debe conservar visibles la forma de la F y el elemento de bloqueo
+Si el tamaño provoca que los detalles internos sean ilegibles, deberá utilizarse una versión simplificada del isotipo.
+Iconografía
+Formas simples, redondeadas y de alto contraste
+Los íconos de bloqueo, actividad física, pasos, frecuencia cardiaca, configuración y estadísticas deben mantener el mismo lenguaje visual del prototipo.
+Botones principales
+Verde o turquesa, preferentemente con bordes redondeados
+Se reservan para acciones relevantes como “Iniciar actividad”, “Guardar cambios”, desbloquear funciones o confirmar configuraciones.
+Indicadores de actividad
+Verde para progreso o cumplimiento; turquesa para información; otros colores únicamente como apoyo
+Los colores deben tener una función consistente para que el usuario identifique rápidamente estados, actividad física y progreso.
+Estilo general
+Tecnológico, deportivo, moderno, limpio y dinámico
+Las interfaces deben conservar espacios adecuados, componentes simples, fondos oscuros y elementos visuales llamativos sin generar saturación.
+
+Usos no permitidos
+Uso incorrecto
+Lineamiento
+Deformar el logotipo
+No estirar, comprimir ni modificar sus proporciones.
+Modificar los colores institucionales
+No sustituir el azul, verde o turquesa por colores que no pertenezcan a la identidad de FitBlock.
+Rotar el logotipo
+El logotipo y el nombre deberán mantenerse siempre en orientación horizontal o en su versión vertical establecida.
+Agregar efectos innecesarios
+Evitar sombras exageradas, contornos, texturas, efectos 3D o brillos que dificulten la lectura.
+Colocarlo sobre fondos sin contraste
+Se debe seleccionar la variante clara u oscura correspondiente para garantizar su legibilidad.
+Modificar la tipografía del nombre
+La palabra FitBlock debe mantener una tipografía geométrica, gruesa y consistente con la identidad definida.
+Saturar la interfaz con gradientes
+Los gradientes deben reservarse para elementos destacados como progreso, gráficas o estados, manteniendo el resto de la interfaz visualmente limpia.
+
+Eslogan
+“Gana tu pantalla, muévete primero”.
+Descripción de la Empresa
+FitBlock es una empresa tecnológica enfocada en bienestar digital y fitness interactivo cuyo producto principal consiste en una aplicación móvil que transforma la actividad física en una condición para acceder a determinadas redes sociales y aplicaciones seleccionadas por el usuario. La plataforma está dirigida inicialmente a estudiantes universitarios y profesionistas jóvenes con altos niveles de tiempo de pantalla y estilos de vida sedentarios. Mediante sensores del dispositivo como podómetro, acelerómetro y, cuando sea necesario, cámara, FitBlock valida actividades físicas y posteriormente concede bloques de tiempo de acceso digital, complementando la experiencia con estadísticas, rachas, recompensas y mecanismos de gamificación.
+Justificación de la Empresa
+FitBlock surge ante la combinación de dos problemáticas que se encuentran cada vez más relacionadas: el consumo excesivo de contenido digital y el sedentarismo. Durante el proceso de selección de la idea, el proyecto identificó específicamente la sobreestimulación y el FOMO como una oportunidad y posteriormente definió el reto como el “uso desmedido de redes sociales y falta de actividad física”. La propuesta resultante consiste en motivar al usuario a realizar una acción física antes de recuperar el acceso a sus redes sociales.
+Impacto esperado
+A corto plazo, FitBlock busca ayudar al usuario a interrumpir el comportamiento automático de abrir redes sociales y sustituir parte de ese tiempo por movimiento. A mediano plazo, puede favorecer la formación de hábitos y una mayor conciencia sobre el consumo digital. Desde el punto de vista económico, el modelo puede evolucionar mediante un esquema freemium, suscripciones y alianzas comerciales.
+Objetivos generales
+Objetivo general
+Indicador
+Horizonte
+1. Validar la aceptación de la propuesta de FitBlock dentro del mercado objetivo inicial
+Obtener entre 50 y 100 respuestas válidas y lograr que más del 40% de los participantes con más de 3 horas de uso de redes indiquen intención positiva de instalar FitBlock.
+Primeros 3 meses.
+2. Desarrollar y validar un MVP funcional que implemente las funciones esenciales de bloqueo, detección de actividad y liberación de tiempo de pantalla.
+MVP capaz de ejecutar correctamente los tres módulos centrales: restricción de aplicaciones, validación física y panel básico de estadísticas.
+Primeros 6 meses.
+3. Ejecutar una prueba piloto en Aguascalientes con usuarios pertenecientes al mercado objetivo.
+Alcanzar al menos 150 usuarios registrados en la prueba y una satisfacción promedio mínima de 4/5 entre quienes completen el periodo piloto.
+6-9 meses.
+4. Comprobar que el uso de FitBlock genera una mejora observable en el equilibrio entre tiempo de pantalla y actividad física.
+Reducir al menos 15% el tiempo no productivo en las aplicaciones restringidas y aumentar al menos 15% la actividad registrada entre usuarios que completen un piloto de ocho semanas.
+Durante los primeros 12 meses.
+5. Establecer las bases de sostenibilidad económica y expansión de la plataforma.
+Validar el modelo freemium, alcanzar al menos 5% de conversión de usuarios activos a modalidad premium o concretar una alianza piloto con una universidad, gimnasio o negocio relacionado con bienestar.
+12-18 meses.
+
+Estructura organizacional
+Organigrama propuesto
+
+Administración, finanzas y asuntos legales permanecerían inicialmente bajo supervisión de Dirección General, con apoyo del responsable de operaciones y, conforme crezca el proyecto, de servicios externos de contabilidad y asesoría jurídica.
+Funciones y perfiles
+Área/responsable inicial
+Funciones principales
+Perfil requerido
+Dirección General y Gestión de Proyecto - Brandon Ruiz Morales
+Definir prioridades, coordinar al equipo, administrar cronogramas, controlar cumplimiento de objetivos, buscar alianzas y representar al proyecto.
+Liderazgo, organización, gestión de proyectos, toma de decisiones y orientación a resultados.
+Producto, UX y Experiencia del Usuario - José Luis Espinoza Sánchez
+Traducir las necesidades del usuario en funcionalidades, definir experiencia de uso, evaluar accesibilidad, revisar retroalimentación y coordinar pruebas con usuarios.
+Empatía, análisis, resolución de problemas, diseño centrado en usuario y comunicación.
+Tecnología, Seguridad y Operaciones - Luis Alberto Hernández Velasco
+Arquitectura técnica, integración de sensores, infraestructura, monitoreo, seguridad, optimización de costos y mantenimiento operativo.
+Desarrollo de software, seguridad de información, solución de errores, trabajo bajo presión y optimización.
+Marketing, Investigación y Desarrollo de Negocios - Luis Humberto Ramírez Gutiérrez
+Investigación de mercado, estrategia de comunicación, redes sociales, adquisición de usuarios, creación de contenido, alianzas y posicionamiento.
+Investigación, creatividad, comunicación oral, marketing digital y negociación.
+Administración y Finanzas - Función compartida inicialmente
+Presupuesto, control de gastos, facturación, pagos, obligaciones fiscales y seguimiento financiero.
+Administración financiera y contabilidad; se recomienda apoyo profesional externo.
+Legal y Cumplimiento - Apoyo externo
+Contratos, propiedad intelectual, privacidad, términos y condiciones y cumplimiento normativo.
+Derecho corporativo, protección de datos y propiedad intelectual.
+
+Mecanismos de coordinación
+Se propone trabajar mediante ciclos semanales. Al inicio de cada semana se realizará una reunión breve de planificación para definir tareas, responsables y prioridades; al finalizar se hará una revisión del avance y de los indicadores principales. El trabajo técnico deberá mantenerse documentado mediante control de versiones y seguimiento de incidencias, mientras que las decisiones administrativas, documentación de marketing y resultados de investigación deberán mantenerse en un repositorio documental compartido.
+Cada funcionalidad nueva deberá contar con un responsable principal. Las modificaciones que impliquen recopilación de datos personales, sensores, cámara, pagos o restricciones del dispositivo deberán ser revisadas conjuntamente por las áreas de Producto y Tecnología antes de pasar a producción.
+Marco Legal
+Al tratarse de un equipo pequeño, para la primera etapa se puede evaluar la constitución como una Sociedad por Acciones Simplificada (S.A.S.).
+Si posteriormente se busca inversión institucional o una estructura corporativa más compleja, conveniente evaluar con asesoría jurídica la migración hacia una figura como una S.A.P.I. de C.V.
+Plan de cumplimiento y trámites
+Actividad
+Acción
+Responsable propuesto
+Plazo
+Definición de socios y figura jurídica
+Establecer porcentajes de participación, responsabilidades y reglas para la propiedad intelectual desarrollada por los fundadores.
+Dirección General + todos los socios
+0-30 días
+Constitución de la empresa
+Revisar denominación y constituir la sociedad seleccionada.
+Dirección General
+30-60 días
+Registro fiscal
+Inscribir a la persona moral en el RFC y tramitar e.firma para realizar obligaciones fiscales y facturación.
+Administración/Finanzas
+Inmediatamente después de la constitución
+Registro de marca
+Realizar búsqueda de antecedentes y presentar solicitud para proteger la denominación FitBlock y posteriormente su identidad gráfica.
+Marketing + Dirección
+0-60 días
+Protección de datos personales
+Elaborar aviso de privacidad, definir finalidad del tratamiento, consentimiento, mecanismos de derechos del titular, medidas de seguridad y política de eliminación de información.
+Producto + Tecnología + asesor jurídico
+Antes de cualquier beta pública
+Términos y condiciones
+Definir reglas de uso, desbloqueo, suscripciones, cancelaciones, limitaciones de responsabilidad y uso adecuado de la aplicación.
+Dirección + asesor jurídico
+Antes del lanzamiento
+Propiedad intelectual
+Documentar la titularidad del código, diseño, contenidos y activos creados por socios o terceros y registrar los elementos que resulte conveniente proteger.
+Dirección + Tecnología
+Antes del lanzamiento comercial
+Relaciones laborales
+Formalizar contratos, confidencialidad, propiedad intelectual y, al comenzar a contratar trabajadores, realizar las obligaciones patronales correspondientes.
+Administración
+Antes de la primera contratación
+Cumplimiento en tiendas digitales
+Verificar políticas de Google Play y App Store relacionadas con accesibilidad, bloqueo de aplicaciones, actividad física, sensores, salud y suscripciones.
+Tecnología + Producto
+Antes de publicación
+Seguridad de información
+Aplicar minimización de datos, cifrado, controles de acceso, gestión de incidentes y preferentemente procesamiento local de cámara/sensores cuando sea técnicamente viable.
+Tecnología
+Desde el MVP
+
+Propiedad Intelectual
+La denominación FitBlock, su logotipo y demás signos distintivos deberán evaluarse para su registro ante el Instituto Mexicano de la Propiedad Industrial. El IMPI señala que el registro de marca permite proteger el uso exclusivo del signo para distinguir productos o servicios y actualmente contempla una vigencia de diez años.
+Protección de datos personales
+El proyecto deberá aplicar desde el diseño el principio de minimización de datos, ya que en México está vigente la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, cuya versión vigente identifica como sujetos regulados a las personas físicas o morales privadas que realizan tratamiento de datos personales. Por lo que, si se requiere el uso de imágenes de la persona por medio de la cámara, se evita enviar las imágenes completas cuando no son necesarias para proporcionar el servicio.
+Protección al consumidor y pagos
+Si se implementa el modelo freemium y posteriormente cobra suscripciones, deberá presentar claramente el precio, periodicidad, características del servicio, mecanismo de cancelación y demás condiciones de contratación. La Ley Federal de Protección al Consumidor contempla expresamente las relaciones comerciales realizadas a través de medios electrónicos.
+Plan de Producción
+Selección de maquinaria, equipo y herramienta
+Actividad del proceso
+Equipo o herramienta
+Especificación
+Capacidad
+Cantidad
+Costo estimado
+Justificación
+Desarrollo de aplicación Android
+Computadora de desarrollo
+Equipo con Windows o Linux, procesador de 64 bits, mínimo 16 GB RAM y almacenamiento SSD
+Ejecución de IDE, emuladores, compilación y pruebas
+1 por desarrollador
+Equipo existente / por cotizar
+Es el equipo principal para programar, compilar y probar la aplicación.
+Desarrollo de aplicación Android
+Android Studio
+IDE oficial para desarrollo Android
+Desarrollo, compilación, depuración, emulación y pruebas de la aplicación
+1 instalación por desarrollador
+$0
+Será la herramienta principal para desarrollar el MVP de FitBlock en Android.
+Pruebas de aplicación Android
+Smartphone Android
+Android compatible con sensores como acelerómetro, giroscopio y podómetro
+Instalación y prueba de versiones reales de la aplicación
+Mínimo 1
+Equipo existente / por cotizar
+Permite comprobar el bloqueo de aplicaciones, lectura de sensores y funcionamiento fuera del emulador.
+Desarrollo para relojes inteligentes Android
+Android Studio / herramientas para Wear OS
+Compatibilidad con desarrollo y emulación para Wear OS
+Desarrollo y prueba de funciones asociadas con relojes inteligentes
+1 instalación
+$0
+Permitirá desarrollar posteriormente funciones de FitBlock para dispositivos Wear OS.
+Pruebas en relojes inteligentes
+Reloj inteligente con Wear OS
+Dispositivo compatible con sensores de actividad física
+Validación de actividad, sincronización y funcionamiento con la aplicación móvil
+Mínimo 1
+Por cotizar
+Permite validar el funcionamiento de FitBlock en un dispositivo wearable real.
+Desarrollo multiplataforma y preparación de versión iOS
+Flutter SDK
+Framework de desarrollo multiplataforma
+Desarrollo de componentes reutilizables para aplicaciones móviles
+1 instalación por desarrollador
+$0
+Permite contemplar una futura versión de FitBlock para iOS y mantener componentes compartidos entre plataformas.
+Compilación y pruebas para iOS
+Computadora Mac con Xcode
+Equipo Apple compatible con las versiones vigentes de macOS y Xcode
+Compilación, simulación, firma y pruebas de la aplicación para iOS
+Mínimo 1
+Por adquirir / por cotizar
+Será necesaria para producir y validar formalmente la versión de iOS. No se contempla su adquisición para el MVP inicial.
+Pruebas de aplicación iOS
+iPhone
+Dispositivo compatible con la versión objetivo de iOS
+Pruebas de instalación, sensores, permisos y funcionamiento real
+Mínimo 1
+Por adquirir / por cotizar
+Permitirá verificar la aplicación en hardware real antes de su lanzamiento para iOS.
+Desarrollo y pruebas para Apple Watch
+Apple Watch
+Dispositivo compatible con watchOS
+Validación de actividad física y sincronización con la aplicación iOS
+Mínimo 1
+Por adquirir / por cotizar
+Se utilizará en una etapa posterior para implementar funciones de FitBlock en relojes inteligentes de Apple.
+Diseño de interfaz de usuario
+Android Studio
+Editor de interfaces y herramientas de previsualización
+Creación y visualización de pantallas de la aplicación
+1 instalación por diseñador/desarrollador
+$0
+Permite construir y visualizar directamente las interfaces que formarán parte del MVP Android.
+Diseño preliminar de interfaz
+Referencias visuales e imágenes de concepto
+Imágenes, bocetos y referencias de interfaces móviles
+Visualización previa de distribución, estilo y componentes
+Según necesidad
+$0
+Facilitan definir previamente la apariencia y organización de las pantallas antes de implementarlas.
+Análisis y diseño de base de datos
+Herramienta de modelado y administración de base de datos
+Software para diagramas, estructuras, tablas, relaciones y consultas
+Modelado de usuarios, actividad física, tiempo de pantalla, configuraciones y estadísticas
+1
+$0 o por definir
+Permitirá analizar y establecer la estructura de los datos necesarios para FitBlock. La tecnología de base de datos definitiva aún debe definirse.
+Control y almacenamiento del código fuente
+Git y repositorio de código
+Sistema de control de versiones
+Historial de cambios, colaboración y respaldo del proyecto
+1 repositorio central
+$0 inicialmente
+Facilita el trabajo colaborativo, permite recuperar versiones anteriores y mantiene organizado el desarrollo.
+
+
+Programa de producción
+Demanda estimada
+Considerando que el proyecto corresponde a una aplicación, la demanda estimada puede definirse en dos categorías: número de descargas y número de usuarios activos dentro de la aplicación. El segundo indicador representa el público objetivo y el grupo al que se busca dirigir los esfuerzos de mejora.
+En el lanzamiento inicial no se espera un número elevado de descargas, proyectándose entre 1,000 y 1,500 en los primeros tres meses. Todo dependerá de la publicidad realizada y del público que logre cautivarse con la propuesta de la aplicación.
+A partir de ese punto comienza el primer filtro: identificar, entre las descargas obtenidas, cuáles son los usuarios realmente activos dentro de la aplicación. Con el paso del tiempo, se espera alcanzar entre 15,000 y 50,000 descargas, ya que mientras mayor sea la difusión y mejor la publicidad, más sencillo será llegar a esa cifra. No obstante, la principal aspiración consiste en consolidar una base sólida de al menos 5,000 usuarios activos.
+Este objetivo se plantea para el primer año de la aplicación, con la expectativa de que cada año se logre un incremento de entre 15% y 30% en descargas y usuarios activos. Se reconoce que habrá personas que utilicen la aplicación de manera constante y otras que eventualmente la abandonen, por lo que se mantiene un enfoque realista y objetivo.
+Calendario de producción
+Mes 1
+Semana 1
+Semana 2
+Semana 3
+Semana 4
+Cantidad de usuarios activos: 50-100.
+Cantidad de descargas: 200-300.
+Cantidad de usuarios activos: 50-70.
+Cantidad de descargas: 250-350.
+Cantidad de usuarios activos: 50-60.
+Cantidad de descargas: 300-400.
+Cantidad de usuarios activos: 50-60.
+Cantidad de descargas: 350-450.
+
+
+Proceso de producción
+Dado que FitBlock es un producto de Software, el proceso de producción que manejaremos distintas fases en las cuales podremos llegar al producto que queremos desarrollar y que vaya de acuerdo con nuestras metas y las preferencias del usuario final.
+Las fases serían las siguientes.
+1.Análisis y Diseño (UX/UI): Definición de la experiencia de usuario, diseño de las interfaces de la aplicación y estructuración del mecanismo de bloqueo condicional.
+2.Desarrollo de Software y Sensores: Programación de la aplicación integrando la lectura de sensores nativos (acelerómetro, podómetro y cámara) para la validación de la actividad física.
+3.Implementación de Funcionalidades Clave: Integración del panel de estadísticas que se puedan recopilar de la actividad física registrada con el dispositivo (celular o reloj), así como un sistema de rachas (considerando a futuro de la aplicación) y también un sistema anti-trampas de modo que podamos corroborar que si estén haciendo sus actividades.
+4.Fase de Pruebas: Verificación de que el bloqueo sea persistente y no se pueda evadir y pruebas para asegurar el correcto funcionamiento del desbloqueo de aplicación, asegurar un bajo consumo batería y pruebas de posibles errores que pueda generar la aplicación.
+5.Publicación y Despliegue: Desarrollo y despliegue del APK a gente interna que este testeando con nosotros la aplicación para un futuro despliegue en la Playstore (Tienda de Android)
+6.Fin: El producto llega al usuario/cliente, quien descarga la aplicación y comienza a usarla en su vida diaria.
+Ubicación y distribución de la planta
+a) Ubicación
+Dirección: Se ubicará en una zona de preferencia central en Aguascalientes la cual nos permita tener también áreas verdes cercas del trabajo para futuros testings de la aplicación pero de modo que no sea una renta demasiado cara.
+Justificación: Se elegirá un espacio de oficina (o modalidad coworking) con capacidad para los 4 integrantes del equipo, priorizando que sea una opción económica para mantener bajos los costos operativos iniciales. La ubicación estratégica se seleccionará por la necesidad de contar con infraestructura que garantice una conexión a internet de alta velocidad y estabilidad para el desarrollo en la nube; ya que es indispensable estar situados a escasos metros de parques, áreas verdes o pistas de trote (por ejemplo, en las inmediaciones de la Universidad Autónoma de Aguascalientes o parques locales). Esto nos permitirá salir a caminar, correr o hacer rutinas al aire libre para realizar pruebas de campo y calibrar los sensores de FitBlock (podómetro, acelerómetro y GPS) en un entorno real.
+b) Distribución (Lay Out)
+
+Lay Out Descripción: El espacio de trabajo estará diseñado bajo un concepto de oficina abierta (open space) optimizado para el trabajo colaborativo de los cuatro socios. La distribución constará de las siguientes áreas:
+Área de Desarrollo y Operaciones: Cuatro estaciones de trabajo ergonómicas equipadas para las tareas de programación, diseño de UX/UI, marketing y administración.
+Zona de Pruebas Físicas (Testing Room): Un espacio interior despejado (de al menos 2x2 metros) sin mobiliario peligroso, dedicado exclusivamente a probar los ejercicios estáticos de la aplicación frente a la cámara (sentadillas, flexiones, saltos en el sitio) para calibrar el algoritmo anti-trampas.
+Área de Planificación: Un pequeño espacio con una mesa central y un pizarrón blanco en la pared, destinado a las reuniones semanales de revisión de avances (sprints) y lluvia de ideas.
+Servicios básicos: Un medio baño y una pequeña estación de café/hidratación para el equipo.
+
+Plan de Recursos Humanos
+Proceso de Reclutamiento
+El proceso de reclutamiento de FitBlock tendrá como objetivo incorporar personal que cuente tanto con las competencias técnicas necesarias para su área como con características compatibles con la filosofía de la empresa, especialmente innovación centrada en el usuario, responsabilidad, trabajo colaborativo, transparencia y adaptación tecnológica.
+Debido a que FitBlock es inicialmente una empresa pequeña de desarrollo de software, el reclutamiento estará enfocado principalmente en perfiles tecnológicos, de diseño, administración y mercadotecnia. La contratación de nuevo personal se realizará cuando la carga de trabajo de alguna de las áreas existentes supere la capacidad del equipo actual o cuando se requiera conocimiento especializado.
+Perfil de los puestos
+Área / puesto
+Formación o conocimientos requeridos
+Habilidades principales
+Experiencia deseable
+Dirección y Gestión de Proyecto
+Administración, sistemas computacionales, gestión de proyectos o áreas relacionadas. Conocimientos básicos de modelos de negocio y desarrollo de software.
+Liderazgo, organización, comunicación, toma de decisiones, administración de tiempos y resolución de conflictos.
+Participación en proyectos tecnológicos, coordinación de equipos o emprendimiento.
+Producto y UX/UI
+Sistemas, diseño digital, UX/UI o áreas afines. Conocimientos de diseño de interfaces y experiencia de usuario.
+Empatía, creatividad, comunicación, análisis de necesidades, prototipado y atención al detalle.
+Diseño de aplicaciones móviles, prototipos, pruebas de usabilidad o interfaces Android/iOS.
+Tecnología y Operaciones
+Ingeniería en Sistemas Computacionales, Software, TIC o afín.
+Programación, resolución de problemas, análisis, seguridad, trabajo colaborativo y capacidad de aprendizaje.
+Desarrollo Android, Flutter, Git, bases de datos, sensores móviles, APIs y pruebas de software.
+Marketing, Investigación y Negocios
+Marketing, administración, comunicación, negocios o sistemas con experiencia comercial.
+Investigación, creatividad, comunicación oral y escrita, negociación, análisis de mercado y redes sociales.
+Campañas digitales, investigación de mercado, creación de contenido o gestión de comunidades.
+Administración y Finanzas
+Administración, contabilidad, finanzas o áreas relacionadas.
+Organización, control presupuestal, manejo confidencial de información y análisis financiero.
+Control de gastos, facturación y administración empresarial.
+Legal y Cumplimiento
+Derecho con orientación corporativa, propiedad intelectual o protección de datos.
+Análisis jurídico, redacción contractual, confidencialidad y atención al detalle.
+Protección de datos, propiedad intelectual, contratos y empresas tecnológicas.
+
+Folleto de Reclutamiento
+FitBlock utilizará un formato de folleto digital sencillo y coherente con la identidad visual de la empresa. Podrá publicarse como imagen para redes sociales, comunidades universitarias y bolsas de trabajo.
+Encabezado: Logotipo de FitBlock + “Únete al equipo FitBlock”.
+Frase principal: “Ayúdanos a convertir cada scroll pasivo en un paso hacia una vida más activa”.
+Vacante: Nombre específico del puesto, por ejemplo: “Desarrollador Android Jr.”.
+Descripción: Breve explicación de qué hará la persona dentro del proyecto.
+Requisitos: Formación, conocimientos técnicos y habilidades necesarias.
+Deseable: Tecnologías o experiencia adicional que representen una ventaja.
+Modalidad: Presencial, híbrida o remota según el puesto.
+Ubicación: Aguascalientes, Aguascalientes, para actividades que requieran presencia física.
+Beneficios: Horario flexible, capacitación, equipo de trabajo, prestaciones correspondientes y participación en un proyecto tecnológico de bienestar digital.
+Contacto: Correo de Recursos Humanos o formulario para envío de CV y portafolio.
+Diseño: Azul oscuro, verde y turquesa institucionales; tipografía Montserrat para títulos e Inter para información secundaria.
+
+Canales de Reclutamiento
+LinkedIn: Búsqueda de perfiles profesionales, desarrolladores, diseñadores y personal administrativo.
+Bolsas de trabajo universitarias: Reclutamiento de estudiantes de últimos semestres, practicantes y recién egresados.
+Comunidades tecnológicas y grupos universitarios. Desarrollo de software, Android, Flutter, diseño UX/UI y pruebas.
+Redes sociales de FitBlock: Difusión de oportunidades entre personas que ya conocen la marca.
+Referencias internas: Recomendaciones realizadas por integrantes de la empresa.
+Plataformas de empleo: Vacantes formales cuando la empresa requiera ampliar considerablemente su plantilla.
+
+Público al que se dirige el reclutamiento
+Durante las primeras etapas se buscarán principalmente estudiantes de últimos semestres, recién egresados y profesionistas jóvenes relacionados con tecnología, diseño, administración y mercadotecnia. Para puestos técnicos se dará prioridad a candidatos con disposición para aprender nuevas tecnologías, aun cuando no cuenten con una trayectoria laboral extensa.
+
+Proceso de selección
+El proceso de selección se realizará en cuatro etapas. Se buscará que la evaluación no se limite únicamente a los estudios o experiencia del candidato, sino que también permita comprobar sus conocimientos prácticos, su capacidad de aprendizaje y su compatibilidad con la forma de trabajo de FitBlock.
+Etapa
+Actividad
+Criterio de evaluación
+Tiempo estimado
+1. Revisión de CV
+Analizar estudios, experiencia, proyectos, conocimientos y, cuando corresponda, portafolio o repositorios de código.
+Cumplimiento del perfil, tecnologías conocidas, experiencia o proyectos relacionados.
+1–2 días
+2. Entrevista
+Conversación con el responsable del área y posteriormente con Dirección General.
+Comunicación, trabajo en equipo, responsabilidad, resolución de problemas, interés por FitBlock y disponibilidad.
+30–45 min
+3. Examen o prueba práctica
+Resolver una actividad relacionada directamente con el puesto.
+Conocimientos, razonamiento, calidad del trabajo y capacidad para explicar las decisiones tomadas.
+1–3 horas según el puesto
+4. Selección
+Comparación de resultados y elección del candidato con mayor compatibilidad técnica y organizacional.
+Resultado general del proceso, disponibilidad y ajuste al perfil.
+1 día
+
+Para evitar que la selección dependa exclusivamente de una impresión subjetiva, se propone utilizar una ponderación de 25 % para CV y experiencia, 30 % para entrevista, 35 % para prueba práctica y 10 % para compatibilidad con los valores y dinámica de trabajo de FitBlock.
+
+Examen según el puesto
+Dirección/Gestión: Resolver un caso de planificación de proyecto, priorizando actividades, recursos y riesgos.
+Producto y UX/UI: Elaborar o mejorar una pantalla de FitBlock justificando distribución, accesibilidad y experiencia del usuario.
+Tecnología y Operaciones: Resolver un ejercicio de programación o corregir una función relacionada con Android, Flutter, APIs o manejo de datos.
+Marketing y Negocios: Diseñar una propuesta breve de campaña para captar usuarios de FitBlock y justificar el segmento seleccionado.
+Administración y Finanzas: Resolver un ejercicio básico de presupuesto, clasificación de gastos y control financiero.
+Legal: Analizar un caso sencillo sobre términos de servicio, datos personales o propiedad intelectual.
+
+Capacitación del Personal
+La capacitación tendrá como objetivo que cada persona conozca tanto el proyecto FitBlock como las herramientas necesarias para desempeñar su función. Debido a que la empresa utilizará herramientas y tecnologías diferentes dependiendo del área, se aplicará primero una evaluación diagnóstica para determinar qué conocimientos posee la persona antes de establecer su capacitación.
+Se propone un periodo inicial de capacitación de dos semanas, seguido de un periodo de adaptación de aproximadamente cuatro semanas. Esto significa que una persona podría comenzar a realizar tareas productivas desde las primeras semanas, pero se consideraría completamente integrada después de aproximadamente seis semanas, dependiendo del puesto y de su experiencia previa.
+Programa de capacitación inicial
+Etapa
+Contenido
+Duración aproximada
+Evaluación
+Inducción a FitBlock
+Misión, visión, valores, producto, público objetivo, modelo de negocio, organigrama y responsabilidades.
+1 día
+Preguntas y revisión con responsable del área.
+Evaluación de habilidades
+Diagnóstico de conocimientos relacionados con el puesto.
+1 día
+Ejercicio práctico o cuestionario.
+Herramientas generales
+Repositorios, comunicación interna, documentación, seguridad y flujo de trabajo.
+2 días
+Realizar correctamente una tarea dentro del flujo establecido.
+Herramientas específicas del puesto
+Tecnologías, plataformas o procedimientos propios del área.
+5–7 días
+Actividad práctica supervisada.
+Trabajo acompañado
+Participación en tareas reales con revisión de un integrante experimentado.
+1–2 semanas
+Calidad, cumplimiento y autonomía.
+Adaptación al puesto
+Realización gradual de tareas sin supervisión continua.
+2–4 semanas
+Revisión del desempeño al finalizar el primer mes.
+
+Capacitación por área
+Área
+Herramientas / conocimientos principales
+Capacitación estimada
+Adaptación estimada
+Dirección y Gestión
+Gestión del proyecto, planificación, documentación, indicadores y coordinación entre áreas.
+1 semana
+2–3 semanas
+Producto y UX/UI
+Identidad de FitBlock, prototipos, Android Studio, interfaces, accesibilidad y pruebas con usuarios.
+2 semanas
+3–4 semanas
+Tecnología y Operaciones
+Android Studio, Git, sensores Android, bases de datos, seguridad y arquitectura de FitBlock. Posteriormente Flutter, Wear OS e iOS.
+2–3 semanas
+4–6 semanas
+Marketing y Negocios
+Mercado objetivo, marca, investigación, redes sociales, campañas y análisis de resultados.
+1–2 semanas
+3–4 semanas
+Administración y Finanzas
+Presupuestos, documentación administrativa, facturación y control de gastos.
+1 semana
+2–3 semanas
+Legal y Cumplimiento
+Producto, manejo de datos, funcionamiento de sensores y modelo de suscripción para comprender los riesgos específicos del proyecto.
+1 semana
+2 semanas
+
+La capacitación técnica deberá actualizarse conforme avance el producto. Actualmente el MVP prioriza Android y utiliza Android Studio, mientras que Flutter, Wear OS, Xcode y dispositivos Apple se contemplan para fases posteriores.
+Al finalizar el periodo de adaptación, el responsable directo realizará una evaluación considerando calidad del trabajo, cumplimiento de tareas, autonomía, comunicación, capacidad de aprendizaje y uso correcto de las herramientas. Si se detectan deficiencias, se establecerá una segunda etapa de capacitación antes de considerar un cambio de puesto o terminación de la relación laboral.
+
+Políticas del área de Recursos Humanos
+Las siguientes políticas funcionan como propuesta interna de FitBlock y deberán adaptarse posteriormente a la modalidad contractual y a las obligaciones legales aplicables.
+Política
+Propuesta para FitBlock
+Horario de trabajo
+Jornada de lunes a viernes, con horario base de 9:00 a 17:00 horas, incluyendo tiempo para alimentos.
+Flexibilidad
+Se permitirá una tolerancia y ajuste de entrada/salida cuando las actividades puedan cumplirse sin afectar reuniones, entregas o pruebas.
+Modalidad
+Modelo híbrido para puestos que puedan realizarse remotamente. Las pruebas con dispositivos, sesiones de equipo y actividades de campo podrán requerir presencia física.
+Trabajo por objetivos
+El desempeño se evaluará principalmente mediante tareas, calidad, fechas de entrega e indicadores, evitando medir productividad únicamente por tiempo conectado.
+Prestaciones legales
+Toda contratación formal deberá incluir las prestaciones de ley vigentes y las obligaciones correspondientes de seguridad social.
+Prestaciones adicionales
+Capacitación financiada por la empresa cuando sea necesaria para el puesto, horarios flexibles, modalidad híbrida, préstamo de equipo de trabajo y participación en actividades internas de bienestar.
+Vacaciones y permisos
+Se respetarán los periodos legalmente correspondientes y se permitirá solicitar permisos personales con aviso previo al responsable inmediato.
+Equipo de trabajo
+Cuando el puesto lo requiera, FitBlock proporcionará computadora, software, cuentas institucionales y dispositivos necesarios para realizar pruebas.
+Uniforme diario
+No se exigirá uniforme para las actividades normales de oficina. Se utilizará vestimenta casual o casual-profesional apropiada para un ambiente tecnológico.
+Uniforme representativo
+Para exposiciones, ferias, demostraciones, conferencias o actividades promocionales se utilizará una playera o polo institucional de FitBlock con los colores y logotipo de la marca.
+Capacitación continua
+Cada área podrá solicitar cursos o actualización cuando aparezcan tecnologías necesarias para el desarrollo del producto.
+Confidencialidad
+Todo integrante deberá proteger código fuente, credenciales, estrategias de negocio, información de usuarios y documentación interna.
+Propiedad intelectual
+El código, diseños y materiales producidos como parte de las actividades laborales deberán documentarse conforme a los acuerdos de propiedad intelectual establecidos por FitBlock.
+Protección de datos
+El personal únicamente podrá acceder a la información necesaria para realizar sus funciones y deberá respetar las políticas de privacidad y seguridad.
+Ambiente laboral
+Se promoverá comunicación respetuosa, críticas constructivas, colaboración entre áreas y tolerancia cero hacia discriminación, acoso o violencia laboral.
+Bienestar
+Debido a la naturaleza de FitBlock, se fomentarán pausas activas, movilidad durante la jornada y prácticas compatibles con el propósito de bienestar digital de la propia empresa.
+
+El esquema híbrido resulta particularmente apropiado porque el Plan de Producción ya contempla un espacio de oficina o coworking para cuatro integrantes, conexión a Internet para desarrollo y cercanía con áreas abiertas para realizar pruebas de sensores y actividad física.
+Organización del área de Recursos Humanos durante la etapa inicial
+Por el tamaño actual de FitBlock no sería conveniente crear todavía un departamento independiente de Recursos Humanos. Durante la etapa inicial, Dirección General puede asumir la coordinación del reclutamiento, selección y políticas laborales, involucrando al responsable del área donde exista la vacante.
+Por ejemplo, para contratar un desarrollador, Dirección General administraría el proceso, pero Tecnología y Operaciones tendría la responsabilidad principal sobre la entrevista técnica y el examen. Para un diseñador UX/UI participaría Producto y UX, mientras que para puestos de promoción y ventas participaría Marketing, Investigación y Negocios. Esto mantiene una estructura ligera y es coherente con la organización actual de solo cuatro responsables principales.
+A medida que la empresa incremente usuarios, operaciones y plantilla se podría justificar posteriormente la incorporación de un responsable formal de Administración y Recursos Humanos.

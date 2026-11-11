@@ -1,0 +1,1 @@
+PASS: onboarding, app selection, navigation and statistics. Blocking/emergency are tested by BlockingFlowTest because shell uiautomator dump suspends accessibility services.

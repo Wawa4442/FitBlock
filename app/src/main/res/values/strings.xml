@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FitBlock</string>
+    <string name="accessibility_description">FitBlock identifica únicamente el nombre del paquete de la aplicación abierta para cubrir las apps que seleccionaste cuando no tienes tiempo ganado. No lee textos, contraseñas, mensajes ni contenido de pantalla. No realiza gestos automáticos. Puedes desactivarlo en cualquier momento desde Ajustes de Android.</string>
+</resources>
