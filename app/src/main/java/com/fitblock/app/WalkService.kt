@@ -227,6 +227,7 @@ class WalkService : Service(), SensorEventListener {
         }
 
         fun start(context: Context) {
+            if (SportTimer.get(context).current() != null) return
             if (Build.VERSION.SDK_INT >= 29 &&
                 context.checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED
             ) return

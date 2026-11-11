@@ -14,7 +14,10 @@ El documento original sigue intacto. El MVP cubre restricción de aplicaciones, 
 | Recuperación | Acceso opcional a UsageEvents para recuperar el paquete en primer plano al reconectar o desbloquear | Sin este permiso depende del siguiente evento de ventana |
 | Tiempos de bloqueo | Horario de inicio/fin, días de semana y horarios que cruzan medianoche | Fuera del horario no se restringe |
 | Límites diarios | Límite por defecto e individual por paquete | No calcula toda la actividad histórica previa a instalar FitBlock |
-| Metas | Cinco actividades, todas configurables | No hay prescripción de rutinas médicas |
+| Metas | Cinco actividades verificadas configurables y 98 deportes por duración | El cronómetro registra tiempo; no comprueba esfuerzo ni concede minutos de pantalla |
+| Catálogo deportivo | 103 actividades, búsqueda sin distinguir acentos, categorías y favoritos | Inspirado en HealthKit/Health Connect; sin importar sus datos |
+| Cuentas | Registro, acceso y cambio de cuentas locales, contraseñas derivadas y datos por perfil | Sin nube, recuperación por correo ni acceso desde otros teléfonos |
+| Historial | Registros detallados de sesiones completas o parciales, exportación del perfil | Los datos de versiones previas conservan sus agregados, sin inventar sesiones detalladas |
 | Desbloqueo condicional | Recompensa única por sesión completa y bolsa compartida de minutos | Sesiones parciales no dan minutos |
 | Tiempo ganado | Cantidad por actividad y vigencia de la bolsa | No es un bloqueo por tiempo absoluto de toda la app después de ganar saldo |
 | Consumo | Descuento según tiempo transcurrido al usar apps seleccionadas, en horario y con pantalla activa | Muestra consumo supervisado, no todo el Screen Time de Android |
@@ -27,11 +30,11 @@ El documento original sigue intacto. El MVP cubre restricción de aplicaciones, 
 | Uso de batería | Cámara visible y servicio de caminata durante una sesión activa | Consumo real pendiente de medir en teléfonos físicos |
 | Dificultad progresiva | Opción +10 % por actividad del día, máximo +40 % | Se usa número de actividades como indicador simple; el plan no fija fórmula |
 | Emergencia regulada | Un pase diario de 2 minutos y +50 % a la siguiente meta | Los esenciales siguen accesibles sin usar el pase |
-| Estadísticas | Hoy, gráfica de 7 días, reps/pasos/estiramientos, tiempo supervisado y eventos | Retención limitada a 90 días y 50 eventos |
-| Rachas y recompensas | Racha diaria, nivel cada 5 actividades e insignias locales | Sin rankings ni premios de valor monetario |
+| Estadísticas | Hoy, gráfica de 7 días, reps/pasos/estiramientos, tiempo supervisado y eventos | Agregados de 90 días y 50 eventos; registros detallados hasta borrar datos |
+| Rachas y recompensas | Racha diaria, mejor racha, semana visible, nivel cada 5 metas completadas y ocho insignias coleccionables | Sin rankings ni premios de valor monetario; canjeables «Muy pronto» |
 | Privacidad | Consentimiento, explicación de permisos, cámara local sin guardar, sin permiso de Internet, exportación y borrado | Responsable/contacto y condiciones comerciales por definir antes de publicación |
 | Suscripciones/freemium | MVP gratuito sin anuncios ni cobros | Play Billing y monetización pendientes; no hay compras simuladas |
-| Social y ligas | Identificadas en el plan como evolución del producto | Requieren backend, cuentas y reglas de competencia; fuera del MVP |
+| Social y ligas | Vista previa de rachas en equipo y plan guardado por cuenta | Invitaciones, racha compartida y seguimiento de otras personas «Muy pronto»; requieren backend |
 | Wearables/biometría | Conservado como etapa futura del plan | No integra Wear OS, Apple Watch, Health Connect ni pulso |
 | iOS | Conservado como etapa futura del plan | No solicita ni usa Screen Time API de Apple |
 

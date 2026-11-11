@@ -1,0 +1,14 @@
+FitBlock 0.3.0-mvp — 2026-11-11
+Device: FitBlock_Test_API35, Android 15 / API 35, emulator only.
+PASS: 23 JVM tests, 18 Android instrumented tests; 0 failures and 0 errors.
+PASS: Android lint, 0 errors (131 warnings; no baseline suppressing errors).
+PASS: local registration, login/logout and isolated profile history/favorites.
+PASS: first-account guest migration, password derivation, duplicate/wrong credential rejection.
+PASS: manual session idempotence, no screen credit, partial sessions excluded from streak.
+PASS: personal/best streak, retained older history, badge unlocking and collection.
+PASS: UI sport search/favorite, duration goal, pause/resume and one-minute screen-off timer.
+PASS: team plan saved as a preview, Muy pronto status, history retained after login.
+PASS: existing camera, jumping-jack clip, blocker/emergency and reward regression tests.
+APK: versionCode 3, minimum Android 8.0 / API 26, target API 35, no Internet permission.
+APK SHA-256: 446da9c505472bd5fce7a0f02702ebdfcae1fa1a8b00907bf8ce534a95ae940e
+Limitations: accounts are local; shared online streaks, invitations, cloud/recovery and redeemable rewards remain previews. New sports use a duration timer, not automatic technique verification. Physical phone sensor calibration remains pending.

@@ -14,6 +14,9 @@
     <application android:allowBackup="false" android:label="FitBlock" android:icon="@drawable/fitblock_icon" android:roundIcon="@drawable/fitblock_icon" android:theme="@style/Theme.FitBlock" android:supportsRtl="true">
         <activity android:name=".WorkoutActivity" android:exported="false" android:screenOrientation="portrait" />
         <activity android:name=".WalkingActivity" android:exported="false" android:screenOrientation="portrait" />
+        <activity android:name=".SportSessionActivity" android:exported="false" />
+        <activity android:name=".AccountActivity" android:exported="false" />
+        <activity android:name=".CommunityActivity" android:exported="false" />
         <activity android:name=".MainActivity" android:exported="true">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
         </activity>

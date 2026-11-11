@@ -1,6 +1,6 @@
 # Arquitectura del MVP
 
-La aplicación es local y de un solo módulo. No contiene claves de API, cuentas, servidor ni dependencia de una suscripción. El manifiesto elimina Internet y acceso al estado de red, incluso cuando aparecen en manifiestos transitivos de ML Kit.
+La aplicación es local y de un solo módulo. Incluye cuentas locales opcionales; no contiene claves de API, servidor ni dependencia de una suscripción. El manifiesto elimina Internet y acceso al estado de red, incluso cuando aparecen en manifiestos transitivos de ML Kit.
 
 | Archivo | Responsabilidad |
 | --- | --- |
@@ -16,6 +16,10 @@ La aplicación es local y de un solo módulo. No contiene claves de API, cuentas
 | UsageAccess.kt | Consulta opcional del último paquete en primer plano, sin contenido de pantalla |
 | AppCatalog.kt | Apps seleccionables y exclusión de aplicaciones esenciales |
 | Ui.kt | Componentes nativos, tipografía, colores, tarjetas, gráfica y anillo de progreso |
+| SportCatalog.kt y SportsPanel.kt | Repertorio de 103 actividades, búsqueda, categorías y favoritos |
+| SportTimer.kt y SportSessionActivity.kt | Cronómetro persistido, pausa/reanudación y registro manual sin recompensa de pantalla |
+| Accounts.kt y AccountActivity.kt | Registro y autenticación local, derivación de contraseñas, cambio de perfil y asociación inicial del historial |
+| CommunityActivity.kt y AwardCatalog.kt | Historial, rachas personales, insignias y borrador de equipo con estado «Muy pronto» |
 
 ## Recorrido de desbloqueo
 
@@ -23,12 +27,16 @@ La aplicación es local y de un solo módulo. No contiene claves de API, cuentas
 2. WorkoutActivity solicita los permisos correspondientes e inicia captura únicamente mientras permanece visible.
 3. La cámara valida las indicaciones aleatorias y luego registra un ciclo inicial, movimiento y regreso. Tolera pérdidas breves de puntos y usa el tiempo de captura para descartar ciclos imposibles. En estiramiento se integra el tiempo observado en la postura.
 4. WalkService inicia desde la pantalla de caminata como servicio en primer plano de tipo salud. Combina pasos nuevos del podómetro con evidencia de movimiento en el intervalo de la lectura. Con acelerómetro solo, exige una secuencia de zancadas con cadencia plausible. Mantiene el procesador disponible durante la sesión y libera sensores y bloqueo de suspensión al pausar o terminar.
-5. Al llegar a la meta, Store comprueba el identificador, el conteo y un mínimo temporal. Consume el identificador antes de otorgar saldo. Cancelar, iniciar otra sesión o reiniciar el proceso invalida la anterior.
+5. Al llegar a la meta, Store comprueba el identificador, el propietario, el conteo y un mínimo temporal. Guarda saldo, estadísticas y registro en una transacción de preferencias; consume el identificador al guardar. Cancelar, iniciar otra sesión o reiniciar el proceso invalida la anterior.
 6. El servicio consulta saldo, horario y cuota. Descuenta uso con el reloj monotónico mientras una app protegida está al frente y la pantalla está activa. La barrera vuelve al agotarse la condición de acceso; la comprobación temporal se realiza aproximadamente cada segundo y los cambios de ventana se atienden al recibir el evento.
 
 ## Persistencia y reloj
 
-SharedPreferences privado guarda las reglas y registros acotados. Las actualizaciones frecuentes de consumo/estadísticas se aplican en segundo plano; las concesiones de tiempo se guardan de forma síncrona. No hay base de datos remota. No se guardan coordenadas ni fotogramas.
+SharedPreferences privado guarda reglas globales del dispositivo y archivos de perfil separados. Las actualizaciones frecuentes de consumo/estadísticas se aplican en segundo plano; las concesiones de tiempo se guardan de forma síncrona. Se conservan agregados de 90 días, 50 eventos y los registros detallados hasta borrar datos. No hay base de datos remota. No se guardan coordenadas ni fotogramas.
+
+Accounts guarda identificadores UUID, nombre, correo normalizado y verificadores PBKDF2-HMAC-SHA256 de 256 bits con 210 000 iteraciones y sal aleatoria de 24 bytes. La derivación se realiza fuera del hilo de interfaz. Cinco fallos de acceso activan una espera de 30 segundos. El estado de sesión es local y no valida la propiedad del correo. No se habilitan recuperación remota ni sincronización. La primera cuenta transfiere el perfil de invitado una sola vez. No se permite cambiar de propietario con una actividad pendiente.
+
+El cronómetro deportivo persiste identificador, meta, tiempo acumulado, ancla elapsedRealtime y BOOT_COUNT. Puede reconstruir el tiempo transcurrido con la pantalla apagada o tras terminar el proceso en el mismo arranque, sin servicio de sensores. Tras reiniciar el teléfono queda pausado con el último tiempo acumulado conocido. Guardar es idempotente por identificador; las sesiones parciales no incrementan la racha y ninguna sesión manual concede saldo. Las actividades verificadas siguen usando cámara o WalkService. Las insignias desbloqueadas se conservan por perfil; añadirlas a la colección no crea créditos. Las rachas conjuntas guardan únicamente un borrador local, sin inventar participantes o avances ajenos.
 
 Saldo y emergencia usan elapsedRealtime para que atrasar el reloj de pared no extienda un pase. BOOT_COUNT y el desfase entre relojes invalidan los pases si hay reinicio o un salto significativo de hora. Las cuotas usan una fecha máxima persistida para no reiniciarse al atrasar el día. No hay fuente externa de tiempo confiable ni resistencia total a manipulación del sistema, root o almacenamiento privado.
 

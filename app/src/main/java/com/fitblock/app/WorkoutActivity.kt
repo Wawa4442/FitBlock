@@ -162,6 +162,10 @@ class WorkoutActivity : ComponentActivity(), SensorEventListener {
 
     private fun begin() {
         if (active || finished || checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) return
+        if (SportTimer.get(this).current() != null) {
+            status.text = "Termina o guarda el deporte pendiente antes de iniciar otro ejercicio."
+            return
+        }
         if (WalkService.unfinished(this) != null) {
             status.text = "Termina tu caminata antes de iniciar otro ejercicio."
             return

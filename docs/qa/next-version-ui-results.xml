@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="1" failures="0" errors="0" skipped="0" time="100.864" timestamp="2026-11-11T20:41:34" hostname="localhost">
+  <testsuite name="com.fitblock.app.NextVersionFlowTest" tests="1" failures="0" errors="0" skipped="0" time="97.495" timestamp="2026-11-11T20:41:34" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="accountSportsTimerStreakTeamPreviewAwardsAndHistory" classname="com.fitblock.app.NextVersionFlowTest" time="97.495" />
+  </testsuite>
+</testsuites>

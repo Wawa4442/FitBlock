@@ -7,6 +7,26 @@ import android.view.*
 import android.widget.*
 import kotlin.math.*
 
+fun quantity(count: Int, singular: String, plural: String) = "$count ${if (count == 1) singular else plural}"
+
+fun android.app.Activity.setFitContent(body: View): ScrollView {
+    val scroll = ScrollView(this).apply {
+        setBackgroundColor(C.bg)
+        isFillViewport = true
+        addView(body)
+        setOnApplyWindowInsetsListener { view, insets ->
+            if (android.os.Build.VERSION.SDK_INT >= 30) {
+                val bars = insets.getInsets(WindowInsets.Type.systemBars() or WindowInsets.Type.displayCutout())
+                view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+            }
+            insets
+        }
+    }
+    setContentView(scroll)
+    scroll.requestApplyInsets()
+    return scroll
+}
+
 fun android.app.Activity.chooseGoal(exercise: Exercise, current: Int, save: (Int) -> Unit) {
     val field = input("Meta", current.toString(), true)
     val error = label("", 13f, C.amber).apply {

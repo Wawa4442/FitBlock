@@ -1,14 +1,20 @@
 # Verificación de FitBlock
 
-La versión 0.2.0 se verifica en el emulador **FitBlock_Test_API35**, con Android 15, imagen Google APIs x86_64 y JBR 21. Queda pendiente la calibración en el teléfono del usuario.
+La versión 0.3.0 se verifica en el emulador **FitBlock_Test_API35**, con Android 15, imagen Google APIs x86_64 y JBR 21. Queda pendiente la calibración en el teléfono del usuario.
 
 ## Comprobaciones automatizadas
 
-La suite contiene 20 pruebas unitarias y 11 pruebas instrumentadas. Los reportes se generan en `app/build/reports/tests/testDebugUnitTest`, `app/build/reports/androidTests/connected/debug` y `app/build/reports/lint-results-debug.html`.
+La suite contiene 23 pruebas unitarias y 18 pruebas instrumentadas. Los reportes se generan en `app/build/reports/tests/testDebugUnitTest`, `app/build/reports/androidTests/connected/debug` y `app/build/reports/lint-results-debug.html`.
 
 Las pruebas unitarias de PolicyTest cubren horarios normales y nocturnos, días elegidos, vencimiento, cuotas, emergencia, dificultad progresiva, rechazo de ciclos demasiado rápidos, seguimiento perdido, escenas estáticas, cadencia de pasos y geometría de poses. Incluyen ejemplos sintéticos de flexiones, sentadillas, saltos y estiramiento para comprobar tanto aceptación como rechazo. Los ejemplos sintéticos no sustituyen validación con una persona.
 
 Las pruebas instrumentadas ejecutan código en Android.
+
+SportCatalogTest comprueba identificadores únicos, el repertorio de más de cien actividades, los cinco ejercicios verificados originales, búsqueda sin distinguir acentos, categorías y el reloj de sesión al pausar/reanudar.
+
+AccountsAndHistoryTest cubre creación y autenticación, rechazo de duplicados y contraseñas incorrectas, almacenamiento derivado de contraseñas, separación entre perfiles, asociación única del historial de invitado, metas y favoritos, guardado idempotente y ausencia de crédito por cronómetro. Comprueba que las sesiones parciales no aumentan la racha, que las actividades pendientes impiden cambiar de cuenta y que la mejor racha puede reconstruirse con registros anteriores a los 90 días de agregados. También comprueba que las insignias desbloqueadas se conservan al interrumpirse la racha.
+
+NextVersionFlowTest recorre la interfaz real para crear cuenta, buscar Yoga, marcar favorito, configurar una meta de un minuto, iniciar/pausar/reanudar y completar el cronómetro con la pantalla apagada. Guarda la actividad, comprueba la racha, prepara un equipo como vista previa, añade una insignia a la colección, consulta el historial y vuelve a iniciar sesión. Usa los nodos de accesibilidad directamente: el comando de consola `uiautomator dump` puede fallar al esperar inactividad en una pantalla cuyo cronómetro cambia continuamente. Las capturas `v03-*.png` se generan con MediaStore en `Pictures/FitBlockQA03` del emulador y se copian a `docs/qa` para la revisión visual.
 
 | Prueba | Comportamiento comprobado |
 | --- | --- |
@@ -47,6 +53,9 @@ La revisión visual incluye bienvenida, selección de apps, inicio, actividades,
 9. Solicita emergencia: la app elegida debe abrir durante dos minutos. Al vencer se debe reactivar la barrera y no debe concederse otra emergencia ese día.
 10. Reinicia el teléfono, verifica el servicio y habilita recuperación por uso de apps. Comprueba con y sin las restricciones de batería que permita configurar tu fabricante.
 11. Exporta el historial y comprueba que no contiene fotos ni coordenadas. Borra los datos y verifica que se desactiva la protección y reaparece el consentimiento.
+12. Crea tu cuenta desde **Mi cuenta**. Verifica que el historial de invitado se asocia y que al cerrar sesión no aparece en el perfil de invitado ni en una segunda cuenta.
+13. Busca un deporte, márcalo favorito y registra una sesión con duración elegida. Comprueba pausa, pantalla apagada y reabrir la app. Solo las metas completadas suman a la racha; el cronómetro no da saldo para apps.
+14. Abre **Rachas y premios**, prepara un reto conjunto y revisa **Muy pronto**. Añade una insignia alcanzada a la colección, cierra y vuelve a iniciar sesión para comprobar que persiste.
 
 ## Aspectos aún sin validar
 

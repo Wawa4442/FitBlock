@@ -25,6 +25,8 @@ class MainActivity : ComponentActivity() {
     private var timeCaption: TextView? = null
     private var protectionLabel: TextView? = null
     private var walkLabel: TextView? = null
+    private var sportQuery = ""
+    private var sportFilter = 0
     private val permissions = PermissionPrompt(this) { _, _ -> render() }
     private val handler = Handler(Looper.getMainLooper())
     private val pulse = object : Runnable {
@@ -71,6 +73,13 @@ class MainActivity : ComponentActivity() {
         header.addView(ImageView(this).apply { setImageResource(R.drawable.fitblock_icon); contentDescription = "FitBlock" }, LinearLayout.LayoutParams(dp(38), dp(38)))
         val brand = label("FitBlock", 22f, C.white, true).apply { setPadding(dp(10),0,0,0) }
         header.addView(brand, LinearLayout.LayoutParams(0,-2,1f))
+        header.addView(action("Mi cuenta", false) { openAccount() }.apply {
+            isSingleLine = true
+            textSize = 12f
+            minHeight = dp(48)
+            minimumHeight = dp(48)
+            setPadding(dp(10), 0, dp(10), 0)
+        }, LinearLayout.LayoutParams(dp(100), dp(48)))
         root.addView(header)
         val scroll = ScrollView(this).apply { isFillViewport = true; clipToPadding = false }
         content = column(22); scroll.addView(content); root.addView(scroll, LinearLayout.LayoutParams(-1,0,1f))
@@ -114,6 +123,7 @@ class MainActivity : ComponentActivity() {
         val greet=if(store.name.isBlank()) "Hoy eliges tú." else "Hola, ${store.name}."
         title("Tu bienestar digital",greet,"Una pausa activa. Una decisión más consciente.")
         walkCard()
+        timerCard()
         content.card {
             protectionLabel=text(protectionText(),12f,if(BlockService.connected&&store.enabled) C.green else C.amber,true)
             gap(16)
@@ -129,8 +139,9 @@ class MainActivity : ComponentActivity() {
         }
         val d=store.dayStats();val r=row()
         fun metric(value:String,caption:String) = column(15).apply { background=surface(radius=dp(18).toFloat());text(value,26f,C.green,true);gap(4);text(caption,11f,C.muted) }
-        r.addView(metric("${d.optInt("sessions")}","actividades hoy"),LinearLayout.LayoutParams(0,-2,1f).apply { marginEnd=dp(10) })
+        r.addView(metric("${d.optInt("sessions") + d.optInt("manualSessions")}","actividades hoy"),LinearLayout.LayoutParams(0,-2,1f).apply { marginEnd=dp(10) })
         r.addView(metric("${store.streak()}","días de racha"),LinearLayout.LayoutParams(0,-2,1f));content.addView(r);content.gap(20)
+        content.button("Rachas y premios", false) { openCommunity() }
         content.text("Tu siguiente paso",18f,bold=true);content.gap(12)
         content.card { text("${store.requiredGoal(Exercise.SQUAT)} sentadillas  →  ${store.rewardMinutes} min",16f,bold=true);gap(8);text("Cámara · cuerpo completo · sin guardar video",12f,C.muted);gap(12);button("Iniciar actividad",false) { startWorkout(Exercise.SQUAT) } }
         content.card { text("${store.selected.size} apps en tu espacio de enfoque",16f,bold=true);gap(8);text("Horario: ${scheduleText()}\nLímite por defecto: ${store.dailyLimit} min por app al día",13f,C.muted);gap(12);button("Administrar mis aplicaciones",false) { tab="apps";render() } }
@@ -172,20 +183,45 @@ class MainActivity : ComponentActivity() {
         content.gap(12);content.text("Siempre disponibles: teléfono, SMS, inicio, teclado, ajustes y las aplicaciones de emergencia identificadas por Android.",12f,C.muted)
     }
     private fun exercises() {
-        title("Movimiento que suma","Actívate. Desbloquea.","Completa una meta verificada y gana ${store.rewardMinutes} minutos para tus apps.")
+        title("Deportes y actividad","Actívate. Desbloquea.","Explora ${SportCatalog.all.size} actividades y elige cómo registrar tu movimiento.")
         walkCard()
-        content.card { text("Tu ritmo, tu meta",16f,bold=true);gap(8);text("Las repeticiones incompletas no cuentan. Puedes detenerte sin penalización. Si sientes dolor o mareo, termina la actividad.",13f,C.muted);gap(10);button("Personalizar mis metas",false) { goalsDialog() } }
-        Exercise.entries.forEach { e ->
-            content.card {
-                text(if(e.camera) "CÁMARA" else "SENSORES",10f,C.cyan,true);gap(8)
-                text(e.title,21f,bold=true);gap(6);text("${store.requiredGoal(e)} ${e.unit}  →  ${store.rewardMinutes} minutos",14f,C.green,true);gap(10)
-                text(when(e) { Exercise.SQUAT->"De perfil, baja la cadera y vuelve a ponerte de pie.";Exercise.PUSHUP->"De perfil, mantén el cuerpo alineado y completa el recorrido de los brazos.";Exercise.JACK->"De frente, separa los pies y levanta ambas manos por encima de los hombros. Vuelve al centro.";Exercise.STRETCH->"De frente, sostén ambos brazos arriba. El tiempo se pausa si pierdes la postura.";Exercise.WALK->"Lleva el teléfono en el bolsillo. El conteo sigue con la pantalla apagada." },13f,C.muted)
-                gap(14);button("Iniciar ${e.title.lowercase()}") { startWorkout(e) }
+        timerCard()
+        content.card {
+            text("Cámara, pasos o cronómetro", 16f, bold = true)
+            gap(8)
+            text("Las actividades verificadas por cámara o pasos ganan minutos para tus apps. Los otros deportes registran su duración y las metas completadas suman a tu racha.", 13f, C.muted)
+            gap(10)
+            button("Personalizar mis metas", false) { goalsDialog() }
+        }
+        SportsPanel(this, content, sportQuery, sportFilter, { query, filter ->
+            sportQuery = query
+            sportFilter = filter
+        }) { sport ->
+            if (sport.exercise != null) startWorkout(sport.exercise)
+            else startActivity(Intent(this, SportSessionActivity::class.java).putExtra("sport", sport.id))
+        }
+    }
+    private fun timerCard() {
+        val session = SportTimer.get(this).current() ?: return
+        val sport = SportCatalog.get(session.sportId) ?: return
+        content.card {
+            text("${sport.title} · ${if (session.running) "En curso" else "Pausada"}", 17f, bold = true)
+            gap(8)
+            button("Continuar actividad", false) {
+                startActivity(Intent(this@MainActivity, SportSessionActivity::class.java).putExtra("sport", sport.id))
             }
         }
-        content.text("La verificación es una heurística local: reduce agitación y movimientos parciales, pero no garantiza detectar todos los intentos de engaño.",12f,C.muted)
+    }
+    private fun openAccount() { startActivity(Intent(this, AccountActivity::class.java)) }
+    private fun openCommunity(tab: String = "streaks") {
+        startActivity(Intent(this, CommunityActivity::class.java).putExtra("tab", tab))
     }
     private fun startWorkout(exercise: Exercise) {
+        val timer = SportTimer.get(this).current()
+        if (timer != null) {
+            startActivity(Intent(this, SportSessionActivity::class.java).putExtra("sport", timer.sportId))
+            return
+        }
         if (exercise == Exercise.WALK) {
             startActivity(Intent(this, WalkingActivity::class.java))
             return
@@ -217,6 +253,8 @@ class MainActivity : ComponentActivity() {
     }
     private fun stats() {
         title("Tu progreso","Cada pausa cuenta.","Actividad real registrada en este dispositivo.")
+        content.button("Historial de actividades", false) { openCommunity("history") }
+        content.button("Rachas y premios", false) { openCommunity() }
         val d=store.dayStats()
         content.card {
             text("HOY",11f,C.cyan,true);gap(12)
@@ -224,6 +262,7 @@ class MainActivity : ComponentActivity() {
             text("${d.optLong("used")/60_000} min de apps protegidas usados",14f,C.muted);gap(12)
             text("${d.optInt("reps")} repeticiones  ·  ${d.optInt("steps")} pasos",14f)
             text("${d.optInt("stretchSeconds")} s de estiramiento  ·  ${d.optLong("exerciseMs")/60_000} min de actividad",13f,C.muted)
+            text("${d.optInt("recordedSessions")} deportes registrados · ${d.optLong("sportMs") / 60_000} min por cronómetro",13f,C.muted)
             gap(10);text("${d.optInt("blocked")} accesos interrumpidos · ${d.optInt("emergencies")} emergencias",12f,C.muted)
         }
         content.card {
@@ -231,13 +270,15 @@ class MainActivity : ComponentActivity() {
             val days=(6 downTo 0).map { LocalDate.now().minusDays(it.toLong()) }
             addView(WeekChart(this@MainActivity,days.map { store.dayStats(it.toString()).optInt("earned") },days.map { it.format(DateTimeFormatter.ofPattern("EE",Locale.forLanguageTag("es"))).take(2) }),LinearLayout.LayoutParams(-1,dp(155)))
         }
-        val total=store.totalSessions();val level=total/5+1
+        val total=store.totalActivities();val level=total/5+1
         content.card {
-            text("Nivel $level · ${store.streak()} días de racha",20f,bold=true);gap(8);text("$total actividades completadas en los últimos 90 días. Próximo nivel en ${5-total%5} actividades.",13f,C.muted)
+            text("Nivel $level · ${store.streak()} días de racha",20f,bold=true);gap(8);text("$total actividades completadas. Próximo nivel en ${5-total%5} actividades.",13f,C.muted)
             gap(12);val progress=ProgressBar(this@MainActivity,null,android.R.attr.progressBarStyleHorizontal).apply { max=5;progress=total%5;progressTintList=android.content.res.ColorStateList.valueOf(C.green) };addView(progress)
-            gap(16);text(if(total>=1) "✓  Primer paso" else "○  Primer paso · completa tu primera actividad",13f,if(total>=1) C.green else C.muted)
-            text(if(total>=10) "✓  En movimiento · 10 actividades" else "○  En movimiento · 10 actividades",13f,if(total>=10) C.green else C.muted)
-            text(if(store.streak()>=7) "✓  Una semana para ti" else "○  Una semana para ti · racha de 7 días",13f,if(store.streak()>=7) C.green else C.muted)
+            gap(16)
+            val unlocked = AwardCatalog.refresh(store)
+            text("${unlocked.size} de 8 insignias desbloqueadas",13f,C.green)
+            gap(10)
+            button("Ver mis premios",false) { openCommunity("awards") }
         }
         content.text("Historial reciente",18f,bold=true);content.gap(12)
         val events=store.events()
@@ -254,8 +295,9 @@ class MainActivity : ComponentActivity() {
     private fun settings() {
         title("A tu medida","Tu espacio. Tus reglas.","Ajusta FitBlock para acompañar tu día.")
         content.card {
-            text("Perfil local",17f,bold=true);gap(8);text(if(store.name.isBlank()) "Sin nombre configurado" else store.name,14f,C.muted);gap(10)
-            button("Cambiar nombre",false) { val edit=input("Tu nombre",store.name);AlertDialog.Builder(this@MainActivity).setTitle("¿Cómo te llamas?").setView(column(20).apply { addView(edit) }).setPositiveButton("Guardar") { _,_->store.name=edit.text.toString().trim();render() }.setNegativeButton("Cancelar",null).show() }
+            text("Mi cuenta",17f,bold=true);gap(8);text(if(store.name.isBlank()) "Invitado" else store.name,14f,C.muted);gap(10)
+            button(if (Accounts.get(this@MainActivity).current() == null) "Crear cuenta o entrar" else "Ver mi cuenta",false) { openAccount() }
+            button("Cambiar nombre",false) { val edit=input("Tu nombre",store.name);AlertDialog.Builder(this@MainActivity).setTitle("¿Cómo te llamas?").setView(column(20).apply { addView(edit) }).setPositiveButton("Guardar") { _,_-> val name = edit.text.toString().trim(); if (name.length in 1..40) store.name=name else toast("Escribe un nombre de hasta 40 caracteres."); render() }.setNegativeButton("Cancelar",null).show() }
         }
         content.card {
             text("Estado de protección",17f,bold=true);gap(10);text(protectionText(),13f,C.amber);gap(12)
@@ -272,11 +314,11 @@ class MainActivity : ComponentActivity() {
             button("Solicitar acceso de emergencia",false) { emergencyDialog() }
         }
         content.card {
-            text("Tus datos te pertenecen",17f,bold=true);gap(10);text("Sin cuentas, anuncios, servidores ni pagos. Cámara y sensores solo durante la actividad. Puedes exportar estadísticas o borrar todos los datos.",13f,C.muted);gap(12)
+            text("Tus datos te pertenecen",17f,bold=true);gap(10);text("Tus cuentas e historiales se conservan en este teléfono. Puedes exportar el historial de tu sesión o borrar todos los datos locales.",13f,C.muted);gap(12)
             button("Privacidad y condiciones",false) { privacy() };button("Exportar mi historial",false) { exportData() }
-            button("Eliminar mis datos",false) { AlertDialog.Builder(this@MainActivity).setTitle("Eliminar los datos de FitBlock").setMessage("Se eliminarán metas, aplicaciones, pases y todo el historial local. Se desactivará la protección. Esta acción no puede deshacerse.").setNegativeButton("Cancelar",null).setPositiveButton("Eliminar") { _,_->WalkService.discard(this@MainActivity);store.clear();render() }.show() }
+            button("Eliminar mis datos",false) { AlertDialog.Builder(this@MainActivity).setTitle("Eliminar los datos de FitBlock").setMessage("Se eliminarán todas las cuentas, sesiones, metas, aplicaciones, pases e historiales de este teléfono. Se desactivará la protección. Esta acción no puede deshacerse.").setNegativeButton("Cancelar",null).setPositiveButton("Eliminar") { _,_->WalkService.discard(this@MainActivity);SportTimer.get(this@MainActivity).discard();store.clear();render() }.show() }
         }
-        content.text("FitBlock 0.2.0",12f,C.muted)
+        content.text("FitBlock 0.3.0",12f,C.muted)
     }
 
     private fun showPermissions() {
@@ -389,7 +431,7 @@ class MainActivity : ComponentActivity() {
     }
     private fun privacy() {
         AlertDialog.Builder(this).setTitle("Privacidad y condiciones")
-            .setMessage("FitBlock procesa tus datos en el teléfono.\n\nCámara: estima articulaciones en memoria. La captura se pausa al salir de la pantalla.\n\nCaminata: usa sensores de movimiento durante la sesión, incluso con la pantalla apagada. Puedes pausar o terminar desde FitBlock.\n\nAccesibilidad: identifica la app abierta para aplicar el bloqueo que elegiste.\n\nDatos: guarda hasta 90 días de estadísticas y 50 eventos. Puedes exportar o borrar tu historial en Ajustes.")
+            .setMessage("FitBlock procesa tus datos en el teléfono.\n\nLas cuentas guardan nombre y correo. La contraseña se transforma con PBKDF2 y una sal aleatoria. Cada cuenta tiene su historial.\n\nLa cámara estima articulaciones en memoria. No se guardan fotos, videos ni recorridos. La caminata usa sensores durante la sesión, incluso con la pantalla apagada. Los otros deportes registran tiempo.\n\nAccesibilidad identifica la app abierta para aplicar el bloqueo que elegiste.\n\nPuedes exportar el historial de tu cuenta o borrar todos los datos locales de FitBlock desde Ajustes de la app.")
             .setPositiveButton("Entendido",null).show()
     }
     private fun exportData() { startActivityForResult(Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/json").putExtra(Intent.EXTRA_TITLE,"FitBlock-${LocalDate.now()}.json"),101) }
