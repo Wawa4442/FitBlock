@@ -96,6 +96,7 @@ class WorkoutActivity : ComponentActivity(), SensorEventListener {
 
     private fun buildUi() {
         val body = column(22)
+        body.addView(demoBanner())
         body.button("‹ Volver", false) { exitDialog() }
         body.gap(8)
         body.text(exercise.title, 27f, bold = true)
@@ -115,6 +116,14 @@ class WorkoutActivity : ComponentActivity(), SensorEventListener {
         status = body.text("Apoya el teléfono y encuadra todo tu cuerpo. Levanta los brazos según las indicaciones iniciales.", 14f, C.muted)
         status.minLines = 3
         body.gap(6)
+        start = body.button("Comenzar verificación") {
+            if (active) {
+                stopTracking()
+                status.text = "Actividad pausada. Puedes reanudarla con el mismo conteo."
+            } else {
+                permission.request(Manifest.permission.CAMERA)
+            }
+        }
         val frame = FrameLayout(this)
         preview = PreviewView(this).apply {
             scaleType = PreviewView.ScaleType.FIT_CENTER
@@ -127,14 +136,6 @@ class WorkoutActivity : ComponentActivity(), SensorEventListener {
         val height = (resources.configuration.screenHeightDp * .36f).toInt().coerceIn(180, 300)
         body.addView(frame, LinearLayout.LayoutParams(-1, dp(height)))
         body.gap(10)
-        start = body.button("Comenzar verificación") {
-            if (active) {
-                stopTracking()
-                status.text = "Actividad pausada. Puedes reanudarla con el mismo conteo."
-            } else {
-                permission.request(Manifest.permission.CAMERA)
-            }
-        }
         body.text("Cámara frontal · vista espejo", 11f, C.muted)
         val scroll = ScrollView(this).apply {
             setBackgroundColor(C.bg)
@@ -267,7 +268,7 @@ class WorkoutActivity : ComponentActivity(), SensorEventListener {
         if (result.count > before && exercise != Exercise.STRETCH) counter.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
         if (result.count < current.goal) return
 
-        if (!store.completeWorkout(current.id, current.goal)) {
+        if (!store.completeWorkout(current.id, current.goal, observedMillis = session.activeMillis)) {
             if (!store.isWorkoutCurrent(current.id)) {
                 stopTracking()
                 start.isEnabled = false

@@ -90,7 +90,8 @@ object PoseValidator {
         val shoulders = (pose[LS].y + pose[RS].y) / 2
         val torso = (pose[LH].y + pose[RH].y) / 2 - shoulders
         val shoulderWidth = abs(pose[LS].x - pose[RS].x)
-        if (torso < .04f || shoulderWidth < torso * .30f) {
+        if (torso < .04f || shoulderWidth < torso * .30f ||
+            minOf(pose[LA].y, pose[RA].y) < maxOf(pose[LH].y, pose[RH].y) + torso * .25f) {
             return Form(false, message = "Ponte de frente para que se distingan ambos lados del cuerpo.")
         }
         val armsDown = pose[LW].y > shoulders + torso * .20f && pose[RW].y > shoulders + torso * .20f

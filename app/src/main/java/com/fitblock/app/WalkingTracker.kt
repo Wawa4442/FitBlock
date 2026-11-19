@@ -2,6 +2,7 @@ package com.fitblock.app
 
 import kotlin.math.abs
 import kotlin.math.sqrt
+import kotlin.math.exp
 
 enum class StepSource { COUNTER, DETECTOR, ACCELEROMETER }
 
@@ -20,30 +21,41 @@ class WalkingTracker(private val source: StepSource, private val startedAt: Long
     private var lastStride = -1L
     private var previousInterval = 0L
     private var cadenceRun = 0
+    private var gravity = 9.81f
+    private var amplitude = .7f
     var steps = 0
         private set
 
     fun acceleration(at: Long, x: Float, y: Float, z: Float) {
+        if (!x.isFinite() || !y.isFinite() || !z.isFinite()) return
         if (at < startedAt || at <= lastSample) return
+        val delta = if (lastSample < 0) 30L else (at - lastSample).coerceAtMost(650)
         if (lastSample >= 0 && at - lastSample > 650) {
             filtered = 0f
             resetCadence()
         }
         lastSample = at
-        val deviation = sqrt(x * x + y * y + z * z) - 9.81f
+        val magnitude = sqrt(x * x + y * y + z * z)
+        val deviation = magnitude - gravity
         if (!deviation.isFinite()) return
         if (deviation > 17f || deviation < -8f) {
             rejectShake(at)
             return
         }
-        filtered = filtered * .55f + deviation * .45f
+        // Time-based filters remain stable across 20–100 Hz sensors and batching.
+        val smoothing = exp(-delta / 65.0).toFloat()
+        val baseline = exp(-delta / 5000.0).toFloat()
+        gravity = gravity * baseline + magnitude * (1 - baseline)
+        filtered = filtered * smoothing + deviation * (1 - smoothing)
+        amplitude = amplitude * .98f + abs(filtered) * .02f
         if (abs(filtered) >= .22f && (motion.lastOrNull()?.let { at - it >= 150 } != false)) {
             motion.addLast(at)
         }
         trimHistory(at)
         if (source != StepSource.ACCELEROMETER || at - (sharpMotion.lastOrNull() ?: -10_000L) < 650) return
         if (peakAt >= 0 && at - peakAt > 480) peakAt = -1
-        if (peakAt < 0 && filtered >= .48f) peakAt = at
+        val threshold = (amplitude * .65f).coerceIn(.38f, 1.1f)
+        if (peakAt < 0 && filtered >= threshold) peakAt = at
         if (peakAt >= 0 && at - peakAt in 75..480 && filtered <= -.16f) {
             recordStride(peakAt)
             peakAt = -1

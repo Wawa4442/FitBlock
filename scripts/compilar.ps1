@@ -18,7 +18,9 @@ try {
     if($LASTEXITCODE -ne 0){throw 'Falló la compilación o una de las verificaciones.'}
     New-Item -ItemType Directory -Force dist | Out-Null
     Copy-Item -LiteralPath 'app\build\outputs\apk\debug\app-debug.apk' -Destination 'dist\FitBlock-MVP.apk' -Force
+    Copy-Item -LiteralPath 'app\build\outputs\apk\debug\app-debug.apk' -Destination 'dist\FitBlock-Demo-Comercial.apk' -Force
     $hash=(Get-FileHash -LiteralPath 'dist\FitBlock-MVP.apk' -Algorithm SHA256).Hash.ToLowerInvariant()
     "$hash  FitBlock-MVP.apk" | Set-Content -Encoding ascii 'dist\FitBlock-MVP.apk.sha256'
+    "$hash  FitBlock-Demo-Comercial.apk" | Set-Content -Encoding ascii 'dist\FitBlock-Demo-Comercial.apk.sha256'
     Write-Output "APK lista: $(Join-Path $projectRoot 'dist\FitBlock-MVP.apk')"
 } finally { Pop-Location }

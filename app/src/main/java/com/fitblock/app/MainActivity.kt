@@ -12,6 +12,7 @@ import android.widget.*
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.activity.ComponentActivity
+import androidx.activity.result.contract.ActivityResultContracts
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -27,7 +28,15 @@ class MainActivity : ComponentActivity() {
     private var walkLabel: TextView? = null
     private var sportQuery = ""
     private var sportFilter = 0
+    private var statsPeriod = "week"
+    private var statsAnchor = LocalDate.now()
     private val permissions = PermissionPrompt(this) { _, _ -> render() }
+    private val exportDocument = registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+        if (uri != null) runCatching {
+            val stream = contentResolver.openOutputStream(uri) ?: error("No output stream")
+            stream.use { it.write(store.export().toByteArray(Charsets.UTF_8)) }
+        }.onSuccess { toast("Historial exportado.") }.onFailure { toast("No se pudo guardar el archivo.") }
+    }
     private val handler = Handler(Looper.getMainLooper())
     private val pulse = object : Runnable {
         override fun run() {
@@ -41,9 +50,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState); store = Store.get(this)
         tab = savedInstanceState?.getString("tab") ?: "home"
+        statsPeriod = savedInstanceState?.getString("statsPeriod") ?: "week"
+        statsAnchor = savedInstanceState?.getString("statsAnchor")?.let { LocalDate.parse(it) } ?: LocalDate.now()
         handleDestination(); render()
     }
-    override fun onSaveInstanceState(outState: Bundle) { outState.putString("tab", tab); super.onSaveInstanceState(outState) }
+    override fun onSaveInstanceState(outState: Bundle) { outState.putString("tab", tab); outState.putString("statsPeriod", statsPeriod); outState.putString("statsAnchor", statsAnchor.toString()); super.onSaveInstanceState(outState) }
     override fun onNewIntent(intent: Intent) { super.onNewIntent(intent); setIntent(intent); handleDestination(); render() }
     override fun onResume() { super.onResume(); if (::store.isInitialized) { render(); handler.removeCallbacks(pulse); handler.post(pulse) } }
     override fun onPause() { handler.removeCallbacks(pulse); super.onPause() }
@@ -68,6 +79,7 @@ class MainActivity : ComponentActivity() {
             insets
         }
         setContentView(root); root.requestApplyInsets()
+        root.addView(demoBanner())
         if (!store.consent) { onboarding(); return }
         val header = row().apply { setPadding(dp(22), dp(15), dp(22), dp(12)) }
         header.addView(ImageView(this).apply { setImageResource(R.drawable.fitblock_icon); contentDescription = "FitBlock" }, LinearLayout.LayoutParams(dp(38), dp(38)))
@@ -111,7 +123,7 @@ class MainActivity : ComponentActivity() {
         body.text("Haz espacio para lo que te hace bien. Convierte una pausa activa en tiempo para tus aplicaciones favoritas.",16f,C.muted);body.gap(24)
         listOf("01  Elige tus distracciones" to "Selecciona las apps y el horario que quieres proteger.", "02  Activa tu cuerpo" to "Completa tu meta de ejercicio validada con cámara o sensores.", "03  Disfruta tu tiempo" to "Gana minutos de uso. Al agotarlos, tus apps vuelven a bloquearse.").forEach { (a,b) -> body.card { text(a,16f,bold=true);gap(6);text(b,14f,C.muted) } }
         body.text("Todo sucede en tu teléfono",18f,bold=true);body.gap(8)
-        body.text("La cámara se procesa localmente. Los sensores cuentan tus pasos durante una caminata, incluso con la pantalla apagada. El historial se guarda en este dispositivo.",13f,C.muted);body.gap(10)
+        body.text("La cámara se procesa localmente. Los sensores cuentan tus pasos durante una caminata, incluso con la pantalla apagada. El historial se guarda en este dispositivo. En caminatas puedes activar una ruta GPS opcional; las coordenadas se guardan localmente y el mapa usa Internet para cargar calles.",13f,C.muted);body.gap(10)
         body.text("Con tu autorización, Accesibilidad identifica qué app está abierta y muestra una barrera sobre las que elijas. No lee mensajes, contraseñas ni contenido. Puedes revocar el permiso y eliminar tus datos desde Ajustes.",13f,C.muted);body.gap(16)
         val accept = CheckBox(this).apply { text="He leído y acepto este funcionamiento y el procesamiento local de cámara, sensores y estadísticas.";setTextColor(C.white);textSize=13f;buttonTintList=android.content.res.ColorStateList.valueOf(C.green) }
         body.addView(accept);body.gap(12)
@@ -122,6 +134,9 @@ class MainActivity : ComponentActivity() {
     private fun home() {
         val greet=if(store.name.isBlank()) "Hoy eliges tú." else "Hola, ${store.name}."
         title("Tu bienestar digital",greet,"Una pausa activa. Una decisión más consciente.")
+        content.button("Conoce FitBlock · ver demostración", false) {
+            startActivity(Intent(this, DemoActivity::class.java))
+        }
         walkCard()
         timerCard()
         content.card {
@@ -142,6 +157,7 @@ class MainActivity : ComponentActivity() {
         r.addView(metric("${d.optInt("sessions") + d.optInt("manualSessions")}","actividades hoy"),LinearLayout.LayoutParams(0,-2,1f).apply { marginEnd=dp(10) })
         r.addView(metric("${store.streak()}","días de racha"),LinearLayout.LayoutParams(0,-2,1f));content.addView(r);content.gap(20)
         content.button("Rachas y premios", false) { openCommunity() }
+        premiumCard()
         content.text("Tu siguiente paso",18f,bold=true);content.gap(12)
         content.card { text("${store.requiredGoal(Exercise.SQUAT)} sentadillas  →  ${store.rewardMinutes} min",16f,bold=true);gap(8);text("Cámara · cuerpo completo · sin guardar video",12f,C.muted);gap(12);button("Iniciar actividad",false) { startWorkout(Exercise.SQUAT) } }
         content.card { text("${store.selected.size} apps en tu espacio de enfoque",16f,bold=true);gap(8);text("Horario: ${scheduleText()}\nLímite por defecto: ${store.dailyLimit} min por app al día",13f,C.muted);gap(12);button("Administrar mis aplicaciones",false) { tab="apps";render() } }
@@ -212,6 +228,18 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+    private fun premiumCard() {
+        content.card {
+            text("FITBLOCK PREMIUM", 12f, C.cyan, true)
+            gap(8)
+            text("Desbloquea todas las funciones", 20f, bold = true)
+            gap(6)
+            text("Todo FitBlock por 50 MXN. Conoce los beneficios del plan Premium.", 14f, C.muted)
+            gap(12)
+            button("Conocer Premium", false) { startActivity(Intent(this@MainActivity, PremiumActivity::class.java)) }
+        }
+    }
+
     private fun openAccount() { startActivity(Intent(this, AccountActivity::class.java)) }
     private fun openCommunity(tab: String = "streaks") {
         startActivity(Intent(this, CommunityActivity::class.java).putExtra("tab", tab))
@@ -255,21 +283,63 @@ class MainActivity : ComponentActivity() {
         title("Tu progreso","Cada pausa cuenta.","Actividad real registrada en este dispositivo.")
         content.button("Historial de actividades", false) { openCommunity("history") }
         content.button("Rachas y premios", false) { openCommunity() }
-        val d=store.dayStats()
+        val ranges = row()
+        for ((id, label) in listOf("day" to "Día", "week" to "Semana", "month" to "Mes")) {
+            ranges.addView(action(label, statsPeriod == id) { statsPeriod = id; render() }, LinearLayout.LayoutParams(0, -2, 1f))
+        }
+        content.addView(ranges); content.gap(12)
+        content.button("Elegir fecha · ${statsAnchor.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.forLanguageTag("es-MX")))}", false) {
+            DatePickerDialog(this, { _, year, month, day ->
+                statsAnchor = LocalDate.of(year, month + 1, day); render()
+            }, statsAnchor.year, statsAnchor.monthValue - 1, statsAnchor.dayOfMonth).apply {
+                datePicker.maxDate = System.currentTimeMillis()
+                datePicker.minDate = LocalDate.now().minusDays(89).atStartOfDay(java.time.ZoneId.systemDefault()).toInstant().toEpochMilli()
+            }.show()
+        }
+        val first = when (statsPeriod) {
+            "day" -> statsAnchor
+            "month" -> statsAnchor.withDayOfMonth(1)
+            else -> statsAnchor.minusDays((statsAnchor.dayOfWeek.value - 1).toLong())
+        }
+        val last = minOf(LocalDate.now(), when (statsPeriod) {
+            "day" -> first
+            "month" -> first.plusMonths(1).minusDays(1)
+            else -> first.plusDays(6)
+        })
+        val d = store.periodStats(first, last)
         content.card {
-            text("HOY",11f,C.cyan,true);gap(12)
-            text("${d.optInt("earned")} min ganados",25f,C.green,true);gap(8)
-            text("${d.optLong("used")/60_000} min de apps protegidas usados",14f,C.muted);gap(12)
-            text("${d.optInt("reps")} repeticiones  ·  ${d.optInt("steps")} pasos",14f)
-            text("${d.optInt("stretchSeconds")} s de estiramiento  ·  ${d.optLong("exerciseMs")/60_000} min de actividad",13f,C.muted)
-            text("${d.optInt("recordedSessions")} deportes registrados · ${d.optLong("sportMs") / 60_000} min por cronómetro",13f,C.muted)
-            gap(10);text("${d.optInt("blocked")} accesos interrumpidos · ${d.optInt("emergencies")} emergencias",12f,C.muted)
+            text("${first.format(DateTimeFormatter.ofPattern("dd MMM", Locale.forLanguageTag("es-MX")))} – ${last.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.forLanguageTag("es-MX")))}", 13f, C.cyan, true)
+            gap(12)
+            text("${d.optLong("steps")} pasos", 30f, C.green, true)
+            text("${distanceText(d.optDouble("distanceMeters", 0.0))} con ruta GPS", 16f, C.muted)
+            gap(12)
+            val active = d.optLong("walkMs") + d.optLong("exerciseMs") + d.optLong("sportMs")
+            text("${activityTime(active)} de actividad", 21f, bold = true)
+            text("${quantity(d.optInt("sessions") + d.optInt("manualSessions"), "meta completada", "metas completadas")} · ${quantity(d.optInt("activeDays"), "día activo", "días activos")}", 14f, C.muted)
+            text(quantity(d.optInt("partialWalks"), "caminata parcial guardada", "caminatas parciales guardadas"), 13f, C.muted)
+            gap(12)
+            text("${d.optInt("earned")} min ganados · ${d.optLong("used") / 60_000} min usados", 17f, C.green, true)
+            text("${d.optInt("reps")} repeticiones · ${d.optInt("stretchSeconds")} s de estiramiento", 14f, C.muted)
+            text("${d.optInt("recordedSessions")} deportes por tiempo · ${d.optLong("sportMs") / 60_000} min", 13f, C.muted)
+            gap(8)
+            text("${d.optInt("blocked")} accesos interrumpidos", 12f, C.muted)
         }
         content.card {
-            text("Minutos ganados esta semana",17f,bold=true);gap(20)
-            val days=(6 downTo 0).map { LocalDate.now().minusDays(it.toLong()) }
-            addView(WeekChart(this@MainActivity,days.map { store.dayStats(it.toString()).optInt("earned") },days.map { it.format(DateTimeFormatter.ofPattern("EE",Locale.forLanguageTag("es"))).take(2) }),LinearLayout.LayoutParams(-1,dp(155)))
+            text("Pasos por día", 18f, bold = true); gap(8)
+            val days = (6 downTo 0).map { last.minusDays(it.toLong()) }
+            text("Últimos 7 días hasta el ${last.format(DateTimeFormatter.ofPattern("dd MMM", Locale.forLanguageTag("es-MX")))}", 12f, C.muted)
+            gap(16)
+            addView(WeekChart(this@MainActivity, days.map { store.dayStats(it.toString()).optInt("steps") },
+                days.map { it.format(DateTimeFormatter.ofPattern("EE", Locale.forLanguageTag("es"))).take(2) }),
+                LinearLayout.LayoutParams(-1, dp(155)))
+            gap(14)
+            for (day in days.reversed()) {
+                val summary = store.dayStats(day.toString())
+                text("${day.format(DateTimeFormatter.ofPattern("dd MMM", Locale.forLanguageTag("es-MX")))} · ${summary.optInt("steps")} pasos · ${summary.optInt("earned")} min ganados", 13f, C.muted)
+            }
         }
+        content.text("Se conservan 90 días de resúmenes diarios y el historial detallado. La caminata activa se actualiza al guardar su avance cada 5 segundos. Los pasos corresponden a caminatas iniciadas en FitBlock.", 12f, C.muted)
+        content.gap(16)
         val total=store.totalActivities();val level=total/5+1
         content.card {
             text("Nivel $level · ${store.streak()} días de racha",20f,bold=true);gap(8);text("$total actividades completadas. Próximo nivel en ${5-total%5} actividades.",13f,C.muted)
@@ -318,7 +388,9 @@ class MainActivity : ComponentActivity() {
             button("Privacidad y condiciones",false) { privacy() };button("Exportar mi historial",false) { exportData() }
             button("Eliminar mis datos",false) { AlertDialog.Builder(this@MainActivity).setTitle("Eliminar los datos de FitBlock").setMessage("Se eliminarán todas las cuentas, sesiones, metas, aplicaciones, pases e historiales de este teléfono. Se desactivará la protección. Esta acción no puede deshacerse.").setNegativeButton("Cancelar",null).setPositiveButton("Eliminar") { _,_->WalkService.discard(this@MainActivity);SportTimer.get(this@MainActivity).discard();store.clear();render() }.show() }
         }
-        content.text("FitBlock 0.3.0",12f,C.muted)
+        premiumCard()
+        content.text("FitBlock 1.0.0 · Demo Comercial",12f,C.muted)
+        content.text("Compras, sincronización e invitaciones en línea siguen en desarrollo. El catálogo, los ejercicios, las rutas y el historial local se pueden usar en esta demostración.", 12f, C.muted)
     }
 
     private fun showPermissions() {
@@ -356,6 +428,10 @@ class MainActivity : ComponentActivity() {
                 "Muestra tus pasos y te permite pausar desde la notificación.", "Permitir notificaciones") {
                 permissions.request(Manifest.permission.POST_NOTIFICATIONS)
             }
+        }
+        permissionCard("Ruta GPS · opcional", WalkService.hasLocation(this),
+            "Activa la ruta desde Caminata. Requiere ubicación precisa; los pasos funcionan sin este permiso.", "Ver caminata y ruta") {
+            startActivity(Intent(this, WalkingActivity::class.java))
         }
         permissionCard("Acceso de uso · opcional", UsageAccess.allowed(this),
             "Ayuda a restaurar el bloqueo tras reconectar el servicio.", "Abrir Acceso de uso") {
@@ -431,14 +507,14 @@ class MainActivity : ComponentActivity() {
     }
     private fun privacy() {
         AlertDialog.Builder(this).setTitle("Privacidad y condiciones")
-            .setMessage("FitBlock procesa tus datos en el teléfono.\n\nLas cuentas guardan nombre y correo. La contraseña se transforma con PBKDF2 y una sal aleatoria. Cada cuenta tiene su historial.\n\nLa cámara estima articulaciones en memoria. No se guardan fotos, videos ni recorridos. La caminata usa sensores durante la sesión, incluso con la pantalla apagada. Los otros deportes registran tiempo.\n\nAccesibilidad identifica la app abierta para aplicar el bloqueo que elegiste.\n\nPuedes exportar el historial de tu cuenta o borrar todos los datos locales de FitBlock desde Ajustes de la app.")
+            .setMessage("FitBlock procesa tus datos en el teléfono.\n\nLas cuentas guardan nombre y correo. La contraseña se transforma con PBKDF2 y una sal aleatoria. Cada cuenta tiene su historial.\n\nLa cámara estima articulaciones en memoria. No se guardan fotos ni videos. Si activas Ruta GPS, las coordenadas del recorrido se guardan en tu teléfono y puedes borrarlas desde el historial. El mapa descarga imágenes de tu zona desde OpenStreetMap por HTTPS; el proveedor recibe tu IP y las zonas del mapa solicitadas. Los pasos funcionan sin GPS ni Internet. La caminata usa sensores durante la sesión, incluso con la pantalla apagada. Los otros deportes registran tiempo.\n\nAccesibilidad identifica la app abierta para aplicar el bloqueo que elegiste.\n\nLa exportación incluye las rutas GPS guardadas. Puedes exportar el historial de tu cuenta o borrar todos los datos locales de FitBlock desde Ajustes de la app.")
             .setPositiveButton("Entendido",null).show()
     }
-    private fun exportData() { startActivityForResult(Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/json").putExtra(Intent.EXTRA_TITLE,"FitBlock-${LocalDate.now()}.json"),101) }
-    @Deprecated("Legacy activity result used for document picker")
-    override fun onActivityResult(requestCode:Int,resultCode:Int,data:Intent?) {
-        super.onActivityResult(requestCode,resultCode,data)
-        if(requestCode==101&&resultCode==RESULT_OK) data?.data?.let { uri->runCatching { contentResolver.openOutputStream(uri)?.use { it.write(store.export().toByteArray(Charsets.UTF_8)) } }.onSuccess { toast("Historial exportado.") }.onFailure { toast("No se pudo guardar el archivo.") } }
+    private fun exportData() {
+        AlertDialog.Builder(this).setTitle("Exportar mi historial")
+            .setMessage("El archivo incluye estadísticas y rutas GPS guardadas en tu perfil. Guárdalo en un lugar de tu confianza.")
+            .setNegativeButton("Cancelar", null)
+            .setPositiveButton("Elegir archivo") { _, _ -> exportDocument.launch("FitBlock-${LocalDate.now()}.json") }.show()
     }
     private fun toast(message:String) { Toast.makeText(this,message,Toast.LENGTH_LONG).show() }
 }

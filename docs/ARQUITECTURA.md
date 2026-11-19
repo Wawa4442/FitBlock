@@ -1,6 +1,6 @@
 # Arquitectura del MVP
 
-La aplicación es local y de un solo módulo. Incluye cuentas locales opcionales; no contiene claves de API, servidor ni dependencia de una suscripción. El manifiesto elimina Internet y acceso al estado de red, incluso cuando aparecen en manifiestos transitivos de ML Kit.
+La aplicación es local y de un solo módulo. Incluye cuentas locales opcionales; no contiene claves de API, servidor ni dependencia de una suscripción. Internet se habilita exclusivamente para los mosaicos HTTPS de OpenStreetMap; no hay servidor de cuentas ni envío de rutas. El acceso al estado de red sigue eliminado. El servicio de caminata declara salud y ubicación, usando el segundo tipo solo cuando la persona activa una ruta y autoriza ubicación precisa.
 
 | Archivo | Responsabilidad |
 | --- | --- |
@@ -23,16 +23,16 @@ La aplicación es local y de un solo módulo. Incluye cuentas locales opcionales
 
 ## Recorrido de desbloqueo
 
-1. Store crea un identificador aleatorio de sesión con ejercicio, meta y recompensa fijados al comenzar. Solo hay una sesión activa en el proceso.
+1. Store crea un identificador aleatorio de sesión con ejercicio, meta y recompensa fijados al comenzar. Solo hay una sesión activa por perfil; las caminatas conservan un punto de control local recuperable en pausa.
 2. WorkoutActivity solicita los permisos correspondientes e inicia captura únicamente mientras permanece visible.
 3. La cámara valida las indicaciones aleatorias y luego registra un ciclo inicial, movimiento y regreso. Tolera pérdidas breves de puntos y usa el tiempo de captura para descartar ciclos imposibles. En estiramiento se integra el tiempo observado en la postura.
-4. WalkService inicia desde la pantalla de caminata como servicio en primer plano de tipo salud. Combina pasos nuevos del podómetro con evidencia de movimiento en el intervalo de la lectura. Con acelerómetro solo, exige una secuencia de zancadas con cadencia plausible. Mantiene el procesador disponible durante la sesión y libera sensores y bloqueo de suspensión al pausar o terminar.
-5. Al llegar a la meta, Store comprueba el identificador, el propietario, el conteo y un mínimo temporal. Guarda saldo, estadísticas y registro en una transacción de preferencias; consume el identificador al guardar. Cancelar, iniciar otra sesión o reiniciar el proceso invalida la anterior.
+4. WalkService inicia desde la pantalla de caminata como servicio en primer plano de tipo salud y, si corresponde, ubicación. Combina pasos nuevos del podómetro con evidencia de movimiento en el intervalo de la lectura. Con acelerómetro solo, exige una secuencia de zancadas con cadencia plausible. Mantiene el procesador disponible durante la sesión y libera sensores y bloqueo de suspensión al pausar o terminar.
+5. Al llegar a la meta, Store comprueba el identificador, el propietario, el conteo y un mínimo temporal. Guarda saldo, estadísticas y registro en una transacción de preferencias; consume el identificador al guardar. La concesión elimina el punto de control en la misma transacción. Las caminatas se recuperan en pausa tras terminar el proceso; los ejercicios de cámara se cancelan al destruir la actividad.
 6. El servicio consulta saldo, horario y cuota. Descuenta uso con el reloj monotónico mientras una app protegida está al frente y la pantalla está activa. La barrera vuelve al agotarse la condición de acceso; la comprobación temporal se realiza aproximadamente cada segundo y los cambios de ventana se atienden al recibir el evento.
 
 ## Persistencia y reloj
 
-SharedPreferences privado guarda reglas globales del dispositivo y archivos de perfil separados. Las actualizaciones frecuentes de consumo/estadísticas se aplican en segundo plano; las concesiones de tiempo se guardan de forma síncrona. Se conservan agregados de 90 días, 50 eventos y los registros detallados hasta borrar datos. No hay base de datos remota. No se guardan coordenadas ni fotogramas.
+SharedPreferences privado guarda reglas globales del dispositivo y archivos de perfil separados. Las actualizaciones frecuentes de consumo/estadísticas se aplican en segundo plano; las concesiones de tiempo se guardan de forma síncrona. Se conservan agregados de 90 días, 50 eventos y los registros detallados hasta borrar datos. No hay base de datos remota. No se guardan fotogramas. Las rutas optativas guardan coordenadas, tiempos monotónicos, precisión y número de segmento. RouteTracker rechaza posiciones antiguas, imprecisas, imposibles y saltos a más de 5 m/s; las pausas y huecos de más de 30 s no añaden distancia. No convierte metros en pasos.
 
 Accounts guarda identificadores UUID, nombre, correo normalizado y verificadores PBKDF2-HMAC-SHA256 de 256 bits con 210 000 iteraciones y sal aleatoria de 24 bytes. La derivación se realiza fuera del hilo de interfaz. Cinco fallos de acceso activan una espera de 30 segundos. El estado de sesión es local y no valida la propiedad del correo. No se habilitan recuperación remota ni sincronización. La primera cuenta transfiere el perfil de invitado una sola vez. No se permite cambiar de propietario con una actividad pendiente.
 
@@ -49,3 +49,15 @@ La APK usa firma de depuración para pruebas personales. No es una publicación 
 Las imágenes de referencia pertenecen al documento del usuario. Las fuentes Montserrat e Inter incluyen sus licencias OFL en assets. El modelo de ML Kit y las dependencias conservan las condiciones de sus proveedores; la API de poses es beta. No se implementa cifrado adicional de los datos de aplicación: se utiliza el aislamiento y almacenamiento protegido de Android, con copias de seguridad deshabilitadas.
 
 Referencias técnicas consultadas: [ML Kit Pose Detection en Android](https://developers.google.com/ml-kit/vision/pose-detection/android), [AccessibilityService](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService), [declaración de permisos](https://developer.android.com/training/permissions/declaring).
+
+
+## Demo Comercial 1.0
+
+- `WalkPersistence`: serializa ticket, pasos, tiempo activo, ruta y contribuciones por fecha. Punto de control cada 5 s y al pausar; la recuperación nunca integra el periodo sin captura.
+- `RouteMapView`: Canvas nativo con proyección Mercator, ruta por segmentos y mosaicos OSM. Dos descargas concurrentes, identificación User-Agent, caché local de al menos siete días y atribución siempre sobre el mapa. Solo solicita mosaicos visibles; no descarga regiones completas. Sin conexión dibuja el trazado sobre una cuadrícula.
+- `RouteActivity`: lectura de la ruta desde un registro del perfil y borrado de coordenadas sin borrar sus totales. La exportación JSON incluye rutas y lo explica antes de guardar.
+- `Store.periodStats`: suma las fechas inclusivas para día, semana ISO y mes. La vista añade los datos del punto de control pendiente; al finalizar se integran por fecha y se elimina el pendiente atómicamente. Pasos y distancia se asignan a la fecha de recepción de la muestra; el tiempo activo se divide en medianoche.
+- `PoseContinuity`: rompe un ciclo ante salto de posición o escala del torso. PoseSession integra únicamente intervalos observados con postura válida; las pausas no se incluyen en la duración guardada.
+- `DemoActivity`: muestra comercial de solo lectura con datos explícitamente ilustrativos, sin escribir estadísticas, sensores ni recompensas.
+
+El mapa sigue la [política de mosaicos de OpenStreetMap](https://operations.osmfoundation.org/policies/tiles/). El inicio de GPS ocurre desde la pantalla visible con [servicio de ubicación en primer plano](https://developer.android.com/develop/background-work/services/fgs/service-types). No se solicita ubicación permanente en segundo plano.

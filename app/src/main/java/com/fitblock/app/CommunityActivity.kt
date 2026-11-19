@@ -209,10 +209,19 @@ class CommunityActivity : ComponentActivity() {
                 gap(8)
                 if (record.optBoolean("verified")) {
                     text("${record.getInt("amount")} ${record.getString("unit")} · Verificada", 13f, C.green)
-                    text("+${record.optInt("reward")} min para tus apps", 12f, C.cyan)
+                    text(if (record.optBoolean("goalMet")) "+${record.optInt("reward")} min para tus apps" else "Registro parcial · sin recompensa", 12f, C.cyan)
                 } else {
                     text(if (record.optBoolean("goalMet")) "Meta de duración completada" else "Registro parcial", 13f, C.muted)
                     text("Registrada por tiempo", 12f, C.cyan)
+                }
+                if (record.optString("sport") == "walk") {
+                    gap(8)
+                    text("Distancia GPS: ${distanceText(record.optDouble("distanceMeters", 0.0))}", 13f, C.muted)
+                    if ((record.optJSONArray("route")?.length() ?: 0) > 0) {
+                        button("Ver recorrido", false) {
+                            startActivity(Intent(this@CommunityActivity, RouteActivity::class.java).putExtra("record", record.getString("id")))
+                        }
+                    }
                 }
             }
         }

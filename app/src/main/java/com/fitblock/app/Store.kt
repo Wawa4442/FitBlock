@@ -16,6 +16,16 @@ class Store private constructor(private val context: Context) {
     private val prefs = context.getSharedPreferences("fitblock_private", Context.MODE_PRIVATE)
     private var ticket: WorkoutTicket? = null
     private var clockSavedAt = 0L
+    private var pendingCacheRaw: String? = null
+    private var pendingCache: JSONObject? = null
+    private fun pendingDays(): JSONObject? {
+        val raw = profilePreferences().getString("pendingWalk", null)
+        if (raw != pendingCacheRaw) {
+            pendingCacheRaw = raw
+            pendingCache = raw?.let { runCatching { JSONObject(it).optJSONObject("days") }.getOrNull() }
+        }
+        return pendingCache
+    }
     fun profileId(): String = Accounts.get(context).current()?.id ?: "guest"
     internal fun profilePreferences() = Accounts.get(context).current()?.let {
         context.getSharedPreferences("fitblock_user_${it.id}", Context.MODE_PRIVATE)
@@ -64,7 +74,34 @@ class Store private constructor(private val context: Context) {
         return day
     }
     private fun statsObject(): JSONObject = runCatching { JSONObject(profilePreferences().getString("stats", "{}")!!) }.getOrDefault(JSONObject())
-    fun dayStats(day: String = currentDay()): JSONObject = statsObject().optJSONObject(day) ?: JSONObject()
+    fun dayStats(day: String = currentDay()): JSONObject {
+        val result = statsObject().optJSONObject(day) ?: JSONObject()
+        val pending = pendingDays()?.optJSONObject(day)
+        if (pending != null) {
+            result.put("steps", result.optLong("steps") + pending.optInt("steps"))
+            result.put("walkMs", result.optLong("walkMs") + pending.optLong("walkMs"))
+            result.put("distanceMeters", result.optDouble("distanceMeters", 0.0) + pending.optDouble("distanceMeters", 0.0))
+        }
+        return result
+    }
+
+    fun periodStats(start: LocalDate, end: LocalDate): JSONObject {
+        require(!end.isBefore(start) && java.time.temporal.ChronoUnit.DAYS.between(start, end) <= 366)
+        val total = JSONObject()
+        var date = start
+        while (!date.isAfter(end)) {
+            val day = dayStats(date.toString())
+            for (key in listOf("steps", "reps", "stretchSeconds", "walkMs", "exerciseMs", "sportMs", "earned", "used",
+                "sessions", "manualSessions", "recordedSessions", "partialWalks", "blocked")) {
+                total.put(key, total.optLong(key) + day.optLong(key))
+            }
+            total.put("distanceMeters", total.optDouble("distanceMeters", 0.0) + day.optDouble("distanceMeters", 0.0))
+            if (day.optLong("walkMs") + day.optLong("exerciseMs") + day.optLong("sportMs") > 0)
+                total.put("activeDays", total.optInt("activeDays") + 1)
+            date = date.plusDays(1)
+        }
+        return total
+    }
     private fun updateDay(change: (JSONObject) -> Unit) {
         val all = changedDay(change)
         profilePreferences().edit().putString("stats", all.toString()).apply()
@@ -116,25 +153,42 @@ class Store private constructor(private val context: Context) {
     }
     @Synchronized fun cancelWorkout(id: String) { if (ticket?.id == id) ticket = null }
     @Synchronized fun isWorkoutCurrent(id: String): Boolean = ticket?.let { it.id == id && it.owner == profileId() } == true
-    @Synchronized fun hasWorkout(): Boolean = ticket?.let { isWorkoutCurrent(it.id) } == true
-    @Synchronized fun completeWorkout(id: String, verified: Int): Boolean {
+    @Synchronized fun hasWorkout(): Boolean {
+        if (ticket == null) WalkPersistence.read(this)?.let { restoreWalkTicket(it.ticket) }
+        return ticket?.let { isWorkoutCurrent(it.id) } == true
+    }
+    @Synchronized internal fun restoreWalkTicket(restored: WorkoutTicket) {
+        if (ticket == null && restored.exercise == Exercise.WALK && restored.owner == profileId()) ticket = restored
+    }
+    @Synchronized fun completeWorkout(id: String, verified: Int, walk: WalkProgress? = null, observedMillis: Long? = null): Boolean {
         val t = ticket ?: return false
-        val duration = SystemClock.elapsedRealtime() - t.started
+        val duration = if (t.exercise == Exercise.WALK && walk != null) walk.activeMillis else
+            (observedMillis ?: (SystemClock.elapsedRealtime() - t.started)).coerceAtMost(SystemClock.elapsedRealtime() - t.started)
         val minimum = t.goal * t.exercise.minimumUnitMillis
         if (t.id != id || t.owner != profileId() || verified < t.goal || duration < minimum) return false
+        if (walk != null && (t.exercise != Exercise.WALK || walk.ticket != t || walk.steps != verified || !validWalk(walk))) return false
         val next = balance() + t.rewardMinutes * 60_000L
         val stats = changedDay { obj ->
             obj.put("sessions", obj.optInt("sessions") + 1)
             obj.put("earned", obj.optInt("earned") + t.rewardMinutes)
-            obj.put("exerciseMs", obj.optLong("exerciseMs") + duration)
-            val key = if (t.exercise == Exercise.WALK) "steps" else if (t.exercise == Exercise.STRETCH) "stretchSeconds" else "reps"
-            obj.put(key, obj.optInt(key) + verified)
+            if (walk == null) {
+                obj.put("exerciseMs", obj.optLong("exerciseMs") + duration)
+                val key = if (t.exercise == Exercise.WALK) "steps" else if (t.exercise == Exercise.STRETCH) "stretchSeconds" else "reps"
+                obj.put(key, obj.optInt(key) + verified)
+            }
         }
         val record = JSONObject().put("id", t.id).put("sport", t.exercise.name.lowercase(java.util.Locale.ROOT))
             .put("title", t.exercise.title).put("date", currentDay()).put("endedAt", System.currentTimeMillis())
             .put("durationMs", duration).put("amount", verified).put("unit", t.exercise.unit)
             .put("verified", true).put("goalMet", true).put("reward", t.rewardMinutes)
-        if (!profilePreferences().edit().putLong("balance", next)
+        if (walk != null) {
+            mergeWalkDays(stats, walk)
+            record.put("route", WalkPersistence.routeJson(walk.route)).put("distanceMeters", walk.distanceMeters)
+                .put("dailyMetrics", WalkPersistence.json(walk).getJSONObject("days"))
+        }
+        val edit = profilePreferences().edit()
+        if (walk != null) edit.remove("pendingWalk")
+        if (!edit.putLong("balance", next)
                 .putLong("expiry", SystemClock.elapsedRealtime() + validityMinutes * 60_000L)
                 .putBoolean("debt", false).putString("stats", stats.toString())
                 .putString("records", appendRecord(record).toString()).commit()) return false
@@ -143,6 +197,43 @@ class Store private constructor(private val context: Context) {
         AwardCatalog.refresh(this)
         return true
     }
+    private fun mergeWalkDays(stats: JSONObject, walk: WalkProgress) {
+        walk.days.forEach { (date, day) ->
+            val obj = stats.optJSONObject(date) ?: JSONObject()
+            obj.put("steps", obj.optLong("steps") + day.steps)
+            obj.put("walkMs", obj.optLong("walkMs") + day.activeMillis)
+            obj.put("distanceMeters", obj.optDouble("distanceMeters", 0.0) + day.distanceMeters)
+            stats.put(date, obj)
+        }
+        stats.keys().asSequence().toList().sortedDescending().drop(90).forEach { stats.remove(it) }
+    }
+
+    private fun validWalk(walk: WalkProgress) = walk.steps >= 0 && walk.steps <= walk.ticket.goal &&
+        walk.activeMillis >= 0 && walk.distanceMeters.isFinite() && walk.distanceMeters >= 0 &&
+        walk.days.values.sumOf { it.steps } == walk.steps &&
+        walk.days.values.sumOf { it.activeMillis } == walk.activeMillis &&
+        walk.days.all { (date, day) -> runCatching { LocalDate.parse(date) }.isSuccess &&
+            day.steps >= 0 && day.activeMillis >= 0 && day.distanceMeters.isFinite() && day.distanceMeters >= 0 }
+
+    @Synchronized fun savePartialWalk(walk: WalkProgress): Boolean {
+        if (!isWorkoutCurrent(walk.ticket.id) || walk.ticket.owner != profileId() || walk.activeMillis < 1000 ||
+            walk.phase != WalkPhase.PAUSED || !validWalk(walk)) return false
+        val history = records()
+        if ((0 until history.length()).any { history.getJSONObject(it).optString("id") == walk.ticket.id }) return false
+        val stats = changedDay { it.put("partialWalks", it.optInt("partialWalks") + 1) }
+        mergeWalkDays(stats, walk)
+        val record = JSONObject().put("id", walk.ticket.id).put("sport", "walk").put("title", "Caminata")
+            .put("date", currentDay()).put("endedAt", System.currentTimeMillis()).put("durationMs", walk.activeMillis)
+            .put("amount", walk.steps).put("unit", "pasos").put("verified", true).put("goalMet", false).put("reward", 0)
+            .put("distanceMeters", walk.distanceMeters).put("route", WalkPersistence.routeJson(walk.route))
+            .put("dailyMetrics", WalkPersistence.json(walk).getJSONObject("days"))
+        if (!profilePreferences().edit().putString("stats", stats.toString()).putString("records", appendRecord(record).toString())
+                .remove("pendingWalk").commit()) return false
+        ticket = null
+        audit("Caminata guardada", "${walk.steps} pasos · registro parcial sin recompensa.")
+        return true
+    }
+
     @Synchronized fun emergency(): Boolean {
         if (dayStats().optInt("emergencies") >= 1) return false
         clockCheck()
@@ -208,6 +299,14 @@ class Store private constructor(private val context: Context) {
         return counts.values.sum()
     }
     fun records(): JSONArray = JSONArray(profilePreferences().getString("records", "[]"))
+    fun deleteRoute(id: String) {
+        val history = records()
+        for (index in 0 until history.length()) {
+            val record = history.getJSONObject(index)
+            if (record.optString("id") == id) record.remove("route")
+        }
+        profilePreferences().edit().putString("records", history.toString()).commit()
+    }
     private fun appendRecord(record: JSONObject): JSONArray {
         val old = records()
         return JSONArray().apply {
@@ -249,8 +348,15 @@ class Store private constructor(private val context: Context) {
                 else -> ""
             }
             if (record.optBoolean("verified") && key == metric) {
-                val day = record.getString("date")
-                recent[day] = (recent[day] ?: 0) + record.optLong("amount")
+                val daily = record.optJSONObject("dailyMetrics")
+                if (metric == "steps" && daily != null) {
+                    daily.keys().forEach { day ->
+                        recent[day] = (recent[day] ?: 0) + daily.getJSONObject(day).optLong("steps")
+                    }
+                } else {
+                    val day = record.getString("date")
+                    recent[day] = (recent[day] ?: 0) + record.optLong("amount")
+                }
             }
         }
         recent.forEach { (day, count) -> counts[day] = maxOf(counts[day] ?: 0, count) }
@@ -269,7 +375,7 @@ class Store private constructor(private val context: Context) {
         val edit = target.edit()
         val keys = listOf("stats", "records", "events", "day_high", "balance", "expiry", "debt",
             "emergency_until", "clock_elapsed", "clock_wall", "boot", "favoriteSports",
-            "unlockedAwards", "claimedAwards", "groupDraft") + prefs.all.keys.filter { it.startsWith("sportGoal_") }
+            "unlockedAwards", "claimedAwards", "groupDraft", "pendingWalk") + prefs.all.keys.filter { it.startsWith("sportGoal_") }
         for (key in keys) {
             when (val value = prefs.all[key]) {
                 is String -> edit.putString(key, value)
@@ -284,12 +390,14 @@ class Store private constructor(private val context: Context) {
         keys.forEach { guest.remove(it) }
         guest.commit()
     }
-    fun export(): String = JSONObject().put("app", "FitBlock 0.3.0").put("stats", statsObject())
+    fun export(): String = JSONObject().put("app", "FitBlock 1.0.0-demo").put("stats", statsObject())
         .put("records", records()).put("events", events()).toString(2)
     fun clear() {
+        WalkService.discard(context)
         ticket = null
         Accounts.get(context).clearAll()
         prefs.edit().clear().commit()
+        java.io.File(context.cacheDir, "map-tiles").listFiles()?.forEach { it.delete() }
     }
     companion object {
         @Volatile private var instance: Store? = null

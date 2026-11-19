@@ -20,6 +20,10 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.PowerManager
 import android.os.SystemClock
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import java.time.LocalDate
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
 
@@ -29,12 +33,18 @@ data class WalkProgress(
     val ticket: WorkoutTicket,
     val steps: Int,
     val phase: WalkPhase,
-    val message: String
+    val message: String,
+    val activeMillis: Long = 0,
+    val routeEnabled: Boolean = false,
+    val route: List<RoutePoint> = emptyList(),
+    val distanceMeters: Double = 0.0,
+    val days: Map<String, WalkDay> = emptyMap(),
+    val gpsMessage: String = if (routeEnabled) "Ruta GPS en pausa" else "Ruta GPS desactivada"
 ) {
     val active get() = phase == WalkPhase.STARTING || phase == WalkPhase.RUNNING
 }
 
-class WalkService : Service(), SensorEventListener {
+class WalkService : Service(), SensorEventListener, LocationListener {
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var sensors: SensorManager
     private lateinit var notifications: NotificationManager
@@ -45,6 +55,40 @@ class WalkService : Service(), SensorEventListener {
     private var startedAt = 0L
     private var wakeLeaseAt = 0L
     private var previousSteps = 0
+    private lateinit var locations: LocationManager
+    private var routeTracker: RouteTracker? = null
+    private var lastTick = 0L
+    private var lastCheckpoint = 0L
+
+    private fun snapshot(): WalkProgress? {
+        val session = progress ?: return null
+        val counting = tracker ?: return session
+        val now = SystemClock.elapsedRealtime()
+        counting.settle(now)
+        val steps = (previousSteps + counting.steps).coerceAtMost(session.ticket.goal)
+        val elapsed = (now - lastTick).coerceAtLeast(0)
+        lastTick = now
+        val distance = routeTracker?.distanceMeters ?: session.distanceMeters
+        val days = session.days.toMutableMap()
+        // Attribute the small sampling interval to its actual local date, even across midnight.
+        val endWall = System.currentTimeMillis()
+        val zone = java.time.ZoneId.systemDefault()
+        var cursor = endWall - elapsed
+        while (cursor < endWall) {
+            val date = java.time.Instant.ofEpochMilli(cursor).atZone(zone).toLocalDate()
+            val boundary = date.plusDays(1).atStartOfDay(zone).toInstant().toEpochMilli()
+            val until = minOf(endWall, boundary)
+            val old = days[date.toString()] ?: WalkDay()
+            days[date.toString()] = old.copy(activeMillis = old.activeMillis + until - cursor)
+            cursor = until
+        }
+        val today = LocalDate.now().toString()
+        val day = days[today] ?: WalkDay()
+        days[today] = day.copy(steps = day.steps + (steps - session.steps).coerceAtLeast(0),
+            distanceMeters = day.distanceMeters + (distance - session.distanceMeters).coerceAtLeast(0.0))
+        return session.copy(steps = steps, activeMillis = session.activeMillis + elapsed,
+            route = routeTracker?.points ?: session.route, distanceMeters = distance, days = days)
+    }
     private val refresh = object : Runnable {
         override fun run() {
             val session = progress
@@ -56,11 +100,13 @@ class WalkService : Service(), SensorEventListener {
                 return
             }
             val now = SystemClock.elapsedRealtime()
-            counting.settle(now)
-            val steps = (previousSteps + counting.steps).coerceAtMost(session.ticket.goal)
-            if (steps == session.ticket.goal && store.completeWorkout(session.ticket.id, steps)) {
-                progress = session.copy(steps = steps, phase = WalkPhase.COMPLETE,
-                    message = "Meta completada. Ganaste ${session.ticket.rewardMinutes} minutos.")
+            val updated = snapshot() ?: return
+            progress = updated
+            if (updated.steps == session.ticket.goal && store.completeWorkout(session.ticket.id, updated.steps, updated)) {
+                WalkPersistence.clear(store)
+                progress = updated.copy(phase = WalkPhase.COMPLETE,
+                    message = "Meta completada. Ganaste ${session.ticket.rewardMinutes} minutos.",
+                    gpsMessage = if (updated.route.isNotEmpty()) "Ruta guardada en tu historial" else updated.gpsMessage)
                 endTracking()
                 stopForeground(STOP_FOREGROUND_REMOVE)
                 if (notifications.areNotificationsEnabled()) notifications.notify(COMPLETE_ID, notification(progress!!))
@@ -71,10 +117,11 @@ class WalkService : Service(), SensorEventListener {
                 wakeLock?.acquire(WAKE_LEASE_MILLIS)
                 wakeLeaseAt = now
             }
-            if (steps != session.steps) {
-                progress = session.copy(steps = steps)
-                notifications.notify(NOTIFICATION_ID, notification(progress!!))
+            if (now - lastCheckpoint >= 5000) {
+                WalkPersistence.save(store, updated)
+                lastCheckpoint = now
             }
+            if (updated.steps != session.steps) notifications.notify(NOTIFICATION_ID, notification(updated))
             handler.postDelayed(this, 500)
         }
     }
@@ -83,6 +130,7 @@ class WalkService : Service(), SensorEventListener {
         super.onCreate()
         store = Store.get(this)
         sensors = getSystemService(SensorManager::class.java)
+        locations = getSystemService(LocationManager::class.java)
         notifications = getSystemService(NotificationManager::class.java)
         notifications.createNotificationChannel(NotificationChannel(CHANNEL, "Caminatas", NotificationManager.IMPORTANCE_LOW))
     }
@@ -104,7 +152,9 @@ class WalkService : Service(), SensorEventListener {
 
     private fun begin(session: WalkProgress) {
         walkId = session.ticket.id
-        val type = if (Build.VERSION.SDK_INT >= 34) ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH else 0
+        val gps = session.routeEnabled && hasLocation(this)
+        var type = if (Build.VERSION.SDK_INT >= 34) ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH else 0
+        if (gps && Build.VERSION.SDK_INT >= 29) type = type or ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
         try {
             ServiceCompat.startForeground(this, NOTIFICATION_ID, notification(session), type)
             notifications.cancel(COMPLETE_ID)
@@ -114,14 +164,17 @@ class WalkService : Service(), SensorEventListener {
             }
             startedAt = SystemClock.elapsedRealtime()
             previousSteps = session.steps
+            lastTick = startedAt
+            lastCheckpoint = startedAt
+            routeTracker = RouteTracker(session.route, session.distanceMeters)
             val accelerometer = sensors.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
             if (accelerometer == null || !sensors.registerListener(this, accelerometer, 30_000)) {
                 pause("Este teléfono no tiene un acelerómetro disponible.")
                 return
             }
             val source = when {
-                register(Sensor.TYPE_STEP_COUNTER, SensorManager.SENSOR_DELAY_NORMAL) -> StepSource.COUNTER
                 register(Sensor.TYPE_STEP_DETECTOR, SensorManager.SENSOR_DELAY_NORMAL) -> StepSource.DETECTOR
+                register(Sensor.TYPE_STEP_COUNTER, SensorManager.SENSOR_DELAY_NORMAL) -> StepSource.COUNTER
                 else -> StepSource.ACCELEROMETER
             }
             register(Sensor.TYPE_GYROSCOPE, SensorManager.SENSOR_DELAY_UI)
@@ -134,6 +187,9 @@ class WalkService : Service(), SensorEventListener {
             progress = session.copy(phase = WalkPhase.RUNNING,
                 message = if (source == StepSource.COUNTER) "Caminata activa. El podómetro puede actualizar los pasos en grupos."
                 else "Caminata activa. Puedes apagar la pantalla.")
+            if (gps) startLocations()
+            else if (session.routeEnabled) progress = progress?.copy(gpsMessage = "Autoriza ubicación precisa para registrar la ruta.")
+            WalkPersistence.save(store, progress!!)
             notifications.notify(NOTIFICATION_ID, notification(progress!!))
             handler.post(refresh)
         } catch (_: SecurityException) {
@@ -150,9 +206,9 @@ class WalkService : Service(), SensorEventListener {
 
     private fun pause(message: String) {
         progress?.takeIf { it.ticket.id == walkId || walkId == null }?.let {
-            tracker?.settle(SystemClock.elapsedRealtime())
-            val steps = tracker?.let { tracker -> (previousSteps + tracker.steps).coerceAtMost(it.ticket.goal) } ?: it.steps
-            progress = it.copy(steps = steps, phase = WalkPhase.PAUSED, message = message)
+            val updated = snapshot() ?: it
+            progress = updated.copy(phase = WalkPhase.PAUSED, message = message)
+            WalkPersistence.save(store, progress!!)
         }
         endTracking()
         stopForeground(STOP_FOREGROUND_REMOVE)
@@ -162,6 +218,8 @@ class WalkService : Service(), SensorEventListener {
     private fun endTracking() {
         handler.removeCallbacks(refresh)
         sensors.unregisterListener(this)
+        locations.removeUpdates(this)
+        routeTracker = null
         wakeLock?.let { if (it.isHeld) it.release() }
         wakeLock = null
         tracker = null
@@ -180,9 +238,51 @@ class WalkService : Service(), SensorEventListener {
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) = Unit
 
+    @Suppress("MissingPermission")
+    private fun startLocations() {
+        var registered = false
+        try {
+            for (provider in listOf(LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER)) {
+                if (provider in locations.allProviders) {
+                    locations.requestLocationUpdates(provider, 3000L, 0f, this, Looper.getMainLooper())
+                    registered = registered || locations.isProviderEnabled(provider)
+                }
+            }
+        } catch (_: SecurityException) {
+            progress = progress?.copy(gpsMessage = "Permiso de ubicación revocado. Los pasos continúan.")
+            return
+        } catch (_: IllegalArgumentException) { /* provider unavailable */ }
+        progress = progress?.copy(gpsMessage = if (registered) "Buscando señal GPS precisa…" else "Activa la ubicación del teléfono. Los pasos continúan.")
+    }
+
+    override fun onLocationChanged(location: Location) {
+        if (progress?.phase != WalkPhase.RUNNING || !location.hasAccuracy() ||
+            (Build.VERSION.SDK_INT >= 31 && location.isMock) ||
+            (Build.VERSION.SDK_INT < 31 && location.isFromMockProvider)) return
+        val now = SystemClock.elapsedRealtime()
+        val point = RoutePoint(location.latitude, location.longitude, location.elapsedRealtimeNanos / 1_000_000,
+            location.accuracy)
+        if (routeTracker?.add(point, now) == true) {
+            progress = progress?.copy(gpsMessage = "GPS activo · precisión ±${location.accuracy.toInt()} m")
+        } else if (location.accuracy > 35) {
+            progress = progress?.copy(gpsMessage = "Señal GPS débil. Busca un espacio abierto; los pasos continúan.")
+        }
+    }
+
+    override fun onProviderDisabled(provider: String) {
+        progress = progress?.copy(gpsMessage = "Señal GPS no disponible; los pasos continúan.")
+    }
+    override fun onProviderEnabled(provider: String) {
+        progress = progress?.copy(gpsMessage = "Buscando señal GPS precisa…")
+    }
+    @Deprecated("Legacy location callback")
+    override fun onStatusChanged(provider: String?, status: Int, extras: android.os.Bundle?) = Unit
+
     override fun onDestroy() {
-        progress?.takeIf { it.ticket.id == walkId && it.phase == WalkPhase.RUNNING }?.let {
-            progress = it.copy(phase = WalkPhase.PAUSED, message = "Android pausó la caminata. Puedes reanudarla.")
+        progress?.takeIf { it.ticket.id == walkId && it.active }?.let {
+            progress = (snapshot() ?: it).copy(phase = WalkPhase.PAUSED,
+                message = "Android pausó la caminata. Puedes reanudarla.")
+            WalkPersistence.save(store, progress!!)
         }
         endTracking()
         super.onDestroy()
@@ -222,11 +322,18 @@ class WalkService : Service(), SensorEventListener {
         var progress: WalkProgress? = null
             private set
 
-        fun unfinished(context: Context): WalkProgress? = progress?.takeIf {
-            it.phase != WalkPhase.COMPLETE && Store.get(context).isWorkoutCurrent(it.ticket.id)
+        fun hasLocation(context: Context) = context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
+        fun unfinished(context: Context): WalkProgress? {
+            val store = Store.get(context)
+            if (progress?.ticket?.owner != store.profileId()) progress = null
+            if (progress == null) progress = WalkPersistence.read(store)
+            val session = progress?.takeIf { it.phase != WalkPhase.COMPLETE } ?: return null
+            store.restoreWalkTicket(session.ticket)
+            return session.takeIf { store.isWorkoutCurrent(it.ticket.id) }
         }
 
-        fun start(context: Context) {
+        fun start(context: Context, routeEnabled: Boolean = false) {
             if (SportTimer.get(context).current() != null) return
             if (Build.VERSION.SDK_INT >= 29 &&
                 context.checkSelfPermission(Manifest.permission.ACTIVITY_RECOGNITION) != PackageManager.PERMISSION_GRANTED
@@ -234,8 +341,10 @@ class WalkService : Service(), SensorEventListener {
             val existing = unfinished(context)
             if (existing?.active == true) return
             val ticket = existing?.ticket ?: Store.get(context).startWorkout(Exercise.WALK)
-            val starting = WalkProgress(ticket, existing?.steps ?: 0, WalkPhase.STARTING, "Preparando sensores…")
+            val starting = (existing ?: WalkProgress(ticket, 0, WalkPhase.PAUSED, "", routeEnabled = routeEnabled))
+                .copy(phase = WalkPhase.STARTING, message = "Preparando sensores…")
             progress = starting
+            WalkPersistence.save(Store.get(context), starting)
             try {
                 ContextCompat.startForegroundService(context, command(context, START, ticket.id))
             } catch (_: RuntimeException) {
@@ -248,8 +357,17 @@ class WalkService : Service(), SensorEventListener {
             context.startService(command(context, PAUSE, session.ticket.id))
         }
 
+        fun savePartial(context: Context): Boolean {
+            val session = unfinished(context)?.takeIf { it.phase == WalkPhase.PAUSED } ?: return false
+            if (!Store.get(context).savePartialWalk(session)) return false
+            discard(context)
+            return true
+        }
+
         fun discard(context: Context) {
-            progress?.let { Store.get(context).cancelWorkout(it.ticket.id) }
+            val store = Store.get(context)
+            unfinished(context)?.let { store.cancelWorkout(it.ticket.id) }
+            WalkPersistence.clear(store)
             progress = null
             context.stopService(Intent(context, WalkService::class.java))
             context.getSystemService(NotificationManager::class.java).cancel(COMPLETE_ID)

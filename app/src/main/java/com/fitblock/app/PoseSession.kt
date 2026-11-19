@@ -5,19 +5,25 @@ data class PoseProgress(val count: Int, val instruction: String)
 /** Uses frame times so a delayed inference cannot credit unobserved motion. */
 class PoseSession(private val exercise: Exercise, private val challenges: List<Int>) {
     private val reps = RepGate(exercise.minimumUnitMillis)
+    private val continuity = PoseContinuity()
     private var challengeIndex = 0
     private var challengeSince = -1L
     private var loweringArms = false
     private var lastFrameAt = -1L
     private var lastHoldAt = -1L
     private var holdMillis = 0L
+    private var lastObservedAt = -1L
+    var activeMillis = 0L
+        private set
     var count = 0
         private set
 
     fun resetTracking() {
         reps.reset()
+        continuity.reset()
         lastFrameAt = -1
         lastHoldAt = -1
+        lastObservedAt = -1
         challengeSince = -1
         loweringArms = false
     }
@@ -26,9 +32,20 @@ class PoseSession(private val exercise: Exercise, private val challenges: List<I
         if (lastFrameAt >= 0 && now <= lastFrameAt) return PoseProgress(count, "Mantén tu posición.")
         if (lastFrameAt >= 0 && now - lastFrameAt > RepGate.MAX_GAP) resetTracking()
         lastFrameAt = now
+        if (!continuity.accept(pose)) {
+            reps.reset()
+            lastHoldAt = -1
+            lastObservedAt = -1
+            challengeSince = -1
+            return PoseProgress(count, "El encuadre cambió. Mantén el teléfono fijo y vuelve a la posición inicial.")
+        }
         if (challengeIndex < challenges.size) return verifyMovement(pose, now)
 
         val form = PoseValidator.check(exercise, pose)
+        if (form.valid) {
+            if (lastObservedAt >= 0) activeMillis += (now - lastObservedAt).coerceIn(0, RepGate.MAX_GAP)
+            lastObservedAt = now
+        } else lastObservedAt = -1
         if (exercise == Exercise.STRETCH) {
             if (form.active) {
                 if (lastHoldAt >= 0) holdMillis += now - lastHoldAt

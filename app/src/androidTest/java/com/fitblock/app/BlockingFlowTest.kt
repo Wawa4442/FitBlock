@@ -26,7 +26,11 @@ class BlockingFlowTest {
     private fun waitFor(text:String, timeout:Long=10_000):AccessibilityNodeInfo {
         val deadline=SystemClock.elapsedRealtime()+timeout
         while(SystemClock.elapsedRealtime()<deadline) { node(text)?.let { return it };Thread.sleep(150) }
-        throw AssertionError("Missing UI text: $text")
+        fun visibleTexts(root: AccessibilityNodeInfo?): String {
+            if (root == null) return "<no window>"
+            return "[${root.text}]" + (0 until root.childCount).joinToString { visibleTexts(root.getChild(it)) }
+        }
+        throw AssertionError("Missing UI text: $text. Window: ${visibleTexts(automation.rootInActiveWindow)}")
     }
     private fun click(text:String) { assertTrue(waitFor(text).performAction(AccessibilityNodeInfo.ACTION_CLICK));Thread.sleep(400) }
     private fun launchChrome() {

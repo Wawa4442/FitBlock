@@ -10,6 +10,7 @@ import kotlin.math.*
 fun quantity(count: Int, singular: String, plural: String) = "$count ${if (count == 1) singular else plural}"
 
 fun android.app.Activity.setFitContent(body: View): ScrollView {
+    if (body is LinearLayout) body.addView(demoBanner(), 0)
     val scroll = ScrollView(this).apply {
         setBackgroundColor(C.bg)
         isFillViewport = true
@@ -25,6 +26,13 @@ fun android.app.Activity.setFitContent(body: View): ScrollView {
     setContentView(scroll)
     scroll.requestApplyInsets()
     return scroll
+}
+
+fun Context.demoBanner() = label("Demo Comercial", 12f, C.amber, true).apply {
+    gravity = Gravity.CENTER
+    setPadding(dp(12), dp(8), dp(12), dp(8))
+    background = surface(C.card, dp(10).toFloat(), C.amber)
+    layoutParams = LinearLayout.LayoutParams(-1, -2).apply { bottomMargin = dp(12) }
 }
 
 fun android.app.Activity.chooseGoal(exercise: Exercise, current: Int, save: (Int) -> Unit) {

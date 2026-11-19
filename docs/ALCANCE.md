@@ -30,9 +30,9 @@ El documento original sigue intacto. El MVP cubre restricción de aplicaciones, 
 | Uso de batería | Cámara visible y servicio de caminata durante una sesión activa | Consumo real pendiente de medir en teléfonos físicos |
 | Dificultad progresiva | Opción +10 % por actividad del día, máximo +40 % | Se usa número de actividades como indicador simple; el plan no fija fórmula |
 | Emergencia regulada | Un pase diario de 2 minutos y +50 % a la siguiente meta | Los esenciales siguen accesibles sin usar el pase |
-| Estadísticas | Hoy, gráfica de 7 días, reps/pasos/estiramientos, tiempo supervisado y eventos | Agregados de 90 días y 50 eventos; registros detallados hasta borrar datos |
+| Estadísticas | Día, semana ISO, mes, selector de fecha, gráfica de 7 días, distancia GPS, tiempo activo y consumo supervisado | Agregados de 90 días y 50 eventos; registros detallados hasta borrar datos |
 | Rachas y recompensas | Racha diaria, mejor racha, semana visible, nivel cada 5 metas completadas y ocho insignias coleccionables | Sin rankings ni premios de valor monetario; canjeables «Muy pronto» |
-| Privacidad | Consentimiento, explicación de permisos, cámara local sin guardar, sin permiso de Internet, exportación y borrado | Responsable/contacto y condiciones comerciales por definir antes de publicación |
+| Privacidad | Consentimiento, explicación de permisos, cámara local sin guardar, ruta GPS opcional local, mosaicos HTTPS de OSM, exportación y borrado | Responsable/contacto y condiciones comerciales por definir antes de publicación |
 | Suscripciones/freemium | MVP gratuito sin anuncios ni cobros | Play Billing y monetización pendientes; no hay compras simuladas |
 | Social y ligas | Vista previa de rachas en equipo y plan guardado por cuenta | Invitaciones, racha compartida y seguimiento de otras personas «Muy pronto»; requieren backend |
 | Wearables/biometría | Conservado como etapa futura del plan | No integra Wear OS, Apple Watch, Health Connect ni pulso |
@@ -41,3 +41,6 @@ El documento original sigue intacto. El MVP cubre restricción de aplicaciones, 
 ## Criterio de aceptación en teléfono físico
 
 La entrega se verifica en un emulador API 35. Queda pendiente probar una sesión de cada ejercicio y la caminata con la pantalla apagada en el teléfono físico, con los sensores y los ajustes de batería del fabricante.
+
+
+La Demo Comercial 1.0 incorpora mapa de caminata, guardado parcial y recuperación en pausa. Los pagos de Premium (50 MXN), sincronización e invitaciones siguen siendo vistas previas identificadas; no se presentan como servicios operativos. La firma de la APK es de demostración, no una publicación en Google Play.

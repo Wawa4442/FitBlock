@@ -102,4 +102,29 @@ class ActivityTrackingTest {
         assertEquals(10, tracker.steps)
         assertTrue(Exercise.WALK.goalRange.contains(100))
     }
+
+    @Test fun fallbackAdaptsToDifferentSamplingRatesAndIgnoresInvalidInput() {
+        for (period in listOf(20L, 40L, 65L)) {
+            val tracker = WalkingTracker(StepSource.ACCELEROMETER, 0)
+            tracker.acceleration(0, Float.NaN, 0f, 0f)
+            for (at in period until 14000 step period) {
+                val signal = (1.4 * sin(2 * PI * at / 700)).toFloat()
+                // Rotation of the phone's axes must not alter magnitude-based counting.
+                tracker.acceleration(at, 9.81f + signal, 0f, 0f)
+            }
+            assertTrue("Sampling $period ms: ${tracker.steps}", tracker.steps in 18..20)
+        }
+        val still = WalkingTracker(StepSource.ACCELEROMETER, 0)
+        for (at in 0L..20000 step 30) still.acceleration(at, 0f, 9.9f, 0f)
+        assertEquals(0, still.steps)
+    }
+
+    @Test fun abruptPersonOrFramingChangeCannotCompleteThePreviousRep() {
+        val session = PoseSession(Exercise.JACK, emptyList())
+        session.frame(closed, 0)
+        session.frame(open, 300)
+        val moved = closed.copy(joints = closed.joints.mapValues { (_, point) -> point.copy(x = point.x + .35f) }, imageWidth = 1.5f)
+        session.frame(moved, 650)
+        assertEquals(0, session.count)
+    }
 }

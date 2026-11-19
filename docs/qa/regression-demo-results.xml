@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="22" failures="0" errors="0" skipped="0" time="169.451" timestamp="2026-11-19T03:35:01" hostname="localhost">
+  <testsuite name="com.fitblock.app.AccountsAndHistoryTest" tests="6" failures="0" errors="0" skipped="0" time="9.732" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="firstAccountClaimsGuestHistoryOnlyOnce" classname="com.fitblock.app.AccountsAndHistoryTest" time="2.761" />
+    <testcase name="credentialsAreHashedAndDuplicateOrWrongCredentialsFail" classname="com.fitblock.app.AccountsAndHistoryTest" time="2.291" />
+    <testcase name="manualRecordsAreIdempotentAndDoNotCreateUnlockCredit" classname="com.fitblock.app.AccountsAndHistoryTest" time="0.031" />
+    <testcase name="partialRecordsDoNotCreateStreakAndActiveSessionsPreventAccountChanges" classname="com.fitblock.app.AccountsAndHistoryTest" time="1.212" />
+    <testcase name="streaksKeepDetailedHistoryBeyondAggregateWindowAndBadgesRemainUnlocked" classname="com.fitblock.app.AccountsAndHistoryTest" time="0.025" />
+    <testcase name="accountCreationAuthenticationAndHistoryAreIsolated" classname="com.fitblock.app.AccountsAndHistoryTest" time="3.412" />
+  </testsuite>
+  <testsuite name="com.fitblock.app.BlockingFlowTest" tests="1" failures="0" errors="0" skipped="0" time="18.74" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="blockerEmergencyExpiryAndExerciseNavigation" classname="com.fitblock.app.BlockingFlowTest" time="18.74" />
+  </testsuite>
+  <testsuite name="com.fitblock.app.CameraFlowTest" tests="1" failures="0" errors="0" skipped="0" time="6.66" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="cameraStartsOfflineAndEmptySceneCannotEarnMinutes" classname="com.fitblock.app.CameraFlowTest" time="6.66" />
+  </testsuite>
+  <testsuite name="com.fitblock.app.CommercialDataTest" tests="4" failures="0" errors="0" skipped="0" time="0.42" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="completedWalkSavesRewardRouteAndDailyTotalsExactlyOnce" classname="com.fitblock.app.CommercialDataTest" time="0.215" />
+    <testcase name="malformedTotalsAndWrongOwnerCannotSaveOrGrantRewards" classname="com.fitblock.app.CommercialDataTest" time="0.065" />
+    <testcase name="checkpointRecoveryAndPartialSaveDoNotDuplicateDailyData" classname="com.fitblock.app.CommercialDataTest" time="0.081" />
+    <testcase name="overnightWalkSplitsDailyMetricsAndAggregatesThePeriod" classname="com.fitblock.app.CommercialDataTest" time="0.059" />
+  </testsuite>
+  <testsuite name="com.fitblock.app.NextVersionFlowTest" tests="1" failures="0" errors="0" skipped="0" time="97.802" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="accountSportsTimerStreakTeamPreviewAwardsAndHistory" classname="com.fitblock.app.NextVersionFlowTest" time="97.802" />
+  </testsuite>
+  <testsuite name="com.fitblock.app.RecordedPoseQa" tests="1" failures="0" errors="0" skipped="0" time="9.311" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="countsThreeContinuousJacksInRecordedExercise" classname="com.fitblock.app.RecordedPoseQa" time="9.311" />
+  </testsuite>
+  <testsuite name="com.fitblock.app.StoreDeviceTest" tests="8" failures="0" errors="0" skipped="0" time="21.094" timestamp="2026-11-19T03:35:01" hostname="localhost">
+    <properties>
+      <property name="device" value="FitBlock_Test_API35(AVD) - 15" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="perAppQuotaDoesNotTruncateEarnedSharedCredit" classname="com.fitblock.app.StoreDeviceTest" time="3.539" />
+    <testcase name="completedSessionMintsExactlyOnce" classname="com.fitblock.app.StoreDeviceTest" time="3.483" />
+    <testcase name="cannotMintRewardEarlyOrWithWrongTicket" classname="com.fitblock.app.StoreDeviceTest" time="0.044" />
+    <testcase name="upgradedGoalsRespectMinimumAndActiveTicketKeepsItsSize" classname="com.fitblock.app.StoreDeviceTest" time="0.043" />
+    <testcase name="canceledAndSupersededSessionsCannotMint" classname="com.fitblock.app.StoreDeviceTest" time="6.869" />
+    <testcase name="emergencyIsLimitedAndAddsDebt" classname="com.fitblock.app.StoreDeviceTest" time="0.035" />
+    <testcase name="rebootInvalidatesPasesAndKeepsSelection" classname="com.fitblock.app.StoreDeviceTest" time="3.436" />
+    <testcase name="spendingStopsAtQuotaAndUnselectedAppsCannotSpend" classname="com.fitblock.app.StoreDeviceTest" time="3.645" />
+  </testsuite>
+</testsuites>

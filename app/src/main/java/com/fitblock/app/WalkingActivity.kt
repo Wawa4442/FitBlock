@@ -14,6 +14,8 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.LinearLayout
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.ComponentActivity
 
 class WalkingActivity : ComponentActivity() {
@@ -27,10 +29,22 @@ class WalkingActivity : ComponentActivity() {
     private lateinit var terminate: Button
     private var notificationButton: Button? = null
     private var permissionMessage: String? = null
+    private var routeEnabled = false
+    private lateinit var metrics: TextView
+    private lateinit var gpsStatus: TextView
+    private lateinit var map: RouteMapView
+    private lateinit var routeButton: Button
+    private lateinit var save: Button
+    private val locationPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+        routeEnabled = WalkService.hasLocation(this)
+        permissionMessage = if (routeEnabled) "Ruta activada. Inicia la caminata para registrar tu recorrido." else
+            "Sin ubicación precisa: puedes caminar y contar pasos sin ruta. Puedes habilitarla en los ajustes del teléfono."
+        renderProgress()
+    }
     private val permissions = PermissionPrompt(this) { permission, granted ->
         if (permission == Manifest.permission.ACTIVITY_RECOGNITION) {
             permissionMessage = if (granted) null else "Autoriza Actividad física para contar pasos. Pulsa Iniciar para intentarlo de nuevo."
-            if (granted) WalkService.start(this)
+            if (granted) WalkService.start(this, routeEnabled)
         }
         renderProgress()
     }
@@ -49,7 +63,9 @@ class WalkingActivity : ComponentActivity() {
             finish()
             return
         }
+        routeEnabled = savedInstanceState?.getBoolean("routeEnabled") ?: WalkService.unfinished(this)?.routeEnabled ?: false
         val body = column(22)
+        body.addView(demoBanner())
         body.button("‹ Volver", false) { finish() }
         body.gap(14)
         body.text("Caminata", 28f, bold = true)
@@ -69,14 +85,36 @@ class WalkingActivity : ComponentActivity() {
             gap(12)
             status = text("", 14f, C.muted)
         }
+        metrics = body.text("", 16f, C.green, true)
+        body.gap(10)
         start = body.button("Iniciar caminata") { primaryAction() }
+        save = body.button("Guardar caminata parcial", false) {
+            if (WalkService.savePartial(this)) {
+                android.widget.Toast.makeText(this, "Caminata guardada en tu historial. Sin recompensa por meta incompleta.", android.widget.Toast.LENGTH_LONG).show()
+                finish()
+            } else permissionMessage = "Pausa la caminata y registra al menos un segundo antes de guardar."
+            renderProgress()
+        }
         terminate = body.button("Terminar caminata", false) {
             AlertDialog.Builder(this).setTitle("¿Terminar la caminata?")
-                .setMessage("Los pasos de esta sesión se perderán si aún no alcanzaste la meta.")
+                .setMessage("Se descartará esta sesión. Para conservar pasos y ruta, pausa y pulsa Guardar caminata parcial.")
                 .setNegativeButton("Continuar", null)
                 .setPositiveButton("Terminar") { _, _ -> WalkService.discard(this); finish() }
                 .show()
         }
+        routeButton = body.button("Activar ruta GPS", false) {
+            if (routeEnabled) { routeEnabled = false; renderProgress(); return@button }
+            AlertDialog.Builder(this).setTitle("Tu recorrido, bajo tu control")
+                .setMessage("FitBlock guardará las coordenadas de esta caminata en tu teléfono, incluso con la pantalla apagada. El mapa solicita imágenes de la zona a OpenStreetMap usando Internet. Puedes borrar la ruta desde el historial. No necesitas GPS para contar pasos. Autoriza ubicación precisa mientras usas la app.")
+                .setNegativeButton("Ahora no", null).setPositiveButton("Activar ruta") { _, _ ->
+                    locationPermission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
+                }.show()
+        }
+        gpsStatus = body.text("", 13f, C.muted)
+        body.gap(10)
+        map = body.addRouteMap(emptyList())
+        body.text("La ruta y la distancia dependen de la señal GPS. Los pasos se calculan con sensores de movimiento.", 12f, C.muted)
+        body.gap(12)
         if (Build.VERSION.SDK_INT >= 33) {
             notificationButton = body.button("Activar notificación de caminata", false) {
                 permissions.request(Manifest.permission.POST_NOTIFICATIONS)
@@ -98,6 +136,11 @@ class WalkingActivity : ComponentActivity() {
         renderProgress()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean("routeEnabled", routeEnabled)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onResume() {
         super.onResume()
         if (::goal.isInitialized) handler.post(refresh)
@@ -117,7 +160,7 @@ class WalkingActivity : ComponentActivity() {
             WalkPhase.COMPLETE -> WalkService.discard(this)
             else -> {
                 if (Build.VERSION.SDK_INT >= 29) permissions.request(Manifest.permission.ACTIVITY_RECOGNITION)
-                else WalkService.start(this)
+                else WalkService.start(this, routeEnabled)
             }
         }
         renderProgress()
@@ -134,6 +177,12 @@ class WalkingActivity : ComponentActivity() {
         bar.progress = steps
         status.text = permissionMessage ?: session?.message ?:
             "Lleva el teléfono en el bolsillo. Al iniciar podrás apagar la pantalla y seguir caminando."
+        metrics.text = "${activityTime(session?.activeMillis ?: 0)} activos · ${distanceText(session?.distanceMeters ?: 0.0)} GPS"
+        gpsStatus.text = session?.gpsMessage ?: if (routeEnabled) "Ruta GPS activada para tu próxima caminata" else "Ruta GPS opcional · activa la ruta antes de iniciar"
+        map.update(session?.route ?: emptyList())
+        routeButton.visibility = if (session == null) View.VISIBLE else View.GONE
+        routeButton.text = if (routeEnabled) "Desactivar ruta GPS" else "Activar ruta GPS"
+        save.visibility = if (session?.phase == WalkPhase.PAUSED) View.VISIBLE else View.GONE
         edit.visibility = if (session == null) View.VISIBLE else View.GONE
         terminate.visibility = if (session != null && session.phase != WalkPhase.COMPLETE) View.VISIBLE else View.GONE
         start.isEnabled = session?.phase != WalkPhase.STARTING

@@ -1,8 +1,20 @@
 # FitBlock para Android
 
-MVP nativo en Kotlin, desarrollado a partir de **Plan de Negocios.docx**. Abre esta carpeta en Android Studio. La versión **0.3.0** funciona sin conexión, con cuenta local opcional: el modelo de postura va incluido en la APK y el manifiesto elimina el permiso de Internet.
+MVP nativo en Kotlin, desarrollado a partir de **Plan de Negocios.docx**. Abre esta carpeta en Android Studio. La versión **1.0.0-demo** prepara la muestra emprendedora con el banner **Demo Comercial**. El catálogo, el conteo y el historial funcionan sin conexión. El mapa opcional descarga calles de OpenStreetMap por HTTPS; las coordenadas y cuentas permanecen en el teléfono. El modelo de postura va incluido en la APK.
 
-## Novedades de la versión 0.3
+## Novedades de la Demo Comercial 1.0
+
+- Caminata con detector de pasos prioritario, podómetro alternativo y acelerómetro con filtros temporales y umbral adaptativo. Rechaza sacudidas fuertes y secuencias demasiado rápidas; el GPS no concede pasos.
+- **Ruta GPS opcional:** mapa nativo de OpenStreetMap, línea del recorrido, inicio/final, acercamiento, arrastre, encuadre, distancia y precisión de señal. Permiso de ubicación precisa solicitado al activar la ruta. Las pausas y pérdidas de señal separan segmentos y no suman distancias entre ellos.
+- **Recuperación de caminata:** guarda un punto de control cada 5 segundos y al pausar. Tras cerrar el proceso se recupera en pausa; no suma el tiempo sin sensores. Puede guardarse una caminata parcial sin recompensa ni racha.
+- **Progreso diario, semanal y mensual:** selector de fecha, pasos, distancia GPS, tiempo activo, metas, repeticiones, estiramiento, minutos ganados/usados y gráfica de siete días. Los resúmenes incluyen el último punto de control de una caminata pendiente.
+- **Cámara:** continuidad de encuadre y torso para evitar unir movimientos de cambios bruscos; tiempo observado de actividad separado del tiempo de pausa.
+- **Recorrido de presentación:** Inicio → Conoce FitBlock. Incluye una ruta y una gráfica explícitamente ilustrativas que nunca se guardan como actividad real.
+- [Guía para la muestra](docs/DEMO-COMERCIAL.md) y [pruebas](docs/PRUEBAS.md).
+
+## Funciones de la versión anterior
+
+- **Vista previa de Premium:** accesos desde Inicio, Ajustes y Mi cuenta; pantalla de beneficios y resumen del plan por **50 MXN**, que explica el desbloqueo de todas las funciones. No cobra ni activa una compra: falta integrar pagos y definir modalidad y vigencia. Las funciones en desarrollo conservan su estado y las funciones actuales siguen disponibles.
 
 - **103 deportes y actividades**, con búsqueda, categorías y favoritos: carrera, ciclismo, natación, yoga, fuerza, deportes de equipo, raqueta, combate, baile y más. Los cinco ejercicios verificados conservan sus sensores, mínimos y recompensas.
 - Los otros 98 deportes permiten fijar una duración de **1 a 300 minutos**, iniciar, pausar, reanudar y guardar. El cronómetro continúa con la pantalla apagada y recupera la sesión tras cerrar el proceso en el mismo arranque del teléfono. Son registros por tiempo: no detectan automáticamente la técnica ni conceden minutos para desbloquear apps.
@@ -14,7 +26,7 @@ El repertorio toma como referencia los tipos de actividad de [Apple HealthKit](h
 
 ## Instalar en tu teléfono
 
-1. Copia **dist/FitBlock-MVP.apk** al teléfono e instálala. Requiere Android 8.0 o superior.
+1. Copia **dist/FitBlock-Demo-Comercial.apk** al teléfono e instálala. Requiere Android 8.0 o superior.
 2. Abre FitBlock, lee el funcionamiento y acepta el consentimiento local.
 3. En **Apps**, selecciona las aplicaciones que quieres proteger. Teléfono, SMS, inicio, teclado, ajustes y apps esenciales identificadas se excluyen.
 4. Activa **Protección de FitBlock**. En **Permisos de FitBlock**, pulsa **Abrir Accesibilidad**, elige **FitBlock** entre las apps instaladas y activa el servicio.
@@ -23,7 +35,7 @@ El repertorio toma como referencia los tipos de actividad de [Apple HealthKit](h
 7. En **Moverme**, busca y abre una actividad. Para ganar minutos, elige una de las cinco verificadas y pulsa **Cambiar meta**. La app solicita Cámara o Actividad física al iniciar. Puedes activar la notificación de caminata para ver el avance y pausar desde ella. Los demás deportes guardan duración mediante cronómetro.
 8. Completa la meta y abre una de tus apps seleccionadas. El saldo disminuye únicamente durante el uso protegido. Al terminar el saldo, vencer el pase o alcanzar el límite diario de esa app, aparece la barrera.
 
-Para probar la app, usa las metas mínimas en **Cambiar meta**. La meta queda fijada al iniciar y se conserva al pausar. El saldo se acredita al completar la meta.
+Para probar la app, usa las metas mínimas en **Cambiar meta**. La meta queda fijada al iniciar y se conserva al pausar. El saldo se acredita al completar la meta. En Caminata activa Ruta GPS antes de iniciar si quieres guardar el recorrido. Pausa y pulsa Guardar caminata parcial para conservar una sesión incompleta sin recompensa.
 
 ## Reglas iniciales
 
@@ -66,7 +78,7 @@ En PowerShell:
 .\scripts\compilar.ps1
 ```
 
-El script usa el JDK de Android Studio sin cambiar permanentemente las variables del sistema. Genera la APK en `dist`, su hash SHA-256 y ejecuta las pruebas unitarias y lint. La primera compilación necesita Internet para descargar dependencias; la aplicación instalada funciona sin él.
+El script usa el JDK de Android Studio sin cambiar permanentemente las variables del sistema. Genera la APK en `dist`, su hash SHA-256 y ejecuta las pruebas unitarias y lint. La primera compilación necesita Internet para descargar dependencias. La aplicación instalada funciona sin él excepto la descarga de calles del mapa; los mosaicos visitados se conservan al menos siete días en caché.
 
 Para instalar por USB con depuración habilitada:
 
@@ -84,12 +96,12 @@ Para las pruebas instrumentadas, usa exclusivamente un emulador de pruebas con C
 
 ## Datos y límites técnicos
 
-Se guardan configuración, paquetes seleccionados, 90 días de estadísticas agregadas y 50 eventos por perfil en almacenamiento privado de Android. Los registros detallados de actividades de esta versión se conservan hasta borrar los datos y se muestran por páginas de 20. No se guardan imágenes, videos, coordenadas ni recorridos. La exportación JSON contiene estadísticas, registros y eventos del perfil activo, sin credenciales. **Borrar todos los datos** elimina todas las cuentas y datos locales. No se habilitan copias de seguridad Android. Montserrat e Inter se incluyen con sus licencias OFL.
+Se guardan configuración, paquetes seleccionados, 90 días de estadísticas agregadas y 50 eventos por perfil en almacenamiento privado de Android. Los registros detallados de actividades de esta versión se conservan hasta borrar los datos y se muestran por páginas de 20. No se guardan imágenes ni videos. Al activar una ruta GPS se guardan sus coordenadas localmente, con hasta 6 000 puntos por sesión. Pueden eliminarse desde Historial → Ver recorrido → Eliminar ruta GPS, conservando los totales. La exportación JSON contiene estadísticas, registros, rutas GPS y eventos del perfil activo, sin credenciales; se avisa antes de elegir el archivo. **Borrar todos los datos** elimina todas las cuentas y datos locales. No se habilitan copias de seguridad Android. Montserrat e Inter se incluyen con sus licencias OFL.
 
 Las reglas de protección, apps seleccionadas y permisos pertenecen al teléfono y son compartidos entre perfiles. El saldo, uso supervisado e historial pertenecen al perfil activo. Debes terminar o descartar una actividad pendiente antes de cambiar de cuenta. Las cuentas locales no pueden recuperar datos tras desinstalar, borrar los datos o cambiar de teléfono; exporta tu historial antes si necesitas conservarlo.
 
 El bloqueo funciona por accesibilidad y depende de que Android mantenga el servicio autorizado. No es una suspensión de paquetes del sistema ni administración empresarial del teléfono. Desactivar permisos, forzar detención, desinstalar o las restricciones del fabricante pueden interrumpirlo. El acceso opcional al uso de apps ayuda a recuperar el bloqueo; no impide esas acciones. Al reiniciar el teléfono o detectar un salto significativo del reloj se invalidan los pases, conservando reglas y estadísticas.
 
-La caminata usa movimiento y cadencia, por lo que funciona en interiores y puede confundir movimiento rítmico con pasos. Android o el fabricante pueden detener el proceso. En ese caso debes iniciar otra caminata y los minutos ya ganados se conservan. La calibración física y el consumo de batería varían por teléfono.
+La caminata usa movimiento y cadencia, por lo que funciona en interiores y puede confundir movimiento rítmico con pasos. Android o el fabricante pueden detener el proceso. En ese caso puedes reanudar el último punto de control, perdiendo como máximo el avance no guardado desde ese punto. No se reconstruyen pasos de periodos sin sensores. La calibración física y el consumo de batería varían por teléfono.
 
 Ligas, desafíos compartidos en línea, cuentas en la nube, pagos, suscripciones y relojes pertenecen a fases posteriores. Las vistas previas indican su estado. Consulta **docs/ALCANCE.md**, **docs/ARQUITECTURA.md** y **docs/PRUEBAS.md**.

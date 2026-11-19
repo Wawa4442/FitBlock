@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites tests="29" failures="0">
+  <testsuite name="com.fitblock.app.ActivityTrackingTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-19T03:38:15.267Z" hostname="DESKTOP-QDI9K45" time="0.083">
+    <properties />
+    <testcase name="fallbackAdaptsToDifferentSamplingRatesAndIgnoresInvalidInput" classname="com.fitblock.app.ActivityTrackingTest" time="0.044" />
+    <testcase name="stretchCountsOnlyObservedTimeInPosition" classname="com.fitblock.app.ActivityTrackingTest" time="0.009" />
+    <testcase name="armsOnlyOrOneMissingFootCannotCompleteJack" classname="com.fitblock.app.ActivityTrackingTest" time="0.0" />
+    <testcase name="cumulativePedometerAcceptsDelayedBatchesAndIgnoresDuplicateTotals" classname="com.fitblock.app.ActivityTrackingTest" time="0.006" />
+    <testcase name="livenessChallengePrecedesCounting" classname="com.fitblock.app.ActivityTrackingTest" time="0.008" />
+    <testcase name="accelerometerFallbackCountsRhythmAndRejectsHardShaking" classname="com.fitblock.app.ActivityTrackingTest" time="0.002" />
+    <testcase name="continuousJacksCountWithBriefEndpointsAndMissingFrame" classname="com.fitblock.app.ActivityTrackingTest" time="0.002" />
+    <testcase name="sensorEventsNeedWalkingMotionButAcceptAStepAfterAStop" classname="com.fitblock.app.ActivityTrackingTest" time="0.001" />
+    <testcase name="abruptPersonOrFramingChangeCannotCompleteThePreviousRep" classname="com.fitblock.app.ActivityTrackingTest" time="0.001" />
+    <system-out />
+    <system-err />
+  </testsuite>
+  <testsuite name="com.fitblock.app.PolicyTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-11-19T03:38:15.354Z" hostname="DESKTOP-QDI9K45" time="0.011">
+    <properties />
+    <testcase name="expiryCannotBeBypassedWithUnusedBalance" classname="com.fitblock.app.PolicyTest" time="0.0" />
+    <testcase name="geometryRejectsDegenerateAngles" classname="com.fitblock.app.PolicyTest" time="0.001" />
+    <testcase name="fullDayAndNormalScheduleRespectSelectedDays" classname="com.fitblock.app.PolicyTest" time="0.003" />
+    <testcase name="incompleteAndRapidCyclesDoNotCount" classname="com.fitblock.app.PolicyTest" time="0.001" />
+    <testcase name="missingOrLowConfidenceLandmarksNeverQualify" classname="com.fitblock.app.PolicyTest" time="0.001" />
+    <testcase name="staticFramesCannotGenerateRepetitions" classname="com.fitblock.app.PolicyTest" time="0.0" />
+    <testcase name="trackingLossAndLongGapsInvalidatePartialCycles" classname="com.fitblock.app.PolicyTest" time="0.001" />
+    <testcase name="overnightScheduleBelongsToItsStartingDay" classname="com.fitblock.app.PolicyTest" time="0.0" />
+    <testcase name="progressiveGoalHasACapAndEmergencyDebtPersistsInGoal" classname="com.fitblock.app.PolicyTest" time="0.002" />
+    <testcase name="squatRequiresBentKneeThenFullExtension" classname="com.fitblock.app.PolicyTest" time="0.001" />
+    <testcase name="selectedAppsNeedBothCreditAndDailyQuota" classname="com.fitblock.app.PolicyTest" time="0.0" />
+    <testcase name="jacksAndStretchesUseBothArmsAndFullBody" classname="com.fitblock.app.PolicyTest" time="0.0" />
+    <testcase name="pushupNeedsStraightBodyAsWellAsArmMotion" classname="com.fitblock.app.PolicyTest" time="0.0" />
+    <system-out />
+    <system-err />
+  </testsuite>
+  <testsuite name="com.fitblock.app.RouteTrackerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-19T03:38:15.369Z" hostname="DESKTOP-QDI9K45" time="0.004">
+    <properties />
+    <testcase name="pausesAndSignalLossCreateSegmentsWithoutAddingDistance" classname="com.fitblock.app.RouteTrackerTest" time="0.003" />
+    <testcase name="walkingAddsDistanceWhileStationaryNoiseDoesNot" classname="com.fitblock.app.RouteTrackerTest" time="0.0" />
+    <testcase name="datelineDistanceUsesShortArc" classname="com.fitblock.app.RouteTrackerTest" time="0.0" />
+    <testcase name="rejectsStaleInaccurateImpossibleAndNonFiniteFixes" classname="com.fitblock.app.RouteTrackerTest" time="0.0" />
+    <system-out />
+    <system-err />
+  </testsuite>
+  <testsuite name="com.fitblock.app.SportCatalogTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-11-19T03:38:15.376Z" hostname="DESKTOP-QDI9K45" time="0.034">
+    <properties />
+    <testcase name="pausedTimeIsExcludedAndBackgroundElapsedTimeSurvivesReconstruction" classname="com.fitblock.app.SportCatalogTest" time="0.001" />
+    <testcase name="repertoireHasUniqueIdentifiersAndPreservesVerifiedExercises" classname="com.fitblock.app.SportCatalogTest" time="0.006" />
+    <testcase name="searchingIsCaseAndAccentInsensitiveAndHonorsCategories" classname="com.fitblock.app.SportCatalogTest" time="0.025" />
+    <system-out />
+    <system-err />
+  </testsuite>
+</testsuites>

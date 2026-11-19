@@ -1,10 +1,10 @@
 # Verificación de FitBlock
 
-La versión 0.3.0 se verifica en el emulador **FitBlock_Test_API35**, con Android 15, imagen Google APIs x86_64 y JBR 21. Queda pendiente la calibración en el teléfono del usuario.
+La versión 1.0.0-demo se verifica en el emulador **FitBlock_Test_API35**, con Android 15, imagen Google APIs x86_64 y JBR 21. Queda pendiente la calibración en el teléfono del usuario.
 
 ## Comprobaciones automatizadas
 
-La suite contiene 23 pruebas unitarias y 18 pruebas instrumentadas. Los reportes se generan en `app/build/reports/tests/testDebugUnitTest`, `app/build/reports/androidTests/connected/debug` y `app/build/reports/lint-results-debug.html`.
+La suite contiene 29 pruebas unitarias y 22 pruebas instrumentadas. Los reportes se generan en `app/build/reports/tests/testDebugUnitTest`, `app/build/reports/androidTests/connected/debug` y `app/build/reports/lint-results-debug.html`.
 
 Las pruebas unitarias de PolicyTest cubren horarios normales y nocturnos, días elegidos, vencimiento, cuotas, emergencia, dificultad progresiva, rechazo de ciclos demasiado rápidos, seguimiento perdido, escenas estáticas, cadencia de pasos y geometría de poses. Incluyen ejemplos sintéticos de flexiones, sentadillas, saltos y estiramiento para comprobar tanto aceptación como rechazo. Los ejemplos sintéticos no sustituyen validación con una persona.
 
@@ -30,7 +30,7 @@ NextVersionFlowTest recorre la interfaz real para crear cuenta, buscar Yoga, mar
 | Metas | Actualiza los valores antiguos por debajo del mínimo y conserva la meta de la sesión iniciada |
 | Video de saltos | El modelo de FitBlock registra los tres ciclos completos del clip |
 
-El ensayo de video de esta entrega también registró dos sentadillas completas y tres flexiones completas. Los clips se analizaron con ML Kit y las mismas reglas de conteo a 10 cuadros por segundo. El resultado está en `docs/qa/pose-video-results.xml`. La fuente de los saltos es [Jumping jacks and burpees, de Taco Fleur](https://commons.wikimedia.org/wiki/File:Jumping_jacks_and_burpees.webm). Los clips de sentadillas y flexiones proceden de [exercise_counter](https://github.com/Shalbulov/exercise_counter/tree/main/videos).
+El ensayo de video archivado de la versión 0.3 también registró dos sentadillas completas y tres flexiones completas. Los clips se analizaron con ML Kit y las mismas reglas de conteo a 10 cuadros por segundo. El resultado está en `docs/qa/pose-video-results.xml`. La fuente de los saltos es [Jumping jacks and burpees, de Taco Fleur](https://commons.wikimedia.org/wiki/File:Jumping_jacks_and_burpees.webm). Los clips de sentadillas y flexiones proceden de [exercise_counter](https://github.com/Shalbulov/exercise_counter/tree/main/videos).
 
 `scripts/smoke_walk.py` prueba la pantalla de permisos, el mínimo de la meta y una sesión completa con eventos simulados del acelerómetro del emulador. Registra el progreso tras apagar la pantalla, pausa, reanuda y comprueba el saldo al alcanzar 100 pasos.
 
@@ -52,7 +52,7 @@ La revisión visual incluye bienvenida, selección de apps, inicio, actividades,
 8. Configura un horario corto y comprueba sus extremos. Prueba también uno que cruce medianoche y el límite individual de la app.
 9. Solicita emergencia: la app elegida debe abrir durante dos minutos. Al vencer se debe reactivar la barrera y no debe concederse otra emergencia ese día.
 10. Reinicia el teléfono, verifica el servicio y habilita recuperación por uso de apps. Comprueba con y sin las restricciones de batería que permita configurar tu fabricante.
-11. Exporta el historial y comprueba que no contiene fotos ni coordenadas. Borra los datos y verifica que se desactiva la protección y reaparece el consentimiento.
+11. Exporta el historial y comprueba que no contiene fotos ni credenciales; incluye coordenadas si guardaste rutas GPS. Borra los datos y verifica que se desactiva la protección y reaparece el consentimiento.
 12. Crea tu cuenta desde **Mi cuenta**. Verifica que el historial de invitado se asocia y que al cerrar sesión no aparece en el perfil de invitado ni en una segunda cuenta.
 13. Busca un deporte, márcalo favorito y registra una sesión con duración elegida. Comprueba pausa, pantalla apagada y reabrir la app. Solo las metas completadas suman a la racha; el cronómetro no da saldo para apps.
 14. Abre **Rachas y premios**, prepara un reto conjunto y revisa **Muy pronto**. Añade una insignia alcanzada a la colección, cierra y vuelve a iniciar sesión para comprobar que persiste.
@@ -60,3 +60,16 @@ La revisión visual incluye bienvenida, selección de apps, inicio, actividades,
 ## Aspectos aún sin validar
 
 Queda por medir la precisión con distintos teléfonos, posiciones del dispositivo, condiciones de luz y ritmos de caminata. La prueba con pantalla apagada usa sensores simulados. El consumo de batería, la temperatura y las restricciones de cada fabricante requieren pruebas físicas.
+
+
+## Verificación añadida para Demo Comercial
+
+- RouteTrackerTest: ruido estacionario, distancia de caminata, precisión, coordenadas no finitas, puntos antiguos o fuera de orden, velocidades imposibles, segmentos al pausar/perder señal y cruce del meridiano 180°.
+- ActivityTrackingTest: filtros a 20/40/65 ms por muestra, independencia de los ejes, entradas no finitas y cambio abrupto de encuadre. Se mantiene el caso de podómetro por lotes, cadencia, sacudidas, retos de brazos y estiramiento observado.
+- CommercialDataTest (Android): recuperación del punto de control, guardado parcial sin recompensa, concesión única al completar, persistencia y eliminación de ruta, datos por fecha al cruzar medianoche, total histórico sin duplicación y rechazo de datos inconsistentes.
+- `python scripts/smoke_commercial.py`: banner, presentación de solo lectura, mapa de ejemplo, consentimiento GPS opcional, caminata con pantalla apagada, pausa, cierre forzado, recuperación del mismo conteo, guardado parcial y vistas Día/Semana/Mes.
+- `python scripts/smoke_walk.py`: mantiene la prueba de sensores reales del emulador hasta completar la meta y acreditar saldo con pantalla apagada.
+
+Los puntos GPS de las pruebas unitarias y el recorrido de presentación son ejemplos sintéticos. No prueban la precisión GPS en exteriores ni representan recorridos realizados por una persona. La ruta pública de muestra está etiquetada y no se registra en Progreso.
+
+Para validar en el teléfono: activa Ruta GPS, acepta ubicación precisa, camina al aire libre, pausa/reanuda y verifica que no se unan esos segmentos. Prueba también denegar ubicación, retirar Internet, señal débil, guardado parcial y borrado de ruta. Estos ensayos físicos no pueden ejecutarse con el emulador.

@@ -37,7 +37,11 @@ class NextVersionFlowTest {
             node(text, exact)?.let { return it }
             Thread.sleep(150)
         }
-        throw AssertionError("Missing UI text: $text")
+        fun visibleTexts(root: AccessibilityNodeInfo?): String {
+            if (root == null) return "<no window>"
+            return "[${root.text}]" + (0 until root.childCount).joinToString { visibleTexts(root.getChild(it)) }
+        }
+        throw AssertionError("Missing UI text: $text. Window: ${visibleTexts(automation.rootInActiveWindow)}")
     }
     private fun click(text: String) {
         assertTrue(waitFor(text).performAction(AccessibilityNodeInfo.ACTION_CLICK))

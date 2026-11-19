@@ -1,0 +1,15 @@
+FitBlock 1.0.0-demo — validación de entrega
+
+PASS: assembleDebug, 29 pruebas unitarias y lintDebug sin errores bloqueantes.
+PASS: 22 pruebas instrumentadas Android 15 / FitBlock_Test_API35, cero fallos.
+PASS: video real de referencia: tres ciclos de saltos detectados por ML Kit.
+PASS: recorrido comercial de solo lectura, mapa OSM cargado y banner visible.
+PASS: 20 pasos sintéticos con pantalla apagada, pausa, cierre forzado, recuperación exacta y guardado parcial sin recompensa.
+PASS: resúmenes Día / Semana / Mes e historial de la caminata guardada.
+PASS: permiso de ubicación y arranque de caminata en primer plano desde su pantalla.
+PASS: caminata completa: 14 pasos antes de pausar, reanudación, meta de 100 pasos y recompensa única de 10 minutos con pantalla apagada.
+PASS: APK de compilación y ambos archivos dist coinciden con SHA-256 publicado.
+
+Capturas: demo-01 a demo-08; reportes: unit-demo-results.xml y regression-demo-results.xml.
+Los sensores de caminata y las coordenadas de prueba son sintéticos. Pendientes en teléfono físico: precisión de pasos/GPS, batería y restricciones del fabricante.
+La entrega es una demo instalable; compras reales, sincronización e invitaciones no están habilitadas y se identifican como próximas.

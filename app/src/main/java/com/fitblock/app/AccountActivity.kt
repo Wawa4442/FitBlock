@@ -49,6 +49,9 @@ class AccountActivity : ComponentActivity() {
                 button("Ver mi historial", false) { community("history") }
                 button("Rachas y premios", false) { community("streaks") }
             }
+            body.button("Conocer Premium · 50 MXN", false) {
+                startActivity(Intent(this, PremiumActivity::class.java))
+            }
             body.button("Cambiar cuenta", false) { creating = false; render(true) }
             body.button("Cerrar sesión", false) {
                 try { accounts.logout(); finish() }
@@ -153,6 +156,7 @@ class AccountActivity : ComponentActivity() {
             if (!busy) { creating = !creating; render(true) }
         }
         body.gap(18)
+        body.button("Conocer Premium · 50 MXN", false) { startActivity(Intent(this, PremiumActivity::class.java)) }
         body.text("Sincronización y acceso desde otros dispositivos", 14f, bold = true)
         body.text("Muy pronto", 13f, C.cyan, true)
         setFitContent(body)

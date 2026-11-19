@@ -1,0 +1,1 @@
+PASS: commercial banner, read-only sample tour, map rendering, optional GPS consent, 20 screen-off steps, pause, process-death recovery, partial save without reward, day/week/month statistics and history.
